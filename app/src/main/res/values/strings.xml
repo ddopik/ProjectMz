@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Mazda</string>
+    <string name="home">Home</string>
+    <string name="products">Products</string>
+    <string name="services">Services</string>
+    <string name="find_us">Find Us</string>
+    <string name="mazda_club">Mazda Club</string>
+    <string name="car_details">View Car Details</string>
+    <string name="gallery">Gallery</string>
+    <string name="video">Video</string>
+    <string name="book_now">Book Now</string>
+    <string name="trade_in">Trade In</string>
+    <string name="drive_finance">Drive Finance</string>
+    <string name="test_drive">Test Drive</string>
+    <string name="show_room">Show Room</string>
+    <string name="overview">OverView</string>
+    <string name="specification">Specification</string>
+    <string-array name="action_titles">
+        <item>@string/drive_finance</item>
+        <item>@string/test_drive</item>
+        <item>@string/trade_in</item>
+        <item>@string/show_room</item>
+    </string-array>
 </resources>

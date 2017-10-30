@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "331871484045",
+    "firebase_url": "https://mazda-999f5.firebaseio.com",
+    "project_id": "mazda-999f5",
+    "storage_bucket": "mazda-999f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331871484045:android:f16158c9e867b607",
+        "android_client_info": {
+          "package_name": "com.spade.mazda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331871484045-gtq25mdm9b93jih53dfrljrh629qck5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx-_iUzMmjdlOSEcKQKVIwONtOQ9w4C6Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
