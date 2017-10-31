@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spade.mazda.services.ServicesFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private FrameLayout menuLayout;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+//        ServicesFragment servicesFragment = new ServicesFragment();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesFragment).commit();
 
 //        menuLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 //            public void onGlobalLayout() {

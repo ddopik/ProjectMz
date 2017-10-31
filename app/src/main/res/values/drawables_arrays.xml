@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="action_images">
+        <item>@drawable/car_drive_finance</item>
+        <item>@drawable/car_test_drive</item>
+        <item>@drawable/car_trade_in</item>
+        <item>@drawable/car_showroom</item>
+    </integer-array>
+
+    <integer-array name="after_sales_services_images">
+        <item>@drawable/after_sales</item>
+        <item>@drawable/spare_parts</item>
+        <item>@drawable/trade_in</item>
+        <item>@drawable/fixology</item>
+        <item>@drawable/ic_360</item>
+        <item>@drawable/finance</item>
+    </integer-array>
+</resources>

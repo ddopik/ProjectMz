@@ -37,7 +37,7 @@ public class CarActionsAdapter extends RecyclerView.Adapter<CarActionsAdapter.Ca
     public void onBindViewHolder(CarActionsViewHolder holder, int position) {
         holder.actionTitle.setText(mContext.getResources().getStringArray(R.array.action_titles)[position]);
         holder.actionImage.setImageResource(typedArray.getResourceId(position, 0));
-//        holder.itemView.setOnClickListener(v -> onActionClicked.onActionClicked(position));
+//        holder.itemView.setOnClickListener(v -> onServiceClicked.onServiceClicked(position));
 //        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 

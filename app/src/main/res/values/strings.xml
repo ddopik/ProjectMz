@@ -15,10 +15,30 @@
     <string name="show_room">Show Room</string>
     <string name="overview">OverView</string>
     <string name="specification">Specification</string>
+    <string name="after_sales_service">After Sales Services</string>
+    <string name="spare_parts">Spare Parts</string>
+    <string name="fixology">Fixology</string>
+    <string name="service_360">360</string>
+    <string name="finance">Finance</string>
+    <string name="name">Name</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone">Mobile Number</string>
+    <string name="birth_date">Birth Date</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>
         <item>@string/trade_in</item>
         <item>@string/show_room</item>
+    </string-array>
+    <string-array name="after_sales_services_title">
+        <item>@string/after_sales_service</item>
+        <item>@string/spare_parts</item>
+        <item>@string/trade_in</item>
+        <item>@string/fixology</item>
+        <item>@string/service_360</item>
+        <item>@string/finance</item>
+
     </string-array>
 </resources>

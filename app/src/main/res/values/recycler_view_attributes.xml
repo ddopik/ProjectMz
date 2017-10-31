@@ -2,9 +2,9 @@
 <resources>
     <declare-styleable name="CustomRecyclerView">
         <attr name="orientation" format="enum">
-            <enum name="horizontal">0</enum>
-            <enum name="vertical">1</enum>
-            <enum name="grid">2</enum>
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+            <enum name="grid" value="2" />
         </attr>
         <attr name="span_size" format="integer" />
     </declare-styleable>
