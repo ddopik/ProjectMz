@@ -3,12 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context="com.spade.mazda.MainActivity">
 
-    <com.spade.mazda.settings.CustomEditText
+    <com.spade.mazda.CustomViews.CustomEditText
+        android:id="@+id/first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start" />
+        android:hint="@string/name"
+        android:theme="@style/EditTextTheme" />
+
+    <com.spade.mazda.CustomViews.CustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/first"
+        android:text="@string/email" />
 
     <!--<FrameLayout-->
     <!--android:id="@+id/fragment_container"-->

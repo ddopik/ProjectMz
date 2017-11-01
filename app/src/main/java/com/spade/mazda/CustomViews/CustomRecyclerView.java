@@ -1,4 +1,4 @@
-package com.spade.mazda.settings.view;
+package com.spade.mazda.CustomViews;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -26,6 +26,9 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="phone">Mobile Number</string>
     <string name="birth_date">Birth Date</string>
+    <string name="register">Register</string>
+    <string name="next">Next</string>
+    <string name="already_have_account">Already have account?</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>

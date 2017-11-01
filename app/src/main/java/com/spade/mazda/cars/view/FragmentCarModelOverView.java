@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
-import com.spade.mazda.settings.view.CustomRecyclerView;
+import com.spade.mazda.CustomViews.CustomRecyclerView;
 
 /**
  * Created by Ayman Abouzeid on 10/30/17.

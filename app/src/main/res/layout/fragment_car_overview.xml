@@ -39,7 +39,7 @@
                 android:textSize="@dimen/material_text_subhead" />
         </RelativeLayout>
 
-        <com.spade.mazda.settings.view.CustomRecyclerView
+        <com.spade.mazda.CustomViews.CustomRecyclerView
             android:id="@+id/car_images_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp" />
 
-        <com.spade.mazda.settings.view.CustomRecyclerView
+        <com.spade.mazda.CustomViews.CustomRecyclerView
             android:id="@+id/actions_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
