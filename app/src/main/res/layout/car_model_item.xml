@@ -7,7 +7,8 @@
     android:layout_marginStart="@dimen/dp8"
     android:layout_marginTop="@dimen/dp8"
     android:background="@drawable/blue_rounded_background"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/dp8">
 
     <ImageView
         android:id="@+id/model_image"
@@ -25,12 +26,12 @@
             android:id="@+id/model_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/dp8"
             android:gravity="start"
             android:paddingLeft="@dimen/dp8"
             android:paddingStart="@dimen/dp8"
             android:textColor="@color/white"
-            android:textSize="@dimen/material_text_title"
+            android:textSize="@dimen/material_text_subhead"
             tools:text="Mazda 2" />
 
         <TextView
@@ -49,14 +50,18 @@
             android:id="@+id/view_car_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/dp8"
-            android:layout_marginStart="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp4"
+            android:layout_marginStart="@dimen/dp4"
             android:layout_marginTop="@dimen/dp8"
             android:background="@drawable/white_border_rounded_button"
-            android:padding="@dimen/dp8"
+            android:paddingBottom="@dimen/dp4"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/dp4"
             android:text="@string/car_details"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/material_text_caption" />
     </LinearLayout>
 </LinearLayout>

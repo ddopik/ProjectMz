@@ -4,13 +4,12 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.spade.mazda.services.ServicesFragment;
+import com.spade.mazda.cars.view.FragmentProducts;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,25 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
 
-        closeImage = findViewById(R.id.close_image_view);
-        final TextView homeText = findViewById(R.id.home_text_view);
-        final TextView productsText = findViewById(R.id.products_text_view);
+//        closeImage = findViewById(R.id.close_image_view);
+//        final TextView homeText = findViewById(R.id.home_text_view);
+//        final TextView productsText = findViewById(R.id.products_text_view);
 //        TextView mazdaClubTextView = findViewById(R.id.mazda_club_text_view);
 //        final TextView servicesTextView = findViewById(R.id.services_text_view);
 //        TextView findUsTextView = findViewById(R.id.find_us_text_view);
-        menuLayout = findViewById(R.id.menu_view);
-        menuLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                centerX = closeImage.getX();
-                centerY = closeImage.getY();
-                Log.d("positions", homeText.getX() + " .. " + homeText.getY() + " .. " + closeImage.getX() + " .. " + closeImage.getY() + " .. ");
-                animate(productsText);
+//        menuLayout = findViewById(R.id.menu_view);
+//        menuLayout.post(() -> {
+//            centerX = closeImage.getX();
+//            centerY = closeImage.getY();
+//            Log.d("positions", homeText.getX() + " .. " + homeText.getY() + " .. " + closeImage.getX() + " .. " + closeImage.getY() + " .. ");
+//            animate(productsText);
+//
+//        });
 
-            }
-        });
-//        ServicesFragment servicesFragment = new ServicesFragment();
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesFragment).commit();
+
+        FragmentProducts servicesFragment = new FragmentProducts();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesFragment).commit();
 
 //        menuLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 //            public void onGlobalLayout() {

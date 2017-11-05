@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.spade.mazda.R;
-import com.spade.mazda.settings.model.CarModel;
+import com.spade.mazda.cars.model.CarModel;
 
 import java.util.List;
 

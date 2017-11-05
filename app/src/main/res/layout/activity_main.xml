@@ -6,23 +6,23 @@
     android:background="@drawable/gradient_background"
     tools:context="com.spade.mazda.MainActivity">
 
-    <com.spade.mazda.CustomViews.CustomEditText
-        android:id="@+id/first"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/name"
-        android:theme="@style/EditTextTheme" />
-
-    <com.spade.mazda.CustomViews.CustomButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/first"
-        android:text="@string/email" />
-
-    <!--<FrameLayout-->
-    <!--android:id="@+id/fragment_container"-->
+    <!--<com.spade.mazda.CustomViews.CustomEditText-->
+    <!--android:id="@+id/first"-->
     <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" />-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="@string/name"-->
+    <!--android:theme="@style/EditTextTheme" />-->
+
+    <!--<com.spade.mazda.CustomViews.CustomButton-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/first"-->
+    <!--android:text="@string/email" />-->
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <FrameLayout
         android:id="@+id/menu_view"
@@ -34,7 +34,8 @@
         android:paddingBottom="8dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        android:visibility="gone">
 
         <!--<RelativeLayout-->
         <!--android:layout_width="wrap_content"-->
@@ -61,7 +62,7 @@
         <!--<LinearLayout-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/home"-->
+        <!--android:layout_belowid@+id/home"-->
         <!--android:layout_centerHorizontal="true"-->
         <!--android:layout_marginTop="8dp"-->
         <!--android:orientation="horizontal">-->

@@ -1,7 +1,7 @@
 package com.spade.mazda.settings;
 
+import com.spade.mazda.cars.model.CarModel;
 import com.spade.mazda.settings.model.Branches;
-import com.spade.mazda.settings.model.CarModel;
 import com.spade.mazda.settings.model.ShowRoom;
 import com.spade.mazda.settings.model.Trim;
 

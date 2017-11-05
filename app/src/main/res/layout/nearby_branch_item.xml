@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dp8"
+    android:layout_marginStart="@dimen/dp8"
+    android:layout_marginTop="@dimen/dp8"
+    android:background="@drawable/blue_rounded_background"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/place_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textColor="@color/white"
+        android:textSize="@dimen/material_text_subhead"
+        app:fontStyle="gotham-semi-bold"
+        tools:text="Mazda 2" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/place_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:drawableLeft="@drawable/pin_list"
+        android:drawablePadding="@dimen/dp8"
+        android:drawableStart="@drawable/pin_list"
+        android:gravity="start"
+        android:textColor="@color/white"
+        app:fontStyle="gotham-regular"
+        tools:text="Mazda 2" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/get_direction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp4"
+        android:gravity="start"
+        android:text="@string/get_direction"
+        android:textColor="@color/lightBlue"
+        app:fontStyle="gotham-semi-bold" />
+</LinearLayout>
