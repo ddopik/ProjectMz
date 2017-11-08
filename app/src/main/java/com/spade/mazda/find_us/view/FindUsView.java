@@ -1,4 +1,4 @@
-package com.spade.mazda.cars.view;
+package com.spade.mazda.find_us.view;
 
 import android.support.v4.app.Fragment;
 
@@ -7,12 +7,10 @@ import com.spade.mazda.base.BaseView;
 import java.util.List;
 
 /**
- * Created by Ayman Abouzeid on 10/30/17.
+ * Created by Ayman Abouzeid on 11/6/17.
  */
 
-public interface CarDetailsView extends BaseView {
-
-    void showCarDetails();
+public interface FindUsView extends BaseView {
 
     void addFragment(List<Fragment> fragmentList, List<String> fragmentTitles);
 }

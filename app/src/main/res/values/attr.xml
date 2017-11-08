@@ -9,7 +9,14 @@
         <attr name="span_size" format="integer" />
     </declare-styleable>
     <declare-styleable name="CustomTextView">
-        <attr name="fontStyle" format="enum">
+        <attr name="fontTypeFaceStyle" format="enum">
+            <enum name="gotham-regular" value="0" />
+            <enum name="gotham-semi-bold" value="1" />
+            <enum name="gotham-bold" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CustomEditText">
+        <attr name="fontTypeFaceStyle" format="enum">
             <enum name="gotham-regular" value="0" />
             <enum name="gotham-semi-bold" value="1" />
             <enum name="gotham-bold" value="2" />

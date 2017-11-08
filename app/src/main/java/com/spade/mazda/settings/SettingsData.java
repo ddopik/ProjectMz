@@ -1,6 +1,7 @@
 package com.spade.mazda.settings;
 
 import com.spade.mazda.cars.model.CarModel;
+import com.spade.mazda.find_us.model.City;
 import com.spade.mazda.settings.model.Branches;
 import com.spade.mazda.settings.model.ShowRoom;
 import com.spade.mazda.settings.model.Trim;
@@ -11,15 +12,16 @@ import java.util.List;
  * Created by Ayman Abouzeid on 10/29/17.
  */
 
-class SettingsData {
+public class SettingsData {
 
     private static SettingsData ourInstance;
     private List<CarModel> carModelList;
     private List<Branches> branchesList;
     private List<ShowRoom> showRoomList;
     private List<Trim> trimList;
+    private List<City> cityList;
 
-    static SettingsData getInstance() {
+    public static SettingsData getInstance() {
         if (ourInstance == null) {
             ourInstance = new SettingsData();
         }
@@ -57,5 +59,13 @@ class SettingsData {
 
     public void setTrimList(List<Trim> trimList) {
         this.trimList = trimList;
+    }
+
+    public List<City> getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(List<City> cityList) {
+        this.cityList = cityList;
     }
 }

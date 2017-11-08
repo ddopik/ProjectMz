@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/category_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="@dimen/dp8"
+        android:textAllCaps="true"
+        android:textColor="@color/blue"
+        app:fontTypeFaceStyle="gotham-bold"
+        tools:text="ENGINE PARTS" />
+
+    <com.spade.mazda.CustomViews.CustomRecyclerView
+        android:id="@+id/spare_parts_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp8"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginStart="@dimen/dp8"
+        app:orientation="horizontal" />
+</LinearLayout>

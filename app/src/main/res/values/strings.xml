@@ -36,6 +36,9 @@
     <string name="showrooms">Showrooms</string>
     <string name="dealers">Dealers</string>
     <string name="spare_parts_outlets">Spare Parts Outlets</string>
+    <string name="available_in_stock">Available in stock</string>
+    <string name="model_year_trim">Model . Year . Trim</string>
+    <string name="request_spare_part">Request Spare Part</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>

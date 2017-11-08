@@ -24,7 +24,7 @@ public class CustomTextView extends android.support.v7.widget.AppCompatTextView 
 
     private void styleText(Context context, AttributeSet attributeSet) {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.CustomTextView);
-        int fontStyle = typedArray.getInteger(R.styleable.CustomTextView_fontStyle, 0);
+        int fontStyle = typedArray.getInteger(R.styleable.CustomTextView_fontTypeFaceStyle, 0);
         int fontNameStringID = 0;
         switch (fontStyle) {
             case 0:

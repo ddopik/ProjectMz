@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <com.spade.mazda.CustomViews.CustomEditText
+        android:id="@+id/filter_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:drawableLeft="@drawable/ic_search_white"
+        android:drawablePadding="@dimen/dp8"
+        android:drawableStart="@drawable/ic_search_white"
+        android:hint="@string/model_year_trim"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:fontTypeFaceStyle="gotham-regular" />
+
+    <com.spade.mazda.CustomViews.CustomRecyclerView
+        android:id="@+id/spare_parts_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/request_spare_part_button"
+        android:layout_below="@+id/filter_edit_text"
+        app:orientation="vertical" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/request_spare_part_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/request_spare_part"
+        android:textColor="@color/white"
+        android:textSize="@dimen/material_text_subhead"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+</RelativeLayout>

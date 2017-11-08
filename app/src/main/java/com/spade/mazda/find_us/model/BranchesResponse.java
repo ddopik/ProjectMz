@@ -1,13 +1,13 @@
 
 package com.spade.mazda.find_us.model;
 
-import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class BranchesResponse implements Parcelable {
 
@@ -16,7 +16,7 @@ public class BranchesResponse implements Parcelable {
     private Boolean success;
     @SerializedName("data")
     @Expose
-    private List<Branch> data = null;
+    private List<Branch> branchesList = null;
     public final static Creator<BranchesResponse> CREATOR = new Creator<BranchesResponse>() {
         @SuppressWarnings({
                 "unchecked"
@@ -33,7 +33,7 @@ public class BranchesResponse implements Parcelable {
 
     protected BranchesResponse(Parcel in) {
         this.success = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-        in.readList(this.data, (Branch.class.getClassLoader()));
+        in.readList(this.branchesList, (Branch.class.getClassLoader()));
     }
 
     public BranchesResponse() {
@@ -47,17 +47,17 @@ public class BranchesResponse implements Parcelable {
         this.success = success;
     }
 
-    public List<Branch> getData() {
-        return data;
+    public List<Branch> getBranchesList() {
+        return branchesList;
     }
 
-    public void setData(List<Branch> data) {
-        this.data = data;
+    public void setData(List<Branch> branchesList) {
+        this.branchesList = branchesList;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(success);
-        dest.writeList(data);
+        dest.writeList(branchesList);
     }
 
     public int describeContents() {

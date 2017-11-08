@@ -18,11 +18,11 @@
         android:gravity="start"
         android:textColor="@color/white"
         android:textSize="@dimen/material_text_subhead"
-        app:fontStyle="gotham-semi-bold"
+        app:fontTypeFaceStyle="gotham-semi-bold"
         tools:text="Mazda 2" />
 
     <com.spade.mazda.CustomViews.CustomTextView
-        android:id="@+id/place_description"
+        android:id="@+id/place_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp8"
@@ -31,7 +31,7 @@
         android:drawableStart="@drawable/pin_list"
         android:gravity="start"
         android:textColor="@color/white"
-        app:fontStyle="gotham-regular"
+        app:fontTypeFaceStyle="gotham-regular"
         tools:text="Mazda 2" />
 
     <com.spade.mazda.CustomViews.CustomTextView
@@ -42,5 +42,5 @@
         android:gravity="start"
         android:text="@string/get_direction"
         android:textColor="@color/lightBlue"
-        app:fontStyle="gotham-semi-bold" />
+        app:fontTypeFaceStyle="gotham-semi-bold" />
 </LinearLayout>

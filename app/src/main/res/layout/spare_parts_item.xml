@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp8"
+    android:background="@drawable/spare_part_background"
+    android:orientation="vertical">
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/spare_part_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:maxLines="3"
+        android:padding="@dimen/dp8"
+        android:textColor="@color/white"
+        app:fontTypeFaceStyle="gotham-bold"
+        tools:text="Front Headlight " />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/spare_part_brief"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:maxLines="3"
+        android:padding="@dimen/dp8"
+        android:textColor="@color/white"
+        android:textSize="@dimen/material_text_caption"
+        app:fontTypeFaceStyle="gotham-regular"
+        tools:text="Front Headlight  " />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/available_in_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/available_instock"
+        android:drawableStart="@drawable/available_instock"
+        android:gravity="center"
+        android:padding="@dimen/dp8"
+        android:text="@string/available_in_stock"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/material_text_caption"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/spare_parts_price_background"
+        android:gravity="center"
+        android:padding="@dimen/dp8"
+        android:textColor="@color/white"
+        app:fontTypeFaceStyle="gotham-semi-bold"
+        tools:text="350 LE" />
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.spade.mazda.services;
+package com.spade.mazda.services.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

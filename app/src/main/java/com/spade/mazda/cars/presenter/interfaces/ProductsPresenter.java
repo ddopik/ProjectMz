@@ -1,7 +1,7 @@
-package com.spade.mazda.cars.presenter;
+package com.spade.mazda.cars.presenter.interfaces;
 
 import com.spade.mazda.base.BasePresenter;
-import com.spade.mazda.cars.view.ProductsView;
+import com.spade.mazda.cars.view.interfaces.ProductsView;
 
 /**
  * Created by Ayman Abouzeid on 11/2/17.

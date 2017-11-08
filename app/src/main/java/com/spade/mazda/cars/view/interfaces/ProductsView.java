@@ -1,4 +1,4 @@
-package com.spade.mazda.cars.view;
+package com.spade.mazda.cars.view.interfaces;
 
 import com.spade.mazda.base.BaseView;
 import com.spade.mazda.cars.model.CarModel;

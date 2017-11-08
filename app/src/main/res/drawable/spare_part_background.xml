@@ -5,6 +5,8 @@
     <stroke
         android:width="@dimen/dp4"
         android:color="@color/darkBlue" />
-
-    <solid android:color="@color/black" />
+    <gradient
+        android:angle="90"
+        android:endColor="@color/black"
+        android:startColor="@color/darkBlue" />
 </shape>

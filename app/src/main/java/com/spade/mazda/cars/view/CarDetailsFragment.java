@@ -12,8 +12,9 @@ import android.widget.EditText;
 
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
-import com.spade.mazda.cars.presenter.CarDetailsPresenter;
+import com.spade.mazda.cars.presenter.interfaces.CarDetailsPresenter;
 import com.spade.mazda.cars.presenter.CarDetailsPresenterImpl;
+import com.spade.mazda.cars.view.interfaces.CarDetailsView;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        carDetailsView = inflater.inflate(R.layout.fragment_car_details, container, false);
+        carDetailsView = inflater.inflate(R.layout.fragment_pager, container, false);
         initViews();
         return carDetailsView;
     }

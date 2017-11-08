@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spade.mazda.cars.view.FragmentProducts;
+import com.spade.mazda.find_us.view.FindUsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
 
 //        closeImage = findViewById(R.id.close_image_view);
-//        final TextView homeText = findViewById(R.id.home_text_view);
-//        final TextView productsText = findViewById(R.id.products_text_view);
+        final TextView homeText = findViewById(R.id.home_text_view);
+        final TextView productsText = findViewById(R.id.products_text_view);
 //        TextView mazdaClubTextView = findViewById(R.id.mazda_club_text_view);
 //        final TextView servicesTextView = findViewById(R.id.services_text_view);
-//        TextView findUsTextView = findViewById(R.id.find_us_text_view);
+        TextView findUsTextView = findViewById(R.id.find_us_text_view);
 //        menuLayout = findViewById(R.id.menu_view);
 //        menuLayout.post(() -> {
 //            centerX = closeImage.getX();
@@ -42,7 +43,14 @@ public class MainActivity extends AppCompatActivity {
 //
 //        });
 
-
+        homeText.setOnClickListener(view -> {
+            FindUsFragment findUsFragment = new FindUsFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, findUsFragment).commit();
+        });
+        productsText.setOnClickListener(view -> {
+            FragmentProducts servicesFragment = new FragmentProducts();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesFragment).commit();
+        });
         FragmentProducts servicesFragment = new FragmentProducts();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesFragment).commit();
 

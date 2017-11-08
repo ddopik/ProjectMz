@@ -2,7 +2,8 @@ package com.spade.mazda.cars.presenter;
 
 import android.content.Context;
 
-import com.spade.mazda.cars.view.ProductsView;
+import com.spade.mazda.cars.presenter.interfaces.ProductsPresenter;
+import com.spade.mazda.cars.view.interfaces.ProductsView;
 import com.spade.mazda.network.ApiHelper;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

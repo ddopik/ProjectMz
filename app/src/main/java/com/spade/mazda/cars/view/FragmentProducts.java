@@ -12,8 +12,10 @@ import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.cars.model.CarModel;
-import com.spade.mazda.cars.presenter.ProductsPresenter;
 import com.spade.mazda.cars.presenter.ProductsPresenterImpl;
+import com.spade.mazda.cars.presenter.interfaces.ProductsPresenter;
+import com.spade.mazda.cars.view.interfaces.ProductsView;
+import com.spade.mazda.utils.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class FragmentProducts extends BaseFragment implements ProductsView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_listing, container,false);
+        view = inflater.inflate(R.layout.fragment_listing, container, false);
         initViews();
         return view;
     }
@@ -50,7 +52,7 @@ public class FragmentProducts extends BaseFragment implements ProductsView {
         carModelList = new ArrayList<>();
         productsAdapter = new ProductsAdapter(carModelList, getContext());
         carsRecyclerView.setAdapter(productsAdapter);
-        productsPresenter.getProducts("");
+        productsPresenter.getProducts(PrefUtils.getAppLang(getContext()));
     }
 
     @Override
