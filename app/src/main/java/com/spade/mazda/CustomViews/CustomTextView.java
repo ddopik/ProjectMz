@@ -1,9 +1,11 @@
 package com.spade.mazda.CustomViews;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
 import com.spade.mazda.R;
@@ -25,6 +27,7 @@ public class CustomTextView extends android.support.v7.widget.AppCompatTextView 
     private void styleText(Context context, AttributeSet attributeSet) {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.CustomTextView);
         int fontStyle = typedArray.getInteger(R.styleable.CustomTextView_fontTypeFaceStyle, 0);
+        ColorStateList textColor = typedArray.getColorStateList(R.styleable.CustomTextView_color);
         int fontNameStringID = 0;
         switch (fontStyle) {
             case 0:
@@ -40,6 +43,11 @@ public class CustomTextView extends android.support.v7.widget.AppCompatTextView 
 
         Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + getResources().getString(fontNameStringID));
         setTypeface(typeface);
+        if (textColor != null) {
+            setTextColor(textColor);
+        } else {
+            setTextColor(ContextCompat.getColor(context, R.color.white));
+        }
         typedArray.recycle();
     }
 }

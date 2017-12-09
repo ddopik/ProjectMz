@@ -4,9 +4,12 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">@color/white</color>
     <color name="white">#ffffff</color>
+    <color name="opacity_white">#B3ffffff</color>
     <color name="black">#000</color>
     <color name="darkBlue">#1f3859</color>
     <color name="blue">#506482</color>
     <color name="lightBlue">#8391a4</color>
     <color name="grey">#b4b4b4</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="light_green">#c3d62f</color>
 </resources>

@@ -28,7 +28,7 @@ public class CustomEditText extends android.support.v7.widget.AppCompatEditText 
         this.setPadding(context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin),
                 context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin), context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin), context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin));
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomEditText);
-        int fontStyle = typedArray.getInteger(R.styleable.CustomEditText_fontTypeFaceStyle, 0);
+        int fontStyle = typedArray.getInteger(R.styleable.CustomEditText_editTextTypeFace, 0);
         int fontNameStringID = 0;
         switch (fontStyle) {
             case 0:

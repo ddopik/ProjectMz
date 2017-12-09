@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp48"
+        android:textColorHint="@color/white">
+
+        <com.spade.mazda.CustomViews.CustomEditText
+            android:id="@+id/code_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/activation_code"
+            android:theme="@style/EditTextTheme" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <com.spade.mazda.CustomViews.CustomButton
+        android:id="@+id/activate_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activate"
+        android:textSize="@dimen/material_text_subhead" />
+</LinearLayout>

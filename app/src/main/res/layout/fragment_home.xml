@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="vertical">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/welcome"
+            android:textSize="@dimen/material_text_subhead"
+            app:color="@color/blue"
+            app:fontTypeFaceStyle="gotham-bold" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:text="@string/welcome"
+            android:visibility="gone"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/offers_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:tabBackground="@drawable/tab_layout_dots"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp8"
+                android:layout_weight="1"
+                android:background="@drawable/blue_border_rounded_button"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <ImageView
+                    android:id="@+id/find_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_vertical_margin"
+                    android:src="@drawable/find_service_center" />
+
+                <com.spade.mazda.CustomViews.CustomTextView
+                    android:id="@+id/find_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/find_image_view"
+                    android:layout_toRightOf="@id/find_image_view"
+                    android:text="@string/find"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/material_text_title"
+                    app:color="@color/white"
+                    app:fontTypeFaceStyle="gotham-semi-bold" />
+
+                <com.spade.mazda.CustomViews.CustomTextView
+                    android:id="@+id/find_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/find_title"
+                    android:layout_toEndOf="@id/find_image_view"
+                    android:layout_toRightOf="@id/find_image_view"
+                    android:text="@string/nearest_service_center"
+                    app:color="@color/white"
+                    app:fontTypeFaceStyle="gotham-regular" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                android:layout_weight="1"
+                android:background="@drawable/blue_border_rounded_button"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <ImageView
+                    android:id="@+id/call_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_vertical_margin"
+                    android:src="@drawable/call" />
+
+                <com.spade.mazda.CustomViews.CustomTextView
+                    android:id="@+id/call_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/call_image_view"
+                    android:layout_toRightOf="@id/call_image_view"
+                    android:text="@string/call"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/material_text_title"
+                    app:color="@color/white"
+                    app:fontTypeFaceStyle="gotham-semi-bold" />
+
+                <com.spade.mazda.CustomViews.CustomTextView
+                    android:id="@+id/call_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/call_title"
+                    android:layout_toEndOf="@id/call_image_view"
+                    android:layout_toRightOf="@id/call_image_view"
+                    android:text="@string/service_center_hot_line"
+                    app:color="@color/white"
+                    app:fontTypeFaceStyle="gotham-regular" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/gas_stations"
+            android:textSize="@dimen/material_text_subhead"
+            app:fontTypeFaceStyle="gotham-semi-bold" />
+
+        <fragment
+            android:id="@+id/map"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp8"
+    android:background="@drawable/blue_rounded_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/pick_picture"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="bold" />
+
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/gallery_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/gallery"
+        android:textSize="@dimen/material_text_subhead"
+        app:fontTypeFaceStyle="gotham-regular" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/blue" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/camera_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/camera"
+        android:textSize="@dimen/material_text_subhead"
+        app:fontTypeFaceStyle="gotham-regular" />
+</LinearLayout>

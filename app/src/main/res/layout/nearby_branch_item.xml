@@ -41,6 +41,7 @@
         android:layout_marginTop="@dimen/dp4"
         android:gravity="start"
         android:text="@string/get_direction"
-        android:textColor="@color/lightBlue"
+        android:textSize="@dimen/material_text_caption"
+        app:color="@color/lightBlue"
         app:fontTypeFaceStyle="gotham-semi-bold" />
 </LinearLayout>

@@ -14,9 +14,10 @@
             <enum name="gotham-semi-bold" value="1" />
             <enum name="gotham-bold" value="2" />
         </attr>
+        <attr name="color" format="color"/>
     </declare-styleable>
     <declare-styleable name="CustomEditText">
-        <attr name="fontTypeFaceStyle" format="enum">
+        <attr name="editTextTypeFace" format="enum">
             <enum name="gotham-regular" value="0" />
             <enum name="gotham-semi-bold" value="1" />
             <enum name="gotham-bold" value="2" />

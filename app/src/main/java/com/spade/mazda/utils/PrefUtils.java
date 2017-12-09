@@ -15,7 +15,7 @@ public class PrefUtils {
     private static final String IS_FIRST_LAUNCH = "IS_FIRST_LAUNCH";
     private static final String IS_LANGUAGE_SELECTED = "IS_LANGUAGE_SELECTED";
     private static final String IS_TOKEN_SAVED = "IS_TOKEN_SAVED";
-
+    private static final String IS_LOGGED_IN = "IS_LOGGED_IN";
     private static final String APP_LANG = "APP_LANG";
     public static final String ARABIC_LANG = "ar";
     public static final String ENGLISH_LANG = "en";
@@ -71,6 +71,14 @@ public class PrefUtils {
 
     public static void setIsLanguageSelected(Context context, boolean isSelected) {
         getSharedPref(context).edit().putBoolean(IS_LANGUAGE_SELECTED, isSelected).apply();
+    }
+
+    public static boolean isLoggedIn(Context context) {
+        return getSharedPref(context).getBoolean(IS_LOGGED_IN, false);
+    }
+
+    public static void setIsLoggedIn(Context context, boolean isLoggedIn) {
+        getSharedPref(context).edit().putBoolean(IS_LOGGED_IN, isLoggedIn).apply();
     }
 
     public static boolean isTokenSaved(Context context) {

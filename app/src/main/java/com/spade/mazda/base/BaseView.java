@@ -11,5 +11,9 @@ public interface BaseView {
 
     void showMessage(int resID);
 
+    void showLoading();
+
+    void hideLoading();
+
     void setError(EditText editText, int resId);
 }

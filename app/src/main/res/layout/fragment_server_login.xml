@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/email_address_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.spade.mazda.CustomViews.CustomButton
+            android:id="@+id/next_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp48"
+            android:text="@string/sign_in"
+            android:textSize="@dimen/material_text_subhead" />
+
+        <TextView
+            android:id="@+id/forget_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:text="@string/forget_password_question"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/join_now"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:gravity="center"
+            android:text="@string/join_now"
+            android:textColor="@color/opacity_white" />
+    </LinearLayout>
+
+
+</RelativeLayout>

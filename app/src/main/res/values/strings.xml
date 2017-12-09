@@ -28,7 +28,7 @@
     <string name="birth_date">Birth Date</string>
     <string name="register">Register</string>
     <string name="next">Next</string>
-    <string name="already_have_account">Already have account?</string>
+    <string name="already_have_account">Already have account</string>
     <string name="gotham_regular">Gotham-Book.otf</string>
     <string name="gotham_semi_bold">Gotham-Medium.otf</string>
     <string name="gotham_bold">Gotham-Bold.otf</string>
@@ -39,6 +39,63 @@
     <string name="available_in_stock">Available in stock</string>
     <string name="model_year_trim">Model . Year . Trim</string>
     <string name="request_spare_part">Request Spare Part</string>
+    <string name="national_id_number">National ID Number</string>
+    <string name="national_id_images">National ID Front &amp; Back Image</string>
+    <string name="your_car_model">Your Car Model</string>
+    <string name="car_color">Car Color</string>
+    <string name="year">Year</string>
+    <string name="chassis">Chassis</string>
+    <string name="motor">Motor</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="question_mark">\?</string>
+    <string name="forget_password_question">Forget password ?</string>
+    <string name="join_now">Join Now</string>
+    <string name="enter_first_name">Please Enter Your First Name</string>
+    <string name="enter_last_name">Please Enter Your Last Name</string>
+    <string name="enter_user_name">Please Enter Your User Name</string>
+    <string name="enter_email_address">Please Enter Your E-Mail Address</string>
+    <string name="enter_phone_number">Please Enter Your Phone Number</string>
+    <string name="enter_address">Please Enter Your Address</string>
+    <string name="enter_activation_code">Please Enter Activation Code</string>
+    <string name="pick_birth_date">Please Pick Your BirthDate</string>
+    <string name="enter_valid_email_address">Please Enter Valid E-Mail Address</string>
+    <string name="enter_city">Please Enter Your City</string>
+    <string name="enter_subject">Please Enter Subject</string>
+    <string name="enter_message">Please Enter Message</string>
+    <string name="enter_password">Please Enter Your Password</string>
+    <string name="enter_confirm_password">Please Confirm Your Password</string>
+    <string name="password_mismatch">Password and confirm password mismatch</string>
+    <string name="enter_chassis">Please Enter Your Chassis</string>
+    <string name="enter_motor">Please Enter Your Motor</string>
+    <string name="enter_national_id">Please Enter Your National ID</string>
+    <string name="please_choose_national_id">Please Pick Your National ID Front &amp; Back Image</string>
+    <string name="please_choose_car_model">Please Choose Car Model</string>
+    <string name="please_choose_car_year">Please Choose Car Year</string>
+    <string name="please_choose_car_trim">Please Choose Car Trim</string>
+    <string name="please_choose_car_color">Please Choose Car Color</string>
+    <string name="choose_car_model">Choose Car Model</string>
+    <string name="choose_car_year">Choose Car Year</string>
+    <string name="choose_car_trim">Choose Car Trim</string>
+    <string name="choose_car_color">Choose Car Color</string>
+    <string name="login">Login</string>
+    <string name="guest">Guest</string>
+    <string name="camera">Camera</string>
+    <string name="pick_picture">Pick Picture From</string>
+    <string name="activate">Activate</string>
+    <string name="activation">Activation</string>
+    <string name="activation_code">Activation Code</string>
+    <string name="find">Find</string>
+    <string name="nearest_service_center">The Nearest Service Center</string>
+    <string name="call">Call</string>
+    <string name="service_center_hot_line">Service Center HotLine</string>
+    <string name="welcome">WELCOME</string>
+    <string name="gas_stations">Near by ATMs &amp; Gas Stations</string>
+    <string name="done">Done</string>
+    <string name="currency">%s L.E.</string>
+    <string name="programs">Programs</string>
+    <string name="national_id_constraint">Enter 14 digit for National ID</string>
+    <string name="password_limit">Password cannot be less than 6 characters</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>
@@ -54,4 +111,9 @@
         <item>@string/finance</item>
 
     </string-array>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="loading">Loading...</string>
 </resources>
