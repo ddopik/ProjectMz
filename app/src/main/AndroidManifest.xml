@@ -49,6 +49,9 @@
         <activity
             android:name=".ui.services.view.activities.Places360Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.services.view.activities.ServicesLocationsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

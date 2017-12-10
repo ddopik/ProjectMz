@@ -104,7 +104,7 @@ public class SparePartsFragment extends BaseFragment implements SparePartsView {
             Log.d("TRIM_ID", String.valueOf(((ModelTrim) carTrimsSpinner.getSelectedItem()).getTrimId()));
             sparePartsPresenter.getSpareParts(String.valueOf(trimId));
         });
-
+        sparePartsPresenter.getSpareParts(null);
         sparePartsPresenter.getCarModels();
     }
 

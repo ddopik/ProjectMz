@@ -25,15 +25,16 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp8"
             android:src="@drawable/menu_mazda" />
 
         <com.spade.mazda.CustomViews.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu"
+            android:text="@string/menu"
             android:textSize="@dimen/small_text"
-            android:visibility="gone" />
+            android:visibility="visible"
+            app:fontTypeFaceStyle="gotham-regular" />
     </LinearLayout>
 
     <ImageView
@@ -52,7 +53,7 @@
         android:paddingEnd="@dimen/activity_vertical_margin"
         android:paddingStart="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <com.spade.mazda.CustomViews.CustomTextView
             android:id="@+id/home_text_view"

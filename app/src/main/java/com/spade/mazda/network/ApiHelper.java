@@ -2,6 +2,7 @@ package com.spade.mazda.network;
 
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
+import com.rx2androidnetworking.Rx2ANRequest;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.spade.mazda.ui.authentication.model.LoginResponse;
 import com.spade.mazda.ui.authentication.model.RegistrationResponse;
@@ -10,7 +11,9 @@ import com.spade.mazda.ui.cars.model.ProductsResponse;
 import com.spade.mazda.ui.find_us.model.BranchesResponse;
 import com.spade.mazda.ui.find_us.model.CitiesResponse;
 import com.spade.mazda.ui.home.model.OffersResponse;
+import com.spade.mazda.ui.services.model.LocationsResponse;
 import com.spade.mazda.ui.services.model.ProgramsResponse;
+import com.spade.mazda.ui.services.model.ServicesLocationsResponse;
 import com.spade.mazda.ui.services.model.SparePartsResponse;
 import com.spade.mazda.ui.services.model.ThreeSixtyResponse;
 import com.spade.mazda.ui.welcome.model.IntroResponse;
@@ -38,10 +41,15 @@ public class ApiHelper {
     private static final String INTRO_SLIDER_URL = BASE_URL + "slider";
     private static final String DRIVE_FINANCE_URL = BASE_URL + "finance";
     private static final String THREE_SIXTY_URL = BASE_URL + "360";
+    private static final String SERVICES_LOCATIONS_URL = BASE_URL + "afterSales/{category_id}";
+    private static final String LOCATIONS_URL = BASE_URL + "locations";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String BRANCH_TYPE_PARAM = "type";
     private static final String CAR_ID_PATH_PARAM = "car_id";
     private static final String TRIM_ID_PATH_PARAM = "trim_id";
+    private static final String LOCATION_CATEGORY_PATH_PARAM = "category_id";
+    public static final String AFTER_SALES_LOCATIONS_PARAM = "1";
+    public static final String FIXOLOGY_LOCATIONS_PARAM = "2";
 
     public static Observable<ProductsResponse> getCarModels(String appLang) {
         return Rx2AndroidNetworking.get(PRODUCTS_LIST_URL)
@@ -66,9 +74,14 @@ public class ApiHelper {
     }
 
     public static Observable<SparePartsResponse> getSpareParts(String appLang, String trimId) {
-        return Rx2AndroidNetworking.get(SPARE_PARTS_URL)
+        Rx2ANRequest.GetRequestBuilder getRequestBuilder = Rx2AndroidNetworking.get(SPARE_PARTS_URL);
+        if (trimId != null) {
+            getRequestBuilder.addPathParameter(TRIM_ID_PATH_PARAM, trimId);
+        } else {
+            getRequestBuilder.addPathParameter(TRIM_ID_PATH_PARAM, "");
+        }
+        return getRequestBuilder
                 .addPathParameter(LANG_PATH_PARAM, appLang)
-                .addPathParameter(TRIM_ID_PATH_PARAM, trimId)
                 .build()
                 .getObjectObservable(SparePartsResponse.class);
     }
@@ -108,6 +121,21 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAM, appLang)
                 .build()
                 .getObjectObservable(ThreeSixtyResponse.class);
+    }
+
+    public static Observable<ServicesLocationsResponse> getServicesLocation(String appLang, String locationType) {
+        return Rx2AndroidNetworking.get(SERVICES_LOCATIONS_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addPathParameter(LOCATION_CATEGORY_PATH_PARAM, locationType)
+                .build()
+                .getObjectObservable(ServicesLocationsResponse.class);
+    }
+
+    public static Observable<LocationsResponse> getLocations(String appLang) {
+        return Rx2AndroidNetworking.get(LOCATIONS_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .build()
+                .getObjectObservable(LocationsResponse.class);
     }
 
     public static Observable<RegistrationResponse> registerUser(String appLang, String nameString, String emailString, String passwordString, String mobileNumberString,
