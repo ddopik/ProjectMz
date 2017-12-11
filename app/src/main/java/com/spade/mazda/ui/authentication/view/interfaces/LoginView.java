@@ -17,4 +17,7 @@ public interface LoginView extends BaseView {
     void navigate();
 
     void navigateToMainScreen();
+
+    void navigateToActivate();
+
 }

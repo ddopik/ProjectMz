@@ -2,12 +2,14 @@ package com.spade.mazda.ui.authentication.presenter;
 
 import android.content.Context;
 
-import com.spade.mazda.ui.authentication.model.LoginResponse;
-import com.spade.mazda.ui.authentication.view.interfaces.LoginView;
-import com.spade.mazda.ui.authentication.view.activity.RegistrationActivity;
+import com.androidnetworking.error.ANError;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.realm.RealmDbHelper;
 import com.spade.mazda.realm.RealmDbImpl;
+import com.spade.mazda.ui.authentication.model.LoginResponse;
+import com.spade.mazda.ui.authentication.view.activity.RegistrationActivity;
+import com.spade.mazda.ui.authentication.view.interfaces.LoginView;
+import com.spade.mazda.utils.ErrorUtils;
 import com.spade.mazda.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -50,10 +52,13 @@ public class LoginPresenterImpl implements LoginPresenter {
                     }
                 }, throwable -> {
                     mLoginView.hideLoading();
-//                    if (throwable != null) {
-////                        ANError anError = (ANError) throwable;
-////                        mLoginView.onError(ErrorUtils.getErrors(anError));
-//                    }
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        if (anError.getErrorCode() == ApiHelper.NOT_ACTIVATED) {
+                            mLoginView.navigateToActivate();
+                        }
+                        mLoginView.showMessage(ErrorUtils.getErrors(anError));
+                    }
                 });
     }
 

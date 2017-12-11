@@ -285,8 +285,10 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Regi
     }
 
     @Override
-    public void navigateToActivate() {
-        startActivity(ActivationActivity.getLaunchIntent(getContext()));
+    public void navigateToActivate(String email) {
+        Intent intent = ActivationActivity.getLaunchIntent(getContext());
+        intent.putExtra(ActivationActivity.EXTRA_EMAIL, email);
+        startActivity(intent);
         getActivity().finish();
     }
 

@@ -73,7 +73,7 @@ public class RegistrationPresenterImpl implements RegistrationPresenter {
                 .subscribe(registrationResponse -> {
                     registrationView.hideLoading();
                     registrationView.showMessage(registrationResponse.getRegistrationData().getMessage());
-                    registrationView.navigateToActivate();
+                    registrationView.navigateToActivate(emailString);
                 }, throwable -> registrationView.hideLoading());
     }
 

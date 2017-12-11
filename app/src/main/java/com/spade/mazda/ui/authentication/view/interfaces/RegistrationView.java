@@ -18,7 +18,7 @@ public interface RegistrationView extends BaseView {
 
     void hideLoading();
 
-    void navigateToActivate();
+    void navigateToActivate(String email);
 
     void navigateToLogin();
 }

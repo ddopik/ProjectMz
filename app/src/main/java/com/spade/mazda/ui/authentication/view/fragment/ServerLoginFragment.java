@@ -1,6 +1,7 @@
 package com.spade.mazda.ui.authentication.view.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,12 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spade.mazda.CustomViews.CustomButton;
-import com.spade.mazda.ui.main.MainActivity;
 import com.spade.mazda.R;
+import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenter;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenterImpl;
+import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
 import com.spade.mazda.ui.authentication.view.interfaces.LoginView;
-import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.ui.main.MainActivity;
 import com.spade.mazda.utils.PrefUtils;
 import com.spade.mazda.utils.Validator;
 
@@ -123,6 +125,14 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
     @Override
     public void navigateToMainScreen() {
         startActivity(MainActivity.getLaunchIntent(getContext()));
+    }
+
+    @Override
+    public void navigateToActivate() {
+        Intent intent = ActivationActivity.getLaunchIntent(getContext());
+        intent.putExtra(ActivationActivity.EXTRA_EMAIL, emailAddressString);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override

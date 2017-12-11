@@ -7,14 +7,15 @@ import android.support.annotation.Nullable;
 import android.view.MenuItem;
 
 import com.spade.mazda.R;
-import com.spade.mazda.ui.authentication.view.fragment.ActivationFragment;
 import com.spade.mazda.base.BaseActivity;
+import com.spade.mazda.ui.authentication.view.fragment.ActivationFragment;
 
 /**
  * Created by Ayman Abouzeid on 11/15/17.
  */
 
-public class ActivationActivity extends BaseActivity{
+public class ActivationActivity extends BaseActivity {
+    public static final String EXTRA_EMAIL = "EXTRA_EMAIL";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +45,11 @@ public class ActivationActivity extends BaseActivity{
     @Override
     protected void addFragment() {
         ActivationFragment activationFragment = new ActivationFragment();
+        if (getIntent() != null && getIntent().getStringExtra(EXTRA_EMAIL) != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(EXTRA_EMAIL, getIntent().getStringExtra(EXTRA_EMAIL));
+            activationFragment.setArguments(bundle);
+        }
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, activationFragment).commit();
     }
 

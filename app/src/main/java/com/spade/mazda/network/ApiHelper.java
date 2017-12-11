@@ -50,6 +50,7 @@ public class ApiHelper {
     private static final String LOCATION_CATEGORY_PATH_PARAM = "category_id";
     public static final String AFTER_SALES_LOCATIONS_PARAM = "1";
     public static final String FIXOLOGY_LOCATIONS_PARAM = "2";
+    public static final int NOT_ACTIVATED = 402;
 
     public static Observable<ProductsResponse> getCarModels(String appLang) {
         return Rx2AndroidNetworking.get(PRODUCTS_LIST_URL)
@@ -162,10 +163,11 @@ public class ApiHelper {
                 .getObjectObservable(RegistrationResponse.class);
     }
 
-    public static void activateUser(String appLang, String code, ActivationActions activationActions) {
+    public static void activateUser(String appLang, String email, String code, ActivationActions activationActions) {
         Rx2AndroidNetworking.post(ACTIVATE_URL)
                 .addPathParameter(LANG_PATH_PARAM, appLang)
                 .addBodyParameter("code", code)
+                .addBodyParameter("email", email)
                 .build()
                 .getAsString(new StringRequestListener() {
                     @Override

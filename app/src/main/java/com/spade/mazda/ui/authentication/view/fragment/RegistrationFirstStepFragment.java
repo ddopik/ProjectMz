@@ -17,7 +17,6 @@ import com.spade.mazda.ui.authentication.presenter.RegistrationPresenter;
 import com.spade.mazda.ui.authentication.presenter.RegistrationPresenterImpl;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
 import com.spade.mazda.ui.authentication.view.dialogs.PickDateDialog;
-import com.spade.mazda.ui.authentication.view.interfaces.RegistrationView;
 import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.utils.Validator;
 
@@ -27,7 +26,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 11/13/17.
  */
 
-public class RegistrationFirstStepFragment extends BaseFragment implements RegistrationView, PickDateDialog.OnDateSet {
+public class RegistrationFirstStepFragment extends BaseFragment implements PickDateDialog.OnDateSet {
     private CustomEditText nameEditText, emailEditText, passwordEditText,
             confirmPasswordEditText, mobileNumberEditText, birthDateEditText;
     private String nameString;
@@ -140,41 +139,6 @@ public class RegistrationFirstStepFragment extends BaseFragment implements Regis
         pickDateDialog.show(getChildFragmentManager(), PickDateDialog.class.getSimpleName());
     }
 
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public void showMessage(int resID) {
-
-    }
-
-    @Override
-    public void setError(EditText editText, int resId) {
-
-    }
-
-    @Override
-    public void navigateToNextStep() {
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void navigateToActivate() {
-
-    }
-
-    @Override
     public void navigateToLogin() {
         getActivity().finish();
         startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
@@ -190,10 +154,6 @@ public class RegistrationFirstStepFragment extends BaseFragment implements Regis
         birthDateEditText.setText(birthDateString);
     }
 
-    @Override
-    public void showCarModels(List<CarModel> carModels) {
-
-    }
 
     public interface OnNextClicked {
         void onNextClicked();
