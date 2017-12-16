@@ -8,13 +8,13 @@ import android.view.MenuItem;
 
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseActivity;
-import com.spade.mazda.ui.services.view.fragments.DriveFinanceFragment;
+import com.spade.mazda.ui.services.view.fragments.FinanceFragment;
 
 /**
  * Created by Ayman Abouzeid on 11/15/17.
  */
 
-public class DriveFinanceActivity extends BaseActivity {
+public class FinanceActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,17 +39,17 @@ public class DriveFinanceActivity extends BaseActivity {
     @Override
     protected void init() {
         addFragment();
-        setTitle(R.string.drive_finance);
+        setTitle(R.string.finance);
     }
 
     @Override
     protected void addFragment() {
-        DriveFinanceFragment driveFinanceFragment = new DriveFinanceFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, driveFinanceFragment).commit();
+        FinanceFragment financeFragment = new FinanceFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, financeFragment).commit();
     }
 
 
     public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, DriveFinanceActivity.class);
+        return new Intent(context, FinanceActivity.class);
     }
 }

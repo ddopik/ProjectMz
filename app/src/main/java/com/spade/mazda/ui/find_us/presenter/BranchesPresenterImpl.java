@@ -3,10 +3,12 @@ package com.spade.mazda.ui.find_us.presenter;
 import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.spade.mazda.base.DataSource;
+import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.find_us.model.Branch;
 import com.spade.mazda.ui.find_us.view.interfaces.BranchesView;
-import com.spade.mazda.network.ApiHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -39,33 +41,42 @@ public class BranchesPresenterImpl implements BranchesPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(branchesResponse -> {
                     branchesView.hideLoading();
-                    branchesView.showBranches(branchesResponse.getBranchesList()
-                    );
+                    branchesView.showBranches(branchesResponse.getBranchesList());
                 }, throwable -> {
                 });
     }
 
-    @Override
-    public Observable<LatLng> getMapPins(List<Branch> branchList) {
+    public void getMapPins(List<Branch> branchList) {
+        getMapPinsLocations(branchList)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(latLngList -> {
+                    branchesView.hideLoading();
+                    branchesView.showPins(latLngList);
+                }, throwable -> {
+                });
+    }
+
+    private Observable<List<LatLng>> getMapPinsLocations(List<Branch> branchList) {
         return Observable.create(latLngObservableEmitter -> {
+            List<LatLng> latLngList = new ArrayList<>();
             for (Branch branch : branchList) {
                 LatLng latLng = new LatLng(Double.parseDouble(branch.getBranchLat()), Double.parseDouble(branch.getBranchLng()));
-                latLngObservableEmitter.onNext(latLng);
+                latLngList.add(latLng);
             }
+            latLngObservableEmitter.onNext(latLngList);
             latLngObservableEmitter.onComplete();
         });
     }
 
-//    public void latLngObservable(List<Branch> branchList) {
-//
-//    }
-//
-//    private void getLatLngList(List<Branch> branchList) {
-//        List<LatLng> latLngList = new ArrayList<>();
-//        for (Branch branch : branchList) {
-//            LatLng latLng = new LatLng(Double.parseDouble(branch.getBranchLat()), Double.parseDouble(branch.getBranchLng()));
-//            latLngList.add(latLng);
-//        }
-//
-//    }
+    @Override
+    public void getCities(List<Branch> branches) {
+        DataSource.getCitiesList(branches, context)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(cities -> {
+                    branchesView.showCities(cities);
+                });
+    }
+
 }

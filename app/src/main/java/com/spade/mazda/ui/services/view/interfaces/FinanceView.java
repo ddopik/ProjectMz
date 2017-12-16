@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 12/8/17.
  */
 
-public interface DriveFinanceView extends BaseView {
+public interface FinanceView extends BaseView {
 
     void showProgramsLoading();
 

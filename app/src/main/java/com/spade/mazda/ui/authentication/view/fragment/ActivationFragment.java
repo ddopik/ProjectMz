@@ -11,9 +11,12 @@ import com.spade.mazda.CustomViews.CustomButton;
 import com.spade.mazda.CustomViews.CustomEditText;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.base.DataSource;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
+import com.spade.mazda.ui.general.view.MazdaProgressDialog;
+import com.spade.mazda.ui.main.MainActivity;
 import com.spade.mazda.utils.PrefUtils;
 import com.spade.mazda.utils.Validator;
 
@@ -24,8 +27,9 @@ import com.spade.mazda.utils.Validator;
 public class ActivationFragment extends BaseFragment {
     private CustomEditText codeEditText, emailEditText;
     private String codeString, emailAddress;
-
+    private MazdaProgressDialog progressDialog;
     private View view;
+    private DataSource dataSource = DataSource.getInstance();
 
     @Nullable
     @Override
@@ -77,21 +81,50 @@ public class ActivationFragment extends BaseFragment {
     }
 
     private void activate(String email) {
-        ApiHelper.activateUser(PrefUtils.getAppLang(getContext()), email, codeString, new ApiHelper.ActivationActions() {
+        showLoading();
+        ApiHelper.activateUser(PrefUtils.getAppLang(getContext()), email, codeString, new ApiHelper.ApiCallBack() {
             @Override
-            public void onActivationSuccess() {
-                getActivity().finish();
-                startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
+            public void onSuccess() {
+                hideLoading();
+                if (dataSource.getActivationSource() == DataSource.LOGIN_ACTIVATION) {
+                    if (dataSource.getLoginSource() == DataSource.DIALOG_LOGIN) {
+                        finish();
+                    } else {
+                        finish();
+                        startActivity(MainActivity.getLaunchIntent(getContext()));
+                    }
+                } else {
+                    finish();
+                    startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
+                }
             }
 
             @Override
-            public void onActivationFail(String message) {
+            public void onFail(String message) {
+                hideLoading();
                 showErrorMessage(message);
             }
         });
     }
 
+    private void finish() {
+        getActivity().finish();
+    }
+
     private void showErrorMessage(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    public void showLoading() {
+        if (progressDialog == null)
+            progressDialog = new MazdaProgressDialog();
+        progressDialog.setLoadingTextResID(R.string.loading);
+        progressDialog.setCancelable(false);
+        progressDialog.show(getChildFragmentManager(), MazdaProgressDialog.class.getSimpleName());
+    }
+
+    public void hideLoading() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
     }
 }

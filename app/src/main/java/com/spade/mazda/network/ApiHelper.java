@@ -17,6 +17,7 @@ import com.spade.mazda.ui.services.model.ServicesLocationsResponse;
 import com.spade.mazda.ui.services.model.SparePartsResponse;
 import com.spade.mazda.ui.services.model.ThreeSixtyResponse;
 import com.spade.mazda.ui.welcome.model.IntroResponse;
+import com.spade.mazda.utils.ErrorUtils;
 
 import java.io.File;
 
@@ -43,10 +44,14 @@ public class ApiHelper {
     private static final String THREE_SIXTY_URL = BASE_URL + "360";
     private static final String SERVICES_LOCATIONS_URL = BASE_URL + "afterSales/{category_id}";
     private static final String LOCATIONS_URL = BASE_URL + "locations";
+    private static final String BOOK_CAR_URL = BASE_URL + "cars/book";
+    private static final String REQUEST_SPARE_PART = BASE_URL + "spareParts/request";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String BRANCH_TYPE_PARAM = "type";
     private static final String CAR_ID_PATH_PARAM = "car_id";
     private static final String TRIM_ID_PATH_PARAM = "trim_id";
+    private static final String AUTH_TOKEN = "Authorization";
+    private static final String BEARER = "bearer";
     private static final String LOCATION_CATEGORY_PATH_PARAM = "category_id";
     public static final String AFTER_SALES_LOCATIONS_PARAM = "1";
     public static final String FIXOLOGY_LOCATIONS_PARAM = "2";
@@ -163,7 +168,7 @@ public class ApiHelper {
                 .getObjectObservable(RegistrationResponse.class);
     }
 
-    public static void activateUser(String appLang, String email, String code, ActivationActions activationActions) {
+    public static void activateUser(String appLang, String email, String code, ApiCallBack apiCallBack) {
         Rx2AndroidNetworking.post(ACTIVATE_URL)
                 .addPathParameter(LANG_PATH_PARAM, appLang)
                 .addBodyParameter("code", code)
@@ -172,12 +177,59 @@ public class ApiHelper {
                 .getAsString(new StringRequestListener() {
                     @Override
                     public void onResponse(String response) {
-                        activationActions.onActivationSuccess();
+                        apiCallBack.onSuccess();
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        activationActions.onActivationFail(anError.getMessage());
+                        apiCallBack.onFail(anError.getMessage());
+                    }
+                });
+    }
+
+    public static void bookCar(String appLang, String token, String name, String phone, String modelId, String yearId, String trimId, String branchId
+            , ApiCallBack apiCallBack) {
+        Rx2AndroidNetworking.post(BOOK_CAR_URL)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addBodyParameter("name", name)
+                .addBodyParameter("number", phone)
+                .addBodyParameter("car_model_id", modelId)
+                .addBodyParameter("car_trim_id", trimId)
+                .addBodyParameter("year_id", yearId)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        apiCallBack.onSuccess();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        apiCallBack.onFail(ErrorUtils.getErrors(anError));
+                    }
+                });
+    }
+
+    public static void requestSparePart(String appLang, String token, String sparePartTypeID, String sparePartID, String branchId, String description
+            , ApiCallBack apiCallBack) {
+        Rx2AndroidNetworking.post(REQUEST_SPARE_PART)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addBodyParameter("branch_id", branchId)
+                .addBodyParameter("spare_part_category_id", sparePartTypeID)
+                .addBodyParameter("spare_part_id", sparePartID)
+                .addBodyParameter("description", description)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        apiCallBack.onSuccess();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        apiCallBack.onFail(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -192,9 +244,11 @@ public class ApiHelper {
     }
 
 
-    public interface ActivationActions {
-        void onActivationSuccess();
+    public interface ApiCallBack {
+        void onSuccess();
 
-        void onActivationFail(String message);
+        void onFail(String message);
     }
+
+
 }

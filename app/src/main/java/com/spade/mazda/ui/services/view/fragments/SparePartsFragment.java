@@ -23,11 +23,14 @@ import com.spade.mazda.ui.cars.model.ModelTrim;
 import com.spade.mazda.ui.general.view.CarModelsSpinnerAdapter;
 import com.spade.mazda.ui.general.view.CarTrimSpinnerAdapter;
 import com.spade.mazda.ui.general.view.CarYearsSpinnerAdapter;
+import com.spade.mazda.ui.general.view.LoginDialogFragment;
 import com.spade.mazda.ui.services.model.SparePartCategory;
 import com.spade.mazda.ui.services.presenter.SparePartsPresenter;
 import com.spade.mazda.ui.services.presenter.SparePartsPresenterImpl;
+import com.spade.mazda.ui.services.view.activities.RequestSparePartsActivity;
 import com.spade.mazda.ui.services.view.adapters.SparePartsCategoriesAdapter;
 import com.spade.mazda.ui.services.view.interfaces.SparePartsView;
+import com.spade.mazda.utils.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +107,8 @@ public class SparePartsFragment extends BaseFragment implements SparePartsView {
             Log.d("TRIM_ID", String.valueOf(((ModelTrim) carTrimsSpinner.getSelectedItem()).getTrimId()));
             sparePartsPresenter.getSpareParts(String.valueOf(trimId));
         });
+
+        requestSparePartBtn.setOnClickListener(view -> navigateToRequest());
         sparePartsPresenter.getSpareParts(null);
         sparePartsPresenter.getCarModels();
     }
@@ -199,5 +204,18 @@ public class SparePartsFragment extends BaseFragment implements SparePartsView {
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void navigateToRequest() {
+        if (PrefUtils.isLoggedIn(getContext())) {
+            startActivity(RequestSparePartsActivity.getLaunchIntent(getContext()));
+        } else {
+            showLoginDialog();
+        }
+    }
+
+    private void showLoginDialog() {
+        LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
+        loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 }

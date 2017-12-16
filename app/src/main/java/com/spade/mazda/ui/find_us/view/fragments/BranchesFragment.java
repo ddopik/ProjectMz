@@ -1,20 +1,26 @@
 package com.spade.mazda.ui.find_us.view.fragments;
 
-import android.content.res.Resources;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -33,6 +39,9 @@ import com.spade.mazda.utils.PrefUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * Created by Ayman Abouzeid on 11/6/17.
  */
@@ -45,9 +54,10 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
     private ProgressBar progressBar;
     private BranchesAdapter branchesAdapter;
     private CitySpinnerAdapter citySpinnerAdapter;
-    private List<Branch> branchList;
-    private List<City> cityList;
+    private List<Branch> allBranchList, filteredBranchesList;
+    private List<City> cityList = new ArrayList<>();
     private AppCompatSpinner citiesSpinner;
+    private DataSource dataSource = DataSource.getInstance();
 
     @Nullable
     @Override
@@ -63,58 +73,67 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
         branchesPresenter.setView(this);
     }
 
-//    double lat = Double.parseDouble(area.getLat());
-//    double lng = Double.parseDouble(area.getLng());
-//    LatLng storeLocation = new LatLng(lat, lng);
-////        mMap.clear();
-//        mMap.addMarker(new MarkerOptions().position(storeLocation).title(area.getArea()));
-//    CameraPosition cameraPosition = new CameraPosition.Builder()
-//            .target(storeLocation)
-//            .zoom(13)
-//            .build();
-//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initViews() {
+        ScrollView mainScroll = branchesView.findViewById(R.id.main_scroll);
         RecyclerView recyclerView = branchesView.findViewById(R.id.items_recycler_view);
+        ImageView transparentImage = branchesView.findViewById(R.id.transparent_image);
+        progressBar = branchesView.findViewById(R.id.progress_bar);
         citiesSpinner = branchesView.findViewById(R.id.items_spinner);
+        recyclerView.setNestedScrollingEnabled(false);
 
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         supportMapFragment.getMapAsync(this);
 
-        branchList = new ArrayList<>();
-        cityList = new ArrayList<>();
+        allBranchList = new ArrayList<>();
+        filteredBranchesList = new ArrayList<>();
 
-        progressBar = branchesView.findViewById(R.id.progress_bar);
-
-        branchesAdapter = new BranchesAdapter(getContext(), branchList);
+        branchesAdapter = new BranchesAdapter(getContext(), filteredBranchesList);
         citySpinnerAdapter = new CitySpinnerAdapter(cityList, getContext());
 
         citiesSpinner.setAdapter(citySpinnerAdapter);
         recyclerView.setAdapter(branchesAdapter);
 
-        showCities();
+
         branchesPresenter.getBranches(getTabType(), PrefUtils.getAppLang(getContext()));
+
+        citiesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    showFilteredBranches(allBranchList);
+                } else {
+                    City city = cityList.get(i);
+                    getBranchesByCity(city.getCityId());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        transparentImage.setOnTouchListener((v, event) -> {
+            int action = event.getAction();
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    mainScroll.requestDisallowInterceptTouchEvent(true);
+                    return false;
+
+                case MotionEvent.ACTION_UP:
+                    mainScroll.requestDisallowInterceptTouchEvent(false);
+                    return true;
+
+                case MotionEvent.ACTION_MOVE:
+                    mainScroll.requestDisallowInterceptTouchEvent(true);
+                    return false;
+                default:
+                    return true;
+            }
+        });
     }
 
-    //transparentImage.setOnTouchListener((v, event) -> {
-//        int action = event.getAction();
-//        switch (action) {
-//            case MotionEvent.ACTION_DOWN:
-//                mainScroll.requestDisallowInterceptTouchEvent(true);
-//                return false;
-//
-//            case MotionEvent.ACTION_UP:
-//                mainScroll.requestDisallowInterceptTouchEvent(false);
-//                return true;
-//
-//            case MotionEvent.ACTION_MOVE:
-//                mainScroll.requestDisallowInterceptTouchEvent(true);
-//                return false;
-//            default:
-//                return true;
-//        }
-//    });
     public int getTabType() {
         return tabType;
     }
@@ -140,14 +159,33 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
 
     @Override
     public void showBranches(List<Branch> branchList) {
-        this.branchList.addAll(branchList);
+        this.allBranchList.clear();
+        this.allBranchList.addAll(branchList);
+        this.filteredBranchesList.addAll(branchList);
         this.branchesAdapter.notifyDataSetChanged();
-        branchesPresenter.getMapPins(branchList).subscribe(latLng -> googleMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.fixology))));
+        branchesPresenter.getCities(branchList);
+        branchesPresenter.getMapPins(branchList);
+    }
+
+    @Override
+    public void showFilteredBranches(List<Branch> branchList) {
+        this.filteredBranchesList.clear();
+        this.filteredBranchesList.addAll(branchList);
+        this.branchesAdapter.notifyDataSetChanged();
+        branchesPresenter.getMapPins(branchList);
     }
 
     @Override
     public void showPins(List<LatLng> latLngList) {
-
+        googleMap.clear();
+        for (LatLng latLng : latLngList) {
+            googleMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)
+                    .zoom(13)
+                    .build();
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
     }
 
     @Override
@@ -163,28 +201,26 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-        try {
-            boolean success = googleMap.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle(
-                            getContext(), R.raw.map_style));
-
-            if (!success) {
-//                Log.e(TAG, "Style parsing failed.");
-            }
-        } catch (Resources.NotFoundException e) {
-//            Log.e(TAG, "Can't find style. Error: ", e);
-        }
+        googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        getContext(), R.raw.map_style));
     }
 
-    public void showCities() {
-        DataSource dataSource = DataSource.getInstance();
-        List<City> cityList = dataSource.getCityList();
+    public void showCities(List<City> cityList) {
         if (cityList != null && !cityList.isEmpty()) {
-            this.citiesSpinner.setVisibility(View.VISIBLE);
+            this.cityList.clear();
             this.cityList.addAll(cityList);
             this.citySpinnerAdapter.notifyDataSetChanged();
+            this.citiesSpinner.setVisibility(View.VISIBLE);
         } else {
             this.citiesSpinner.setVisibility(View.GONE);
         }
+    }
+
+    private void getBranchesByCity(int cityId) {
+        dataSource.getBranchByCityId(allBranchList, cityId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showFilteredBranches);
     }
 }

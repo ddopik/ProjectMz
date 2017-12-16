@@ -19,7 +19,7 @@ import com.spade.mazda.ui.services.model.Program;
 import com.spade.mazda.ui.services.presenter.DriveFinancePresenter;
 import com.spade.mazda.ui.services.presenter.DriveFinancePresenterImpl;
 import com.spade.mazda.ui.services.view.adapters.ProgramsAdapter;
-import com.spade.mazda.ui.services.view.interfaces.DriveFinanceView;
+import com.spade.mazda.ui.services.view.interfaces.FinanceView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 12/8/17.
  */
 
-public class DriveFinanceFragment extends BaseFragment implements DriveFinanceView {
+public class FinanceFragment extends BaseFragment implements FinanceView {
 
     private DriveFinancePresenter driveFinancePresenter;
     private View driveFinanceView;

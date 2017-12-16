@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import com.spade.mazda.CustomViews.CustomEditText;
 import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.base.DataSource;
 import com.spade.mazda.ui.authentication.presenter.RegistrationPresenter;
 import com.spade.mazda.ui.authentication.presenter.RegistrationPresenterImpl;
 import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
@@ -33,6 +33,7 @@ import com.spade.mazda.ui.general.view.CarColorsSpinnerAdapter;
 import com.spade.mazda.ui.general.view.CarModelsSpinnerAdapter;
 import com.spade.mazda.ui.general.view.CarTrimSpinnerAdapter;
 import com.spade.mazda.ui.general.view.CarYearsSpinnerAdapter;
+import com.spade.mazda.ui.general.view.MazdaProgressDialog;
 import com.spade.mazda.ui.general.view.PickImageDialogFragment;
 import com.spade.mazda.utils.PrefUtils;
 
@@ -58,7 +59,7 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Regi
     private RelativeLayout chooseImage;
     private AppCompatSpinner carModelSpinner, carYearsSpinner, carTrimsSpinner, carColorsSpinner;
     private CustomEditText chassisEditText, motorEditText, nationalIDEditText;
-    private ProgressBar progressBar;
+    private MazdaProgressDialog progressDialog;
 
     private NationalIDsAdapter nationalIDsAdapter;
     private CarModelsSpinnerAdapter carModelsSpinnerAdapter;
@@ -74,6 +75,7 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Regi
 
     private int modelId = -1, yearId = -1, trimId = -1, colorId = -1;
     private String chassisString, motorString, nationalIDString;
+    private int loginFrom;
 
     @Nullable
     @Override
@@ -105,7 +107,6 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Regi
         chassisEditText = view.findViewById(R.id.chassis_edit_text);
         motorEditText = view.findViewById(R.id.motor_edit_text);
         nationalIDEditText = view.findViewById(R.id.id_number_edit_text);
-        progressBar = view.findViewById(R.id.progress_bar);
 
         carModelsSpinnerAdapter = new CarModelsSpinnerAdapter(carModelList, getContext());
         carYearsSpinnerAdapter = new CarYearsSpinnerAdapter(carYears, getContext());
@@ -276,16 +277,23 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Regi
 
     @Override
     public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
+        if (progressDialog == null)
+            progressDialog = new MazdaProgressDialog();
+        progressDialog.setLoadingTextResID(R.string.loading);
+        progressDialog.setCancelable(false);
+        progressDialog.show(getChildFragmentManager(), MazdaProgressDialog.class.getSimpleName());
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
+        if (progressDialog != null)
+            progressDialog.dismiss();
     }
 
     @Override
     public void navigateToActivate(String email) {
+        DataSource dataSource = DataSource.getInstance();
+        dataSource.setActivationSource(DataSource.REGISTER_ACTIVATION);
         Intent intent = ActivationActivity.getLaunchIntent(getContext());
         intent.putExtra(ActivationActivity.EXTRA_EMAIL, email);
         startActivity(intent);
@@ -435,4 +443,7 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Regi
         nationalIDsAdapter.notifyDataSetChanged();
     }
 
+    public void setLoginFrom(int loginFrom) {
+        this.loginFrom = loginFrom;
+    }
 }

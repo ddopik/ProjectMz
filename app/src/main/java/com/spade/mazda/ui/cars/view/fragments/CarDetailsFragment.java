@@ -37,6 +37,9 @@ import java.util.List;
 public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
 
     public static final String EXTRA_CAR_ID = "EXTRA_CAR_ID";
+    public static final String EXTRA_TRIM_POSITION = "EXTRA_TRIM_POSITION";
+    public static final String EXTRA_YEAR_POSITION = "EXTRA_YEAR_POSITION";
+
     public static final String EXTRA_CAR_YEARS = "EXTRA_CAR_YEARS";
 
     private CarDetailsPresenter carDetailsPresenter;
@@ -45,7 +48,7 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
     private TabLayout tabLayout;
     private TextView carModelName;
     private ImageView carImageView;
-
+    private AppCompatSpinner yearsSpinner, trimsSpinner;
     private List<CarYear> carYears = new ArrayList<>();
     private List<ModelTrim> modelTrims = new ArrayList<>();
 
@@ -55,12 +58,6 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
 
     private String carId, trimId;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        carId = getArguments().getString(EXTRA_CAR_ID);
-//        carYears = getArguments().getParcelableArrayList(EXTRA_CAR_YEARS);
-    }
 
     @Nullable
     @Override
@@ -78,8 +75,8 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
 
     @Override
     protected void initViews() {
-        AppCompatSpinner yearsSpinner = carDetailsView.findViewById(R.id.years_spinner);
-        AppCompatSpinner trimsSpinner = carDetailsView.findViewById(R.id.trims_spinner);
+        yearsSpinner = carDetailsView.findViewById(R.id.years_spinner);
+        trimsSpinner = carDetailsView.findViewById(R.id.trims_spinner);
         viewPager = carDetailsView.findViewById(R.id.fragments_viewpager);
         tabLayout = carDetailsView.findViewById(R.id.tabs);
         carImageView = carDetailsView.findViewById(R.id.car_image);
@@ -122,6 +119,8 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
 
             }
         });
+
+        carId = getArguments().getString(EXTRA_CAR_ID);
         carDetailsPresenter.getCarModel(Integer.parseInt(carId));
     }
 
@@ -174,5 +173,14 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
         GlideApp.with(getContext()).load(modelImage).into(carImageView);
         carModelName.setText(Name);
     }
+
+//    @Override
+//    public void navigateToBook() {
+//        Intent intent = BookCarActivity.getLaunchIntent(getContext());
+//        intent.putExtra(EXTRA_CAR_ID, Integer.parseInt(carId));
+//        intent.putExtra(EXTRA_YEAR_POSITION, yearsSpinner.getSelectedItemPosition());
+//        intent.putExtra(EXTRA_TRIM_POSITION, trimsSpinner.getSelectedItemPosition());
+//        startActivity(intent);
+//    }
 
 }

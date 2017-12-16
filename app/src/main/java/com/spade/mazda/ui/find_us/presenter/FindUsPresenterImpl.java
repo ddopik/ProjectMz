@@ -24,7 +24,7 @@ public class FindUsPresenterImpl implements FindUsPresenter {
 
     private Context context;
     private FindUsView findUsView;
-    private BranchesFragment showRoomFragment, dealerFragment, sparePartsOutletFragment;
+    private BranchesFragment showRoomFragment, dealerFragment, sparePartsOutletFragment, serviceCentersFragment;
 
     public FindUsPresenterImpl(Context context) {
         this.context = context;
@@ -43,14 +43,16 @@ public class FindUsPresenterImpl implements FindUsPresenter {
         showRoomFragment = getBranchFragmentInstance(FindUsFragment.SHOWROOMS_TYPE);
         dealerFragment = getBranchFragmentInstance(FindUsFragment.DEALERS_TYPE);
         sparePartsOutletFragment = getBranchFragmentInstance(FindUsFragment.SPARE_PARTS_TYPE);
-
+        serviceCentersFragment = getBranchFragmentInstance(FindUsFragment.SERVICE_CENTER_TYPE);
         fragments.add(showRoomFragment);
         fragments.add(dealerFragment);
         fragments.add(sparePartsOutletFragment);
+        fragments.add(serviceCentersFragment);
 
         fragmentTitles.add(context.getString(R.string.showrooms));
         fragmentTitles.add(context.getString(R.string.dealers));
         fragmentTitles.add(context.getString(R.string.spare_parts_outlets));
+        fragmentTitles.add(context.getString(R.string.service_centers));
 
         findUsView.addFragment(fragments, fragmentTitles);
     }
@@ -64,11 +66,14 @@ public class FindUsPresenterImpl implements FindUsPresenter {
                     if (citiesResponse != null && citiesResponse.getCityList() != null) {
                         DataSource dataSource = DataSource.getInstance();
                         dataSource.setCityList(citiesResponse.getCityList());
+//                        setUpViewPager();
 //                        showRoomFragment.showCities(citiesResponse.getCityList());
 //                        dealerFragment.showCities(citiesResponse.getCityList());
 //                        sparePartsOutletFragment.showCities(citiesResponse.getCityList());
+//                        serviceCentersFragment.showCities(citiesResponse.getCityList());
                     }
                 }, throwable -> {
+                    setUpViewPager();
 //                    if (throwable != null)
 //                        welcomeView.showMessage(throwable.getMessage());
                 });

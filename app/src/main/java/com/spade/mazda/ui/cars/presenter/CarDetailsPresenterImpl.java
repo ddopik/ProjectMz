@@ -43,7 +43,6 @@ public class CarDetailsPresenterImpl implements CarDetailsPresenter {
 
     @Override
     public void getCarModel(int carID) {
-        DataSource dataSource = DataSource.getInstance();
         dataSource.getCarModel(carID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,6 +53,7 @@ public class CarDetailsPresenterImpl implements CarDetailsPresenter {
     public void setUpViewPagerFragments() {
         fragmentCarModelOverView = new FragmentCarModelOverView();
         fragmentCarModelSpecs = new FragmentCarModelSpecs();
+
         List<Fragment> fragments = new ArrayList<>();
         List<String> fragmentTitles = new ArrayList<>();
 
@@ -82,4 +82,9 @@ public class CarDetailsPresenterImpl implements CarDetailsPresenter {
                 }, throwable -> {
                 });
     }
+
+//    @Override
+//    public void onBookNowClicked() {
+//        carDetailsView.navigateToBook();
+//    }
 }

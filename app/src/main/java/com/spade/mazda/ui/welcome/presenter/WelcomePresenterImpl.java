@@ -2,6 +2,7 @@ package com.spade.mazda.ui.welcome.presenter;
 
 import android.content.Context;
 
+import com.spade.mazda.base.DataSource;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.authentication.view.activity.RegistrationActivity;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
@@ -20,6 +21,7 @@ public class WelcomePresenterImpl implements WelcomePresenter {
 
     private WelcomeView welcomeView;
     private Context context;
+    private DataSource dataSource = DataSource.getInstance();
 
     public WelcomePresenterImpl(Context context) {
         this.context = context;
@@ -48,12 +50,14 @@ public class WelcomePresenterImpl implements WelcomePresenter {
 
     @Override
     public void navigateToRegister() {
+        dataSource.setRegisterSource(DataSource.NORMAL_REGISTER);
         welcomeView.finish();
         context.startActivity(RegistrationActivity.getLaunchIntent(context));
     }
 
     @Override
     public void navigateToLogin() {
+        dataSource.setLoginSource(DataSource.NORMAL_LOGIN);
         welcomeView.finish();
         context.startActivity(ServerLoginActivity.getLaunchIntent(context));
     }

@@ -20,4 +20,6 @@ public interface CarDetailsView extends BaseView {
     void addFragment(List<Fragment> fragmentList, List<String> fragmentTitles);
 
     void updateUI(String modelImage, String Name);
+
+//    void navigateToBook();
 }

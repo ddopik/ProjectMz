@@ -7,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.view.MenuItem;
 
 import com.spade.mazda.R;
+import com.spade.mazda.base.BaseActivity;
 import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
 import com.spade.mazda.ui.authentication.view.fragment.RegistrationSecondStepFragment;
-import com.spade.mazda.base.BaseActivity;
 
 /**
  * Created by Ayman Abouzeid on 11/15/17.

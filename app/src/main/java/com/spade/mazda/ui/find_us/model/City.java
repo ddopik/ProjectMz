@@ -28,4 +28,17 @@ public class City {
     public void setCityName(String cityName) {
         this.cityName = cityName;
     }
+
+    @Override
+    public int hashCode() {
+        return cityId * cityName.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) return false;
+        if (!(other instanceof City)) return false;
+
+        return this.cityId == ((City) other).cityId;
+    }
 }

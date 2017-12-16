@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
  */
 
 public class PrefUtils {
-    private static final String PREF_FILE_NAME = "MEK_PREF_FILE";
+    private static final String PREF_FILE_NAME = "MAZDA_PREF_FILE";
     private static final String USER_ID = "USER_ID";
     private static final String USER_TOKEN = "USER_TOKEN";
     private static final String NOTIFICATION_TOKEN = "NOTIFICATION_TOKEN";
@@ -19,14 +19,14 @@ public class PrefUtils {
     private static final String APP_LANG = "APP_LANG";
     public static final String ARABIC_LANG = "ar";
     public static final String ENGLISH_LANG = "en";
-    public static final String GUEST_USER_ID = "-1";
+    public static final int GUEST_USER_ID = -1;
 
     private static SharedPreferences getSharedPref(Context context) {
         return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     }
 
-    public static void setUserID(Context context, String userID) {
-        getSharedPref(context).edit().putString(USER_ID, userID).apply();
+    public static void setUserID(Context context, int userID) {
+        getSharedPref(context).edit().putInt(USER_ID, userID).apply();
     }
 
     public static void setUserToken(Context context, String userToken) {
@@ -41,8 +41,8 @@ public class PrefUtils {
         getSharedPref(context).edit().putBoolean(IS_FIRST_LAUNCH, isFirstLaunch).apply();
     }
 
-    public static String getUserId(Context mContext) {
-        return getSharedPref(mContext).getString(USER_ID, GUEST_USER_ID);
+    public static int getUserId(Context mContext) {
+        return getSharedPref(mContext).getInt(USER_ID, GUEST_USER_ID);
     }
 
     public static String getUserToken(Context mContext) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -20,9 +21,7 @@
                 android:id="@+id/map"
                 class="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="-100dp"
-                android:layout_marginTop="-100dp" />
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/transparent_image"
@@ -41,6 +40,7 @@
             android:layout_below="@id/map_layout"
             android:gravity="start"
             android:padding="@dimen/dp8"
+            android:popupBackground="@color/blue"
             android:visibility="gone"
             app:backgroundTint="@color/white" />
 

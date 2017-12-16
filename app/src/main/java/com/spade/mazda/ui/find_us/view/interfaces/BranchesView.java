@@ -3,6 +3,7 @@ package com.spade.mazda.ui.find_us.view.interfaces;
 import com.google.android.gms.maps.model.LatLng;
 import com.spade.mazda.base.BaseView;
 import com.spade.mazda.ui.find_us.model.Branch;
+import com.spade.mazda.ui.find_us.model.City;
 
 import java.util.List;
 
@@ -12,6 +13,10 @@ import java.util.List;
 
 public interface BranchesView extends BaseView {
     void showBranches(List<Branch> branchList);
+
+    void showFilteredBranches(List<Branch> branchList);
+
+    void showCities(List<City> cityList);
 
     void showPins(List<LatLng> latLngList);
 

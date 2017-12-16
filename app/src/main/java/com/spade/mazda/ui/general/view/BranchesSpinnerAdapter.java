@@ -48,7 +48,7 @@ public class BranchesSpinnerAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.spinner_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-//        viewHolder.itemText.setText(carModel.getCityName());
+        viewHolder.itemText.setText(branch.getName());
 //        FontUtils.overrideFonts(mContext, row);
         return view;
     }

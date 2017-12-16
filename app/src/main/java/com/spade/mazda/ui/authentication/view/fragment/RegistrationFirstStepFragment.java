@@ -120,10 +120,6 @@ public class RegistrationFirstStepFragment extends BaseFragment implements PickD
             mobileNumberEditText.setError(getString(R.string.enter_phone_number));
             return false;
         }
-        if (mobileNumberString == null || mobileNumberString.isEmpty()) {
-            mobileNumberEditText.setError(getString(R.string.enter_phone_number));
-            return false;
-        }
 
         if (birthDateString == null || birthDateString.isEmpty()) {
             Toast.makeText(getContext(), getString(R.string.pick_birth_date), Toast.LENGTH_LONG).show();

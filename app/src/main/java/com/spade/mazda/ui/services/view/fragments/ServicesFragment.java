@@ -13,6 +13,7 @@ import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.network.ApiHelper;
+import com.spade.mazda.ui.services.view.activities.FinanceActivity;
 import com.spade.mazda.ui.services.view.activities.Places360Activity;
 import com.spade.mazda.ui.services.view.activities.ServicesLocationsActivity;
 import com.spade.mazda.ui.services.view.activities.SparePartsActivity;
@@ -70,6 +71,8 @@ public class ServicesFragment extends BaseFragment implements ServicesAdapter.On
                 startActivity(Places360Activity.getLaunchIntent(getContext()));
                 break;
             case 5:
+                startActivity(FinanceActivity.getLaunchIntent(getContext()));
+
                 break;
         }
     }

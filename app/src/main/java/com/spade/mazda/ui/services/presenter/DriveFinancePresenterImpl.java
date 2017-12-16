@@ -3,7 +3,7 @@ package com.spade.mazda.ui.services.presenter;
 import android.content.Context;
 
 import com.spade.mazda.network.ApiHelper;
-import com.spade.mazda.ui.services.view.interfaces.DriveFinanceView;
+import com.spade.mazda.ui.services.view.interfaces.FinanceView;
 import com.spade.mazda.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -16,42 +16,42 @@ import io.reactivex.schedulers.Schedulers;
 public class DriveFinancePresenterImpl implements DriveFinancePresenter {
 
     private Context context;
-    private DriveFinanceView driveFinanceView;
+    private FinanceView financeView;
 
     public DriveFinancePresenterImpl(Context context) {
         this.context = context;
     }
 
     @Override
-    public void setView(DriveFinanceView view) {
-        this.driveFinanceView = view;
+    public void setView(FinanceView view) {
+        this.financeView = view;
     }
 
     @Override
     public void getOffers() {
-        driveFinanceView.showLoading();
+        financeView.showLoading();
         ApiHelper.getOffers(PrefUtils.getAppLang(context))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(offersResponse -> {
-                    driveFinanceView.hideLoading();
-                    driveFinanceView.showOffers(offersResponse.getData());
+                    financeView.hideLoading();
+                    financeView.showOffers(offersResponse.getData());
                 }, throwable -> {
-                    driveFinanceView.hideLoading();
+                    financeView.hideLoading();
                 });
     }
 
     @Override
     public void getPrograms() {
-        driveFinanceView.showLoading();
+        financeView.showLoading();
         ApiHelper.getPrograms(PrefUtils.getAppLang(context))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(programsResponse -> {
-                    driveFinanceView.hideLoading();
-                    driveFinanceView.showPrograms(programsResponse.getData());
+                    financeView.hideLoading();
+                    financeView.showPrograms(programsResponse.getData());
                 }, throwable -> {
-                    driveFinanceView.hideLoading();
+                    financeView.hideLoading();
                 });
     }
 }

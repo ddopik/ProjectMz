@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".ui.main.MainActivity">
+
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/open_menu_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/menu_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/menu_mazda" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:textSize="@dimen/small_text"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.1"
+        android:background="@color/blue"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/menu_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/menu_bg_1"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:visibility="gone">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/home_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:drawableTop="@drawable/home"
+            android:text="@string/home"
+            android:textSize="@dimen/small_text"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/products_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/products"
+                android:text="@string/products"
+                android:textSize="@dimen/small_text"
+                app:fontTypeFaceStyle="gotham-regular" />
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="25dp" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/services_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/services"
+                android:text="@string/services"
+                android:textSize="@dimen/small_text"
+                app:fontTypeFaceStyle="gotham-regular" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:orientation="horizontal">
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/find_us_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp8"
+                android:drawablePadding="@dimen/dp2"
+                android:drawableTop="@drawable/find_us"
+                android:gravity="center"
+                android:text="@string/find_us"
+                android:textSize="@dimen/small_text"
+                app:fontTypeFaceStyle="gotham-regular" />
+
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="25dp" />
+
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="25dp" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/mazda_club_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:drawableTop="@drawable/mazda_club"
+                android:gravity="center"
+                android:text="@string/mazda_club"
+                android:textSize="@dimen/small_text"
+                app:fontTypeFaceStyle="gotham-regular" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/close_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/close_menu" />
+    </FrameLayout>
+</RelativeLayout>

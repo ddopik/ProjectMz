@@ -1,6 +1,5 @@
 package com.spade.mazda.ui.authentication.view.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,10 +13,12 @@ import android.widget.Toast;
 import com.spade.mazda.CustomViews.CustomButton;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.base.DataSource;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenter;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenterImpl;
 import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
 import com.spade.mazda.ui.authentication.view.interfaces.LoginView;
+import com.spade.mazda.ui.general.view.MazdaProgressDialog;
 import com.spade.mazda.ui.main.MainActivity;
 import com.spade.mazda.utils.PrefUtils;
 import com.spade.mazda.utils.Validator;
@@ -31,10 +32,11 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
 
     private EditText emailAddressEditText, passwordEditText;
     private String emailAddressString, passwordString;
-    private ProgressDialog progressDialog;
+    private MazdaProgressDialog progressDialog;
 
     private View fragmentView;
     private LoginPresenter loginPresenter;
+    private DataSource dataSource = DataSource.getInstance();
 
 
     @Nullable
@@ -100,16 +102,16 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
     @Override
     public void showLoading() {
         if (progressDialog == null)
-            progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage(getString(R.string.loading));
+            progressDialog = new MazdaProgressDialog();
+        progressDialog.setLoadingTextResID(R.string.loading);
         progressDialog.setCancelable(false);
-        progressDialog.show();
+        progressDialog.show(getChildFragmentManager(), MazdaProgressDialog.class.getSimpleName());
     }
 
     @Override
     public void hideLoading() {
         if (progressDialog != null)
-            progressDialog.hide();
+            progressDialog.dismiss();
     }
 
     @Override
@@ -119,7 +121,12 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void navigate() {
-
+        if (dataSource.getLoginSource() == DataSource.DIALOG_LOGIN) {
+            finish();
+        } else {
+            finish();
+            navigateToMainScreen();
+        }
     }
 
     @Override
@@ -129,6 +136,7 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void navigateToActivate() {
+        dataSource.setActivationSource(DataSource.LOGIN_ACTIVATION);
         Intent intent = ActivationActivity.getLaunchIntent(getContext());
         intent.putExtra(ActivationActivity.EXTRA_EMAIL, emailAddressString);
         startActivity(intent);

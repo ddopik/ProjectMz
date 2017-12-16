@@ -123,7 +123,7 @@ public class RealmDbImpl implements RealmDbHelper {
 
 
     @Override
-    public User getUser(String userId) {
+    public User getUser(int userId) {
         Realm realm = Realm.getDefaultInstance();
         realm.refresh();
         return realm.where(User.class).equalTo("userId", userId).findFirst();

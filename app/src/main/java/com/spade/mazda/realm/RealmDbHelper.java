@@ -31,6 +31,6 @@ public interface RealmDbHelper {
 
     List<TrimColor> getCarColors(int trimId);
 
-    User getUser(String userId);
+    User getUser(int userId);
 
 }

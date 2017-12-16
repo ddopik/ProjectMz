@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -24,22 +27,31 @@ import com.spade.mazda.ui.services.view.fragments.ServicesFragment;
 
 public class MainActivity extends BaseActivity {
 
-    //    private float centerX, x2, y2, centerY;
-
     private int height;
     private FrameLayout menuLayout;
     private ImageView closeImage;
     private LinearLayout openMenuLayout;
+    private DrawerLayout mDrawerLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_activity_main);
+        setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         init();
     }
 
 
     protected void init() {
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+
         openMenuLayout = findViewById(R.id.open_menu_layout);
         closeImage = findViewById(R.id.close_image_view);
         TextView homeText = findViewById(R.id.home_text_view);
@@ -68,7 +80,8 @@ public class MainActivity extends BaseActivity {
 
     protected void addFragment(BaseFragment baseFragment, int titleResId) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
-        setTitle(titleResId);
+//        setTitle(titleResId);
+        setTitle("");
         hideMenu();
     }
 
@@ -149,7 +162,7 @@ public class MainActivity extends BaseActivity {
 
     private void openServicesFragment() {
         ServicesFragment servicesFragment = new ServicesFragment();
-        addFragment(servicesFragment, R.string.home);
+        addFragment(servicesFragment, R.string.services);
     }
 
     private void setScreenHeight() {
