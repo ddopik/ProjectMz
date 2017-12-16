@@ -41,7 +41,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        driveFinanceView = inflater.inflate(R.layout.fragment_drive_finance, container, false);
+        driveFinanceView = inflater.inflate(R.layout.fragment_finance, container, false);
         initViews();
         return driveFinanceView;
     }

@@ -4,13 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.spade.mazda.base.DataSource;
-import com.spade.mazda.ui.cars.model.CarYear;
 import com.spade.mazda.ui.cars.presenter.interfaces.ProductsPresenter;
 import com.spade.mazda.ui.cars.view.activity.CarDetailsActivity;
 import com.spade.mazda.ui.cars.view.fragments.CarDetailsFragment;
 import com.spade.mazda.ui.cars.view.interfaces.ProductsView;
-
-import java.util.List;
 
 /**
  * Created by Ayman Abouzeid on 11/2/17.

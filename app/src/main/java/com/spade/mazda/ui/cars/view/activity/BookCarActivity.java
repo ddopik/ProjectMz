@@ -3,13 +3,11 @@ package com.spade.mazda.ui.cars.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.MenuItem;
 
 import com.spade.mazda.R;
-import com.spade.mazda.base.BaseActivity;
+import com.spade.mazda.base.ToolBarBaseActivity;
 import com.spade.mazda.ui.cars.view.fragments.BookCarFragment;
-import com.spade.mazda.ui.cars.view.fragments.CarDetailsFragment;
 
 import static com.spade.mazda.ui.cars.view.fragments.CarDetailsFragment.EXTRA_CAR_ID;
 import static com.spade.mazda.ui.cars.view.fragments.CarDetailsFragment.EXTRA_TRIM_POSITION;
@@ -19,16 +17,16 @@ import static com.spade.mazda.ui.cars.view.fragments.CarDetailsFragment.EXTRA_YE
  * Created by Ayman Abouzeid on 11/15/17.
  */
 
-public class BookCarActivity extends BaseActivity {
+public class BookCarActivity extends ToolBarBaseActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        init();
-    }
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_base_toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        init();
+//    }
 
 
     @Override
@@ -55,7 +53,8 @@ public class BookCarActivity extends BaseActivity {
         bundle.putInt(EXTRA_TRIM_POSITION, getIntent().getIntExtra(EXTRA_TRIM_POSITION, 1));
         BookCarFragment bookCarFragment = new BookCarFragment();
         bookCarFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, bookCarFragment).commit();
+        showFragment(bookCarFragment);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, bookCarFragment).commit();
     }
 
 

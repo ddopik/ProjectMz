@@ -1,80 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/interested_btn"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/activity_vertical_margin"
+            android:paddingStart="@dimen/activity_vertical_margin">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
+
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/trim_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/chassis"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:alpha="0.7"
+                android:text="@string/choose_car_model" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/programs_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:background="@color/white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
+
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/down_payment_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/chassis"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:alpha="0.7"
+                android:text="@string/choose_car_model" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/years_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginBottom="@dimen/dp24"
+                android:background="@color/white" />
+
+            <com.spade.mazda.CustomViews.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/calculate"
+                android:textAllCaps="true"
+                android:textSize="@dimen/material_text_title"
+                app:color="@color/blue"
+                app:fontTypeFaceStyle="gotham-semi-bold" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/interested_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-
-            <ProgressBar
-                android:id="@+id/offers_progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/offers_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                app:tabBackground="@drawable/tab_layout_dots"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp" />
-        </RelativeLayout>
-
-        <com.spade.mazda.CustomViews.CustomTextView
-            android:id="@+id/drive_finance_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:padding="@dimen/activity_vertical_margin"
-            android:textSize="@dimen/material_text_subhead"
-            app:color="@color/white"
-            app:fontTypeFaceStyle="gotham-regular"
-            tools:text="asdasascascasc asdajhbashdja" />
-
-        <com.spade.mazda.CustomViews.CustomTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingEnd="@dimen/activity_vertical_margin"
-            android:paddingStart="@dimen/activity_vertical_margin"
-            android:text="@string/programs"
-            android:textAllCaps="true"
-            android:textSize="@dimen/material_text_title"
-            app:color="@color/blue"
-            app:fontTypeFaceStyle="gotham-semi-bold" />
-
-        <ProgressBar
-            android:id="@+id/programs_progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
-        <com.spade.mazda.CustomViews.CustomRecyclerView
-            android:id="@+id/programs_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp8"
-            android:layout_marginStart="@dimen/dp8"
-            android:orientation="horizontal" />
-    </LinearLayout>
-</ScrollView>
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/interested"
+        android:textAllCaps="true"
+        android:textSize="@dimen/material_text_subhead"
+        app:color="@color/white"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+</RelativeLayout>

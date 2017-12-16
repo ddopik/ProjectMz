@@ -9,6 +9,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.View;
@@ -18,14 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spade.mazda.R;
-import com.spade.mazda.base.BaseActivity;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.cars.view.fragments.FragmentProducts;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
 import com.spade.mazda.ui.home.view.HomeFragment;
 import com.spade.mazda.ui.services.view.fragments.ServicesFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
     private int height;
     private FrameLayout menuLayout;
@@ -73,10 +73,10 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void addFragment() {
-
-    }
+//    @Override
+//    protected void addFragment() {
+//
+//    }
 
     protected void addFragment(BaseFragment baseFragment, int titleResId) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, baseFragment).commit();

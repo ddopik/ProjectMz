@@ -3,11 +3,10 @@ package com.spade.mazda.ui.services.view.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.MenuItem;
 
 import com.spade.mazda.R;
-import com.spade.mazda.base.BaseActivity;
+import com.spade.mazda.base.ToolBarBaseActivity;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.services.view.fragments.ServicesLocationsFragment;
 
@@ -15,16 +14,16 @@ import com.spade.mazda.ui.services.view.fragments.ServicesLocationsFragment;
  * Created by Ayman Abouzeid on 11/15/17.
  */
 
-public class ServicesLocationsActivity extends BaseActivity {
+public class ServicesLocationsActivity extends ToolBarBaseActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        init();
-    }
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_base_toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        init();
+//    }
 
 
     @Override
@@ -54,7 +53,8 @@ public class ServicesLocationsActivity extends BaseActivity {
         bundle.putString(ServicesLocationsFragment.EXTRA_TYPE, type);
         ServicesLocationsFragment servicesLocationsFragment = new ServicesLocationsFragment();
         servicesLocationsFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesLocationsFragment).commit();
+        showFragment(servicesLocationsFragment);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesLocationsFragment).commit();
     }
 
 
