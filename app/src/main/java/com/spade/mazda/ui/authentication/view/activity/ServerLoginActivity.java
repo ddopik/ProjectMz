@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.spade.mazda.R;
+import com.spade.mazda.base.BaseActivity;
 import com.spade.mazda.ui.authentication.view.fragment.ServerLoginFragment;
 
 
@@ -15,7 +15,7 @@ import com.spade.mazda.ui.authentication.view.fragment.ServerLoginFragment;
  * Created by Ayman Abouzeidd on 6/12/17.
  */
 
-public class ServerLoginActivity extends AppCompatActivity {
+public class ServerLoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class ServerLoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        addFragment();
+        init();
     }
 
     @Override
@@ -39,7 +39,13 @@ public class ServerLoginActivity extends AppCompatActivity {
     }
 
 
-    private void addFragment() {
+    @Override
+    protected void init() {
+        addFragment();
+        setTitle(R.string.login);
+    }
+
+    protected void addFragment() {
         ServerLoginFragment serverLoginFragment = new ServerLoginFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, serverLoginFragment).commit();
     }

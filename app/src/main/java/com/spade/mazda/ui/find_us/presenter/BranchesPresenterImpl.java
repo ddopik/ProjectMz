@@ -71,7 +71,7 @@ public class BranchesPresenterImpl implements BranchesPresenter {
 
     @Override
     public void getCities(List<Branch> branches) {
-        DataSource.getCitiesList(branches, context)
+        DataSource.getCitiesList(branches, context, true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cities -> {

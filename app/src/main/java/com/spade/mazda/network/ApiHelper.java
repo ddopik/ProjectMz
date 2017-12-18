@@ -45,6 +45,7 @@ public class ApiHelper {
     private static final String SERVICES_LOCATIONS_URL = BASE_URL + "afterSales/{category_id}";
     private static final String LOCATIONS_URL = BASE_URL + "locations";
     private static final String BOOK_CAR_URL = BASE_URL + "cars/book";
+    private static final String REQUEST_TEST_DRIVE_URL = BASE_URL + "testDrive/request";
     private static final String REQUEST_SPARE_PART = BASE_URL + "spareParts/request";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String BRANCH_TYPE_PARAM = "type";
@@ -197,6 +198,29 @@ public class ApiHelper {
                 .addBodyParameter("car_model_id", modelId)
                 .addBodyParameter("car_trim_id", trimId)
                 .addBodyParameter("year_id", yearId)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        apiCallBack.onSuccess();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        apiCallBack.onFail(ErrorUtils.getErrors(anError));
+                    }
+                });
+    }
+
+    public static void requestDriveTest(String appLang, String token, String modelId, String cityId, String branchId, String date
+            , ApiCallBack apiCallBack) {
+        Rx2AndroidNetworking.post(REQUEST_TEST_DRIVE_URL)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addBodyParameter("location_id", branchId)
+                .addBodyParameter("car_model_id", modelId)
+                .addBodyParameter("city_id", cityId)
+                .addBodyParameter("time", date)
                 .build()
                 .getAsString(new StringRequestListener() {
                     @Override

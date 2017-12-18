@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.services.view.activities;
+package com.spade.mazda.ui.cars.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,14 +7,14 @@ import android.view.MenuItem;
 
 import com.spade.mazda.R;
 import com.spade.mazda.base.ToolBarBaseActivity;
-import com.spade.mazda.network.ApiHelper;
-import com.spade.mazda.ui.services.view.fragments.ServicesLocationsFragment;
+import com.spade.mazda.ui.cars.view.fragments.CarDetailsFragment;
+import com.spade.mazda.ui.cars.view.fragments.DriveFinanceFragment;
 
 /**
  * Created by Ayman Abouzeid on 11/15/17.
  */
 
-public class ServicesLocationsActivity extends ToolBarBaseActivity {
+public class DriveFinanceActivity extends ToolBarBaseActivity {
 
 //    @Override
 //    protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,26 +39,21 @@ public class ServicesLocationsActivity extends ToolBarBaseActivity {
     @Override
     protected void init() {
         addFragment();
+        setTitle(R.string.drive_finance);
     }
 
     @Override
     protected void addFragment() {
-        String type = getIntent().getStringExtra(ServicesLocationsFragment.EXTRA_TYPE);
-        if (type.equals(ApiHelper.AFTER_SALES_LOCATIONS_PARAM)) {
-            setTitle(R.string.after_sales_service);
-        } else {
-            setTitle(R.string.fixology);
-        }
         Bundle bundle = new Bundle();
-        bundle.putString(ServicesLocationsFragment.EXTRA_TYPE, type);
-        ServicesLocationsFragment servicesLocationsFragment = new ServicesLocationsFragment();
-        servicesLocationsFragment.setArguments(bundle);
-        showFragment(servicesLocationsFragment);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, servicesLocationsFragment).commit();
+        bundle.putInt(CarDetailsFragment.EXTRA_CAR_ID, getIntent().getIntExtra(CarDetailsFragment.EXTRA_CAR_ID, 0));
+        DriveFinanceFragment driveFinanceFragment = new DriveFinanceFragment();
+        driveFinanceFragment.setArguments(bundle);
+        showFragment(driveFinanceFragment);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, financeFragment).commit();
     }
 
 
     public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, ServicesLocationsActivity.class);
+        return new Intent(context, DriveFinanceActivity.class);
     }
 }

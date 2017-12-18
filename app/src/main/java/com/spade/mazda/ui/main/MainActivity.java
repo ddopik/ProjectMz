@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
-import com.spade.mazda.ui.cars.view.fragments.FragmentProducts;
+import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
 import com.spade.mazda.ui.home.view.HomeFragment;
 import com.spade.mazda.ui.services.view.fragments.ServicesFragment;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int height;
     private FrameLayout menuLayout;
-    private ImageView closeImage;
+    private ImageView closeImage, logoImage;
     private LinearLayout openMenuLayout;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
@@ -38,13 +38,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = findViewById(R.id.toolbar);
+        logoImage = toolbar.findViewById(R.id.mazda_logo);
+
         setSupportActionBar(toolbar);
+
         init();
     }
 
 
     protected void init() {
+        TextView homeText = findViewById(R.id.home_text_view);
+        TextView productsText = findViewById(R.id.products_text_view);
+        TextView mazdaClubTextView = findViewById(R.id.mazda_club_text_view);
+        TextView servicesTextView = findViewById(R.id.services_text_view);
+        TextView findUsTextView = findViewById(R.id.find_us_text_view);
+
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,11 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         openMenuLayout = findViewById(R.id.open_menu_layout);
         closeImage = findViewById(R.id.close_image_view);
-        TextView homeText = findViewById(R.id.home_text_view);
-        TextView productsText = findViewById(R.id.products_text_view);
-        TextView mazdaClubTextView = findViewById(R.id.mazda_club_text_view);
-        TextView servicesTextView = findViewById(R.id.services_text_view);
-        TextView findUsTextView = findViewById(R.id.find_us_text_view);
         menuLayout = findViewById(R.id.menu_view);
 
         homeText.setOnClickListener(view -> openHomeFragment());
@@ -73,15 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void addFragment() {
-//
-//    }
 
-    protected void addFragment(BaseFragment baseFragment, int titleResId) {
+    protected void addFragment(BaseFragment baseFragment, String title) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
-//        setTitle(titleResId);
-        setTitle("");
+        setTitle(title);
         hideMenu();
     }
 
@@ -147,22 +147,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void openHomeFragment() {
         HomeFragment homeFragment = new HomeFragment();
-        addFragment(homeFragment, R.string.home);
+        addFragment(homeFragment, "");
+        logoImage.setVisibility(View.VISIBLE);
     }
 
     private void openFindUsFragment() {
         FindUsFragment findUsFragment = new FindUsFragment();
-        addFragment(findUsFragment, R.string.find_us);
+        addFragment(findUsFragment, getString(R.string.find_us));
+        logoImage.setVisibility(View.GONE);
     }
 
     private void openProductsFragment() {
-        FragmentProducts fragmentProducts = new FragmentProducts();
-        addFragment(fragmentProducts, R.string.products);
+        ProductsFragment productsFragment = new ProductsFragment();
+        addFragment(productsFragment, getString(R.string.products));
+        logoImage.setVisibility(View.GONE);
     }
 
     private void openServicesFragment() {
         ServicesFragment servicesFragment = new ServicesFragment();
-        addFragment(servicesFragment, R.string.services);
+        addFragment(servicesFragment, getString(R.string.services));
+        logoImage.setVisibility(View.GONE);
     }
 
     private void setScreenHeight() {

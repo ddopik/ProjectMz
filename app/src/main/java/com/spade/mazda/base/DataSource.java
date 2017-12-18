@@ -128,17 +128,19 @@ public class DataSource {
         });
     }
 
-    public static Observable<List<City>> getCitiesList(List<Branch> branchesList, Context context) {
+    public static Observable<List<City>> getCitiesList(List<Branch> branchesList, Context context, boolean addDummyCity) {
         return Observable.create(e -> {
             List<City> cities = new ArrayList<>();
             Set<City> citiesSet = new HashSet<>();
-            City city = new City();
-            city.setCityId(-1);
-            city.setCityName(context.getString(R.string.select_city));
             for (Branch branch : branchesList) {
                 citiesSet.add(branch.getBranchCity());
             }
-            cities.add(city);
+            if (addDummyCity) {
+                City city = new City();
+                city.setCityId(-1);
+                city.setCityName(context.getString(R.string.select_city));
+                cities.add(city);
+            }
             cities.addAll(citiesSet);
             e.onNext(cities);
             e.onComplete();

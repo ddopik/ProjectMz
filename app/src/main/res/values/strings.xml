@@ -88,6 +88,8 @@
     <string name="car_booked">Car booked successfully</string>
     <string name="spar_part_requested">Spare Part Requested successfully</string>
     <string name="nearest_branch">Nearest branch</string>
+    <string name="branch">Branch</string>
+    <string name="city">City</string>
     <string name="spare_part_category">Spare Part Types</string>
     <string name="spare_part">Spare Parts</string>
     <string name="description">Spare Part Description</string>
@@ -122,6 +124,20 @@
     <string name="calculate">Calculate</string>
     <string name="interested">Interested</string>
     <string name="log_out">Log out</string>
+    <string name="periodic">Periodic &amp; Mechanical</string>
+    <string name="maintenance">Maintenance &amp; Body</string>
+    <string name="about_fixology">About Fixology</string>
+    <string name="calculator">Calculator</string>
+    <string name="original_price">Original price</string>
+    <string name="monthly_installment">Monthly installment</string>
+    <string name="down_payment">Down Payment</string>
+    <string name="number_of_years">Number of years</string>
+    <string name="program">Program</string>
+    <string name="down_payment_message_1">Down payment cannot be less than 20% of original price</string>
+    <string name="down_payment_message_2">Down payment cannot greater than original price</string>
+
+    <string name="enter_down_payment">Please Enter Down Payment Amount</string>
+    <string name="enter_valid_amount">Enter A Valid Amount</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>
@@ -136,6 +152,13 @@
         <item>@string/service_360</item>
         <item>@string/finance</item>
 
+    </string-array>
+    <string-array name="number_of_years">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string name="title_activity_splash">SplashActivity</string>

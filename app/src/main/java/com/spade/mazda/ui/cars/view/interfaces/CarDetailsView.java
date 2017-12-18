@@ -21,5 +21,5 @@ public interface CarDetailsView extends BaseView {
 
     void updateUI(String modelImage, String Name);
 
-//    void navigateToBook();
+    void navigateToCalculator();
 }

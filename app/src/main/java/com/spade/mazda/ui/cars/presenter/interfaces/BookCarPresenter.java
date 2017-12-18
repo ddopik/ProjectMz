@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.cars.presenter;
+package com.spade.mazda.ui.cars.presenter.interfaces;
 
 import com.spade.mazda.base.BasePresenter;
 import com.spade.mazda.ui.cars.view.interfaces.BookCarView;

@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.cars.presenter.interfaces;
+package com.spade.mazda.ui.cars.presenter;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.realm.RealmDbHelper;
 import com.spade.mazda.realm.RealmDbImpl;
 import com.spade.mazda.ui.authentication.model.User;
-import com.spade.mazda.ui.cars.presenter.BookCarPresenter;
+import com.spade.mazda.ui.cars.presenter.interfaces.BookCarPresenter;
 import com.spade.mazda.ui.cars.view.interfaces.BookCarView;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
 import com.spade.mazda.utils.ErrorUtils;

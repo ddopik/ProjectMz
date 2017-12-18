@@ -26,7 +26,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 11/2/17.
  */
 
-public class FragmentProducts extends BaseFragment implements ProductsView, ProductsAdapter.OnCarSelected {
+public class ProductsFragment extends BaseFragment implements ProductsView, ProductsAdapter.OnCarSelected {
     private View view;
     private ProgressBar progressBar;
     private ProductsPresenter productsPresenter;

@@ -16,8 +16,8 @@ import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.home.model.Offer;
 import com.spade.mazda.ui.home.view.adapters.OffersPagerAdapter;
 import com.spade.mazda.ui.services.model.Program;
-import com.spade.mazda.ui.services.presenter.DriveFinancePresenter;
-import com.spade.mazda.ui.services.presenter.DriveFinancePresenterImpl;
+import com.spade.mazda.ui.services.presenter.FinancePresenter;
+import com.spade.mazda.ui.services.presenter.FinancePresenterImpl;
 import com.spade.mazda.ui.services.view.adapters.ProgramsAdapter;
 import com.spade.mazda.ui.services.view.interfaces.FinanceView;
 
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class FinanceFragment extends BaseFragment implements FinanceView {
 
-    private DriveFinancePresenter driveFinancePresenter;
+    private FinancePresenter financePresenter;
     private View driveFinanceView;
     private ProgressBar programsProgressBar, offersProgressBar;
     private ProgramsAdapter programsAdapter;
@@ -48,8 +48,8 @@ public class FinanceFragment extends BaseFragment implements FinanceView {
 
     @Override
     protected void initPresenter() {
-        driveFinancePresenter = new DriveFinancePresenterImpl(getContext());
-        driveFinancePresenter.setView(this);
+        financePresenter = new FinancePresenterImpl(getContext());
+        financePresenter.setView(this);
     }
 
     @Override
@@ -67,8 +67,8 @@ public class FinanceFragment extends BaseFragment implements FinanceView {
 
         programsRecyclerView.setAdapter(programsAdapter);
 
-        driveFinancePresenter.getOffers();
-        driveFinancePresenter.getPrograms();
+        financePresenter.getOffers();
+        financePresenter.getPrograms();
     }
 
     @Override

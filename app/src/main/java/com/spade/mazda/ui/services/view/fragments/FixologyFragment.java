@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.spade.mazda.CustomViews.CustomRecyclerView;
+import com.spade.mazda.CustomViews.CustomTextView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.general.view.LocationsSpinnerAdapter;
 import com.spade.mazda.ui.services.model.Location;
 import com.spade.mazda.ui.services.model.ServicesLocation;
@@ -29,25 +31,22 @@ import java.util.List;
  * Created by Ayman Abouzeid on 11/8/17.
  */
 
-public class ServicesLocationsFragment extends BaseFragment implements ServicesLocationsView {
+public class FixologyFragment extends BaseFragment implements ServicesLocationsView {
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
     private View view;
     private ProgressBar progressBar;
+    private CustomTextView descriptionText;
     private ServicesLocationsPresenter servicesLocationsPresenter;
     private List<ServicesLocation> servicesLocations = new ArrayList<>();
     private List<Location> locationList = new ArrayList<>();
     private LocationsSpinnerAdapter locationsSpinnerAdapter;
     private ServicesLocationsAdapter servicesLocationsAdapter;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_after_sales, container, false);
+        view = inflater.inflate(R.layout.fragment_fixology, container, false);
         initViews();
         return view;
     }
@@ -72,9 +71,9 @@ public class ServicesLocationsFragment extends BaseFragment implements ServicesL
         servicesLocationsRecycler.setAdapter(servicesLocationsAdapter);
         locationSpinner.setAdapter(locationsSpinnerAdapter);
 
-        String type = getArguments().getString(EXTRA_TYPE);
+//        String type = getArguments().getString(EXTRA_TYPE);
 
-        servicesLocationsPresenter.getServicesLocation(type);
+        servicesLocationsPresenter.getServicesLocation(ApiHelper.FIXOLOGY_LOCATIONS_PARAM);
         servicesLocationsPresenter.getLocations();
 
         locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

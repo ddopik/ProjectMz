@@ -15,10 +15,10 @@ import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.cars.model.CarDetailsData;
 import com.spade.mazda.ui.cars.model.Gallery;
 import com.spade.mazda.ui.cars.view.activity.BookCarActivity;
+import com.spade.mazda.ui.cars.view.activity.TestDriveActivity;
 import com.spade.mazda.ui.cars.view.adapter.CarActionsAdapter;
 import com.spade.mazda.ui.cars.view.adapter.CarImagesAdapter;
 import com.spade.mazda.ui.general.view.LoginDialogFragment;
-import com.spade.mazda.ui.services.view.activities.FinanceActivity;
 import com.spade.mazda.utils.PrefUtils;
 
 import java.util.ArrayList;
@@ -28,12 +28,12 @@ import java.util.List;
  * Created by Ayman Abouzeid on 10/30/17.
  */
 
-public class FragmentCarModelOverView extends BaseFragment implements CarActionsAdapter.OnActionClicked {
+public class CarModelOverViewFragment extends BaseFragment implements CarActionsAdapter.OnActionClicked {
 
     private View carOverView;
     private List<Gallery> carImages = new ArrayList<>();
     private CarImagesAdapter carImagesAdapter;
-//    private OnBookClicked onBookClicked;
+    private OnCalculatorClicked onCalculatorClicked;
 
     @Nullable
     @Override
@@ -63,14 +63,24 @@ public class FragmentCarModelOverView extends BaseFragment implements CarActions
         carActionsAdapter.setOnActionClicked(this);
         carActionsRecyclerView.setAdapter(carActionsAdapter);
 
-        bookNow.setOnClickListener(view -> navigateToBook());
+        bookNow.setOnClickListener(view -> {
+            if (validToRequest()) {
+                startActivity(BookCarActivity.getLaunchIntent(getContext()));
+            }
+        });
     }
 
     @Override
     public void onActionClicked(int position) {
         switch (position) {
             case 0:
-                startActivity(FinanceActivity.getLaunchIntent(getContext()));
+                onCalculatorClicked.onCalculatorClicked();
+//                startActivity(FinanceActivity.getLaunchIntent(getContext()));
+                break;
+            case 1:
+                if (validToRequest()) {
+                    startActivity(TestDriveActivity.getLaunchIntent(getContext()));
+                }
                 break;
         }
     }
@@ -81,12 +91,20 @@ public class FragmentCarModelOverView extends BaseFragment implements CarActions
         this.carImagesAdapter.notifyDataSetChanged();
     }
 
-    private void navigateToBook() {
-        if (PrefUtils.isLoggedIn(getContext())) {
-            startActivity(BookCarActivity.getLaunchIntent(getContext()));
-        } else {
+//    private void navigateToBook() {
+//        if (PrefUtils.isLoggedIn(getContext())) {
+//            startActivity(BookCarActivity.getLaunchIntent(getContext()));
+//        } else {
+//            showLoginDialog();
+//        }
+//    }
+
+    private boolean validToRequest() {
+        if (!PrefUtils.isLoggedIn(getContext())) {
             showLoginDialog();
+            return false;
         }
+        return true;
     }
 
     private void showLoginDialog() {
@@ -94,11 +112,11 @@ public class FragmentCarModelOverView extends BaseFragment implements CarActions
         loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 
-//    public void setOnBookClicked(OnBookClicked onBookClicked) {
-//        this.onBookClicked = onBookClicked;
-//    }
-//
-//    public interface OnBookClicked {
-//        void onBookNowClicked();
-//    }
+    public void setOnCalculatorClicked(OnCalculatorClicked onCalculatorClicked) {
+        this.onCalculatorClicked = onCalculatorClicked;
+    }
+
+    public interface OnCalculatorClicked {
+        void onCalculatorClicked();
+    }
 }

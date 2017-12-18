@@ -58,7 +58,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.services.view.activities.ServicesLocationsActivity"
+            android:name=".ui.services.view.activities.MaintenanceLocationsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -69,10 +69,23 @@
             android:name=".ui.services.view.activities.RequestSparePartsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity-->
-        <!--android:name=".ui.main.Main2Activity"-->
-        <!--android:label="@string/title_activity_main2"-->
-        <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
+        <activity
+            android:name=".ui.services.view.activities.FixologyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.services.view.activities.AfterSalesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.cars.view.activity.DriveFinanceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.cars.view.activity.TestDriveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

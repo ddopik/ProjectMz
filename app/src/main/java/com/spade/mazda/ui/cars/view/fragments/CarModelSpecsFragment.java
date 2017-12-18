@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 10/30/17.
  */
 
-public class FragmentCarModelSpecs extends BaseFragment {
+public class CarModelSpecsFragment extends BaseFragment {
 
     private View specsView;
     private List<Category> specsCategoryList = new ArrayList<>();

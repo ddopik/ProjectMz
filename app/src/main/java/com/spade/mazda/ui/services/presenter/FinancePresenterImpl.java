@@ -13,12 +13,12 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Ayman Abouzeid on 12/8/17.
  */
 
-public class DriveFinancePresenterImpl implements DriveFinancePresenter {
+public class FinancePresenterImpl implements FinancePresenter {
 
     private Context context;
     private FinanceView financeView;
 
-    public DriveFinancePresenterImpl(Context context) {
+    public FinancePresenterImpl(Context context) {
         this.context = context;
     }
 

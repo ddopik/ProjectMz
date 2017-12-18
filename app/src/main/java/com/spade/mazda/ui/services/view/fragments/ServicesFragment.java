@@ -1,7 +1,6 @@
 package com.spade.mazda.ui.services.view.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,10 +11,11 @@ import android.view.ViewGroup;
 import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
-import com.spade.mazda.network.ApiHelper;
+import com.spade.mazda.ui.services.view.activities.AfterSalesActivity;
 import com.spade.mazda.ui.services.view.activities.FinanceActivity;
+import com.spade.mazda.ui.services.view.activities.FixologyActivity;
+import com.spade.mazda.ui.services.view.activities.MaintenanceLocationsActivity;
 import com.spade.mazda.ui.services.view.activities.Places360Activity;
-import com.spade.mazda.ui.services.view.activities.ServicesLocationsActivity;
 import com.spade.mazda.ui.services.view.activities.SparePartsActivity;
 import com.spade.mazda.ui.services.view.adapters.ServicesAdapter;
 
@@ -53,9 +53,7 @@ public class ServicesFragment extends BaseFragment implements ServicesAdapter.On
     public void onServiceClicked(int position) {
         switch (position) {
             case 0:
-                Intent afterSalesIntent = ServicesLocationsActivity.getLaunchIntent(getContext());
-                afterSalesIntent.putExtra(ServicesLocationsFragment.EXTRA_TYPE, ApiHelper.AFTER_SALES_LOCATIONS_PARAM);
-                startActivity(afterSalesIntent);
+                startActivity(AfterSalesActivity.getLaunchIntent(getContext()));
                 break;
             case 1:
                 startActivity(SparePartsActivity.getLaunchIntent(getContext()));
@@ -63,16 +61,13 @@ public class ServicesFragment extends BaseFragment implements ServicesAdapter.On
             case 2:
                 break;
             case 3:
-                Intent fixologyIntent = ServicesLocationsActivity.getLaunchIntent(getContext());
-                fixologyIntent.putExtra(ServicesLocationsFragment.EXTRA_TYPE, ApiHelper.FIXOLOGY_LOCATIONS_PARAM);
-                startActivity(fixologyIntent);
+                startActivity(FixologyActivity.getLaunchIntent(getContext()));
                 break;
             case 4:
                 startActivity(Places360Activity.getLaunchIntent(getContext()));
                 break;
             case 5:
                 startActivity(FinanceActivity.getLaunchIntent(getContext()));
-
                 break;
         }
     }

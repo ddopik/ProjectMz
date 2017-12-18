@@ -20,6 +20,9 @@ public class ModelTrim implements Parcelable {
     @SerializedName("id")
     @Expose
     private Integer trimId;
+    @SerializedName("price")
+    @Expose
+    private String trimPrice;
     @SerializedName("colors")
     private List<TrimColor> trimColors;
 
@@ -38,6 +41,8 @@ public class ModelTrim implements Parcelable {
     public ModelTrim(Parcel in) {
         this.trimName = ((String) in.readValue((String.class.getClassLoader())));
         this.trimId = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.trimPrice = ((String) in.readValue((String.class.getClassLoader())));
+
     }
 
     public ModelTrim() {
@@ -67,9 +72,18 @@ public class ModelTrim implements Parcelable {
         this.trimColors = trimColors;
     }
 
+    public String getTrimPrice() {
+        return trimPrice;
+    }
+
+    public void setTrimPrice(String trimPrice) {
+        this.trimPrice = trimPrice;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(trimName);
         dest.writeValue(trimId);
+        dest.writeValue(trimPrice);
         dest.writeList(trimColors);
     }
 

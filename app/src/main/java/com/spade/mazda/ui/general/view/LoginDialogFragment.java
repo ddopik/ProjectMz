@@ -40,12 +40,12 @@ public class LoginDialogFragment extends DialogFragment {
         loginText.setOnClickListener(btn -> {
             dataSource.setLoginSource(DataSource.DIALOG_LOGIN);
             dismiss();
-            startActivity(RegistrationActivity.getLaunchIntent(getContext()));
+            startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
         });
         registerText.setOnClickListener(btn -> {
             dataSource.setRegisterSource(DataSource.DIALOG_REGISTER);
             dismiss();
-            startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
+            startActivity(RegistrationActivity.getLaunchIntent(getContext()));
         });
 
     }

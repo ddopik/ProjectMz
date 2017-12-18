@@ -7,7 +7,7 @@ import com.spade.mazda.ui.services.view.interfaces.FinanceView;
  * Created by Ayman Abouzeid on 12/8/17.
  */
 
-public interface DriveFinancePresenter extends BasePresenter<FinanceView> {
+public interface FinancePresenter extends BasePresenter<FinanceView> {
     void getOffers();
 
     void getPrograms();

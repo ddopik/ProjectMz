@@ -9,8 +9,8 @@ import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.cars.model.CarDetailsData;
 import com.spade.mazda.ui.cars.model.CarYear;
 import com.spade.mazda.ui.cars.presenter.interfaces.CarDetailsPresenter;
-import com.spade.mazda.ui.cars.view.fragments.FragmentCarModelOverView;
-import com.spade.mazda.ui.cars.view.fragments.FragmentCarModelSpecs;
+import com.spade.mazda.ui.cars.view.fragments.CarModelOverViewFragment;
+import com.spade.mazda.ui.cars.view.fragments.CarModelSpecsFragment;
 import com.spade.mazda.ui.cars.view.interfaces.CarDetailsView;
 
 import java.util.ArrayList;
@@ -23,12 +23,12 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Ayman Abouzeid on 10/30/17.
  */
 
-public class CarDetailsPresenterImpl implements CarDetailsPresenter {
+public class CarDetailsPresenterImpl implements CarDetailsPresenter, CarModelOverViewFragment.OnCalculatorClicked {
 
     private Context context;
     private CarDetailsView carDetailsView;
-    private FragmentCarModelOverView fragmentCarModelOverView;
-    private FragmentCarModelSpecs fragmentCarModelSpecs;
+    private CarModelOverViewFragment carModelOverViewFragment;
+    private CarModelSpecsFragment carModelSpecsFragment;
     private DataSource dataSource;
 
     public CarDetailsPresenterImpl(Context context) {
@@ -51,14 +51,15 @@ public class CarDetailsPresenterImpl implements CarDetailsPresenter {
 
     @Override
     public void setUpViewPagerFragments() {
-        fragmentCarModelOverView = new FragmentCarModelOverView();
-        fragmentCarModelSpecs = new FragmentCarModelSpecs();
+        carModelOverViewFragment = new CarModelOverViewFragment();
+        carModelOverViewFragment.setOnCalculatorClicked(this);
+        carModelSpecsFragment = new CarModelSpecsFragment();
 
         List<Fragment> fragments = new ArrayList<>();
         List<String> fragmentTitles = new ArrayList<>();
 
-        fragments.add(fragmentCarModelOverView);
-        fragments.add(fragmentCarModelSpecs);
+        fragments.add(carModelOverViewFragment);
+        fragments.add(carModelSpecsFragment);
         fragmentTitles.add(context.getString(R.string.overview));
         fragmentTitles.add(context.getString(R.string.specification));
         carDetailsView.addFragment(fragments, fragmentTitles);
@@ -76,11 +77,16 @@ public class CarDetailsPresenterImpl implements CarDetailsPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(carDetailsResponse -> {
                     CarDetailsData carDetailsData = carDetailsResponse.getCarDetailsData();
-                    fragmentCarModelSpecs.updateSpecs(carDetailsData.getCategories());
-                    fragmentCarModelOverView.updateUI(carDetailsData);
+                    carModelSpecsFragment.updateSpecs(carDetailsData.getCategories());
+                    carModelOverViewFragment.updateUI(carDetailsData);
                     carDetailsView.updateUI(carDetailsData.getImage(), carDetailsData.getName());
                 }, throwable -> {
                 });
+    }
+
+    @Override
+    public void onCalculatorClicked() {
+        carDetailsView.navigateToCalculator();
     }
 
 //    @Override

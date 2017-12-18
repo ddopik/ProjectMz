@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.cars.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import com.spade.mazda.ui.cars.model.CarYear;
 import com.spade.mazda.ui.cars.model.ModelTrim;
 import com.spade.mazda.ui.cars.presenter.CarDetailsPresenterImpl;
 import com.spade.mazda.ui.cars.presenter.interfaces.CarDetailsPresenter;
+import com.spade.mazda.ui.cars.view.activity.DriveFinanceActivity;
 import com.spade.mazda.ui.cars.view.adapter.PagingAdapter;
 import com.spade.mazda.ui.cars.view.interfaces.CarDetailsView;
 import com.spade.mazda.ui.general.view.CarTrimSpinnerAdapter;
@@ -172,6 +174,13 @@ public class CarDetailsFragment extends BaseFragment implements CarDetailsView {
     public void updateUI(String modelImage, String Name) {
         GlideApp.with(getContext()).load(modelImage).into(carImageView);
         carModelName.setText(Name);
+    }
+
+    @Override
+    public void navigateToCalculator() {
+        Intent intent = DriveFinanceActivity.getLaunchIntent(getContext());
+        intent.putExtra(EXTRA_CAR_ID, Integer.parseInt(carId));
+        startActivity(intent);
     }
 
 //    @Override
