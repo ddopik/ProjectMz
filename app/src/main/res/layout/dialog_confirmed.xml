@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/darkBlue"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    android:background="@drawable/blue_rounded_background"
     android:orientation="vertical"
     android:padding="@dimen/dp24">
 
@@ -14,8 +15,9 @@
         android:src="@drawable/confirmed" />
 
     <com.spade.mazda.CustomViews.CustomTextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:gravity="center"
         android:text="@string/confirmed"
@@ -25,10 +27,12 @@
 
     <com.spade.mazda.CustomViews.CustomTextView
         android:id="@+id/dialog_message"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:gravity="center"
+        android:text="@string/thanks_for_reserving"
         android:textAllCaps="true"
         android:textSize="@dimen/material_text_subhead"
         app:color="@color/white"

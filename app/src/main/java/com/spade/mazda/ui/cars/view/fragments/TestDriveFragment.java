@@ -144,6 +144,18 @@ public class TestDriveFragment extends BaseFragment implements TestDriveView, Pi
             Toast.makeText(getContext(), getString(R.string.please_choose_nearest_showroom), Toast.LENGTH_LONG).show();
             return false;
         }
+
+        if (cityID == -1) {
+            Toast.makeText(getContext(), getString(R.string.please_choose_city), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (dateString.isEmpty()) {
+            Toast.makeText(getContext(), getString(R.string.pick_date), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+
         return true;
     }
 

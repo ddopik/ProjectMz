@@ -11,13 +11,15 @@ import android.view.ViewGroup;
 import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.ui.fabrika.view.TradeInActivity;
+import com.spade.mazda.ui.general.view.LoginDialogFragment;
 import com.spade.mazda.ui.services.view.activities.AfterSalesActivity;
 import com.spade.mazda.ui.services.view.activities.FinanceActivity;
 import com.spade.mazda.ui.services.view.activities.FixologyActivity;
-import com.spade.mazda.ui.services.view.activities.MaintenanceLocationsActivity;
 import com.spade.mazda.ui.services.view.activities.Places360Activity;
 import com.spade.mazda.ui.services.view.activities.SparePartsActivity;
 import com.spade.mazda.ui.services.view.adapters.ServicesAdapter;
+import com.spade.mazda.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeid on 10/31/17.
@@ -59,6 +61,7 @@ public class ServicesFragment extends BaseFragment implements ServicesAdapter.On
                 startActivity(SparePartsActivity.getLaunchIntent(getContext()));
                 break;
             case 2:
+                checkToNavigateToTradeIn();
                 break;
             case 3:
                 startActivity(FixologyActivity.getLaunchIntent(getContext()));
@@ -70,5 +73,18 @@ public class ServicesFragment extends BaseFragment implements ServicesAdapter.On
                 startActivity(FinanceActivity.getLaunchIntent(getContext()));
                 break;
         }
+    }
+
+    private void checkToNavigateToTradeIn() {
+        if (PrefUtils.isLoggedIn(getContext())) {
+            startActivity(TradeInActivity.getLaunchIntent(getContext()));
+        } else {
+            showLoginDialog();
+        }
+    }
+
+    private void showLoginDialog() {
+        LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
+        loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 }

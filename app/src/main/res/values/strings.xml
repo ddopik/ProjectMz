@@ -26,6 +26,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="phone">Mobile Number</string>
     <string name="birth_date">Birth Date</string>
+    <string name="select_date">Select Date</string>
+    <string name="kilometers">KiloMeters</string>
     <string name="register">Register</string>
     <string name="next">Next</string>
     <string name="already_have_account">Already have account</string>
@@ -60,6 +62,8 @@
     <string name="enter_address">Please Enter Your Address</string>
     <string name="enter_activation_code">Please Enter Activation Code</string>
     <string name="pick_birth_date">Please Pick Your BirthDate</string>
+    <string name="pick_date">Please Pick The Date</string>
+
     <string name="enter_valid_email_address">Please Enter Valid E-Mail Address</string>
     <string name="enter_city">Please Enter Your City</string>
     <string name="enter_subject">Please Enter Subject</string>
@@ -85,6 +89,8 @@
     <string name="please_choose_spare_part">Please Choose Spare Part</string>
 
     <string name="please_choose_nearest_showroom">Please Choose Nearest Show Room</string>
+    <string name="please_choose_city">Please Choose City</string>
+
     <string name="car_booked">Car booked successfully</string>
     <string name="spar_part_requested">Spare Part Requested successfully</string>
     <string name="nearest_branch">Nearest branch</string>
@@ -138,6 +144,20 @@
 
     <string name="enter_down_payment">Please Enter Down Payment Amount</string>
     <string name="enter_valid_amount">Enter A Valid Amount</string>
+    <string name="choose_service">Choose service type</string>
+    <string name="periodic_type">Periodic</string>
+    <string name="mechanical_type">Mechanical</string>
+    <string name="reserve_now">Reserve Now</string>
+    <string name="your_car_brand">Your Car Brand</string>
+    <string name="requested_car_brand">Requested Car Brand</string>
+    <string name="requested_car_model">Requested Car Model</string>
+    <string name="fabrica_description">
+        Egypt’s first Multi brand service to Buy, Sell, &amp; Trade-in Pre-owned Cars\n\nLooking to sell or trade-in your used car with a new Mazda?\n\nFill the following form and you will be contacted shortly by Fabrika’s team.</string>
+    <string name="golden_tier">Golden Tier</string>
+    <string name="labor_cost">Labor Cost</string>
+    <string name="fabrika">Fabrika</string>
+    <string name="from_total_loan">From total loan</string>
+    <string name="services_360">360 Services</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>

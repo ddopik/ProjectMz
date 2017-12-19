@@ -18,6 +18,7 @@ import com.spade.mazda.ui.cars.view.activity.BookCarActivity;
 import com.spade.mazda.ui.cars.view.activity.TestDriveActivity;
 import com.spade.mazda.ui.cars.view.adapter.CarActionsAdapter;
 import com.spade.mazda.ui.cars.view.adapter.CarImagesAdapter;
+import com.spade.mazda.ui.fabrika.view.TradeInActivity;
 import com.spade.mazda.ui.general.view.LoginDialogFragment;
 import com.spade.mazda.utils.PrefUtils;
 
@@ -80,6 +81,11 @@ public class CarModelOverViewFragment extends BaseFragment implements CarActions
             case 1:
                 if (validToRequest()) {
                     startActivity(TestDriveActivity.getLaunchIntent(getContext()));
+                }
+                break;
+            case 2:
+                if (validToRequest()) {
+                    startActivity(TradeInActivity.getLaunchIntent(getContext()));
                 }
                 break;
         }

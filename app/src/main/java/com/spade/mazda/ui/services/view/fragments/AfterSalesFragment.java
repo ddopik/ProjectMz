@@ -16,6 +16,7 @@ import com.spade.mazda.ui.general.presenter.PageDescriptionPresenter;
 import com.spade.mazda.ui.general.presenter.PageDescriptionPresenterImpl;
 import com.spade.mazda.ui.general.view.PageDescriptionView;
 import com.spade.mazda.ui.services.view.activities.MaintenanceLocationsActivity;
+import com.spade.mazda.ui.services.view.activities.PeriodicAndMechanicalActivity;
 
 /**
  * Created by Ayman Abouzeid on 12/17/17.
@@ -46,6 +47,7 @@ public class AfterSalesFragment extends BaseFragment implements PageDescriptionV
         CustomTextView maintenanceTextView = afterSalesView.findViewById(R.id.maintenance_text_view);
         CustomTextView periodicTextView = afterSalesView.findViewById(R.id.periodic_text_view);
         maintenanceTextView.setOnClickListener(view -> openMaintenanceActivity());
+        periodicTextView.setOnClickListener(view -> openPeriodicAndMechanicalActivity());
 
     }
 
@@ -82,6 +84,11 @@ public class AfterSalesFragment extends BaseFragment implements PageDescriptionV
     private void openMaintenanceActivity() {
         Intent afterSalesIntent = MaintenanceLocationsActivity.getLaunchIntent(getContext());
         afterSalesIntent.putExtra(MaintenanceLocationsFragment.EXTRA_TYPE, ApiHelper.AFTER_SALES_LOCATIONS_PARAM);
+
         startActivity(afterSalesIntent);
+    }
+
+    private void openPeriodicAndMechanicalActivity() {
+        startActivity(PeriodicAndMechanicalActivity.getLaunchIntent(getContext()));
     }
 }

@@ -8,9 +8,12 @@ import com.spade.mazda.ui.authentication.model.LoginResponse;
 import com.spade.mazda.ui.authentication.model.RegistrationResponse;
 import com.spade.mazda.ui.cars.model.CarDetailsResponse;
 import com.spade.mazda.ui.cars.model.ProductsResponse;
+import com.spade.mazda.ui.fabrika.model.FabricaResponse;
 import com.spade.mazda.ui.find_us.model.BranchesResponse;
 import com.spade.mazda.ui.find_us.model.CitiesResponse;
 import com.spade.mazda.ui.home.model.OffersResponse;
+import com.spade.mazda.ui.mazda_club.model.MazdaClubResponse;
+import com.spade.mazda.ui.services.model.KilometersResponse;
 import com.spade.mazda.ui.services.model.LocationsResponse;
 import com.spade.mazda.ui.services.model.ProgramsResponse;
 import com.spade.mazda.ui.services.model.ServicesLocationsResponse;
@@ -18,6 +21,8 @@ import com.spade.mazda.ui.services.model.SparePartsResponse;
 import com.spade.mazda.ui.services.model.ThreeSixtyResponse;
 import com.spade.mazda.ui.welcome.model.IntroResponse;
 import com.spade.mazda.utils.ErrorUtils;
+
+import org.json.JSONObject;
 
 import java.io.File;
 
@@ -30,6 +35,8 @@ import io.reactivex.Observable;
 public class ApiHelper {
 
     private static final String BASE_URL = "http://dev.spade.studio/mazda-mobile/public/api/v1/{lang}/";
+    private static final String FABRICA_BASE_URL = "http://fabrikaegypt.com/api/{lang}/v1/cars/";
+
     private static final String PRODUCTS_LIST_URL = BASE_URL + "cars";
     private static final String CITIES_LIST_URL = BASE_URL + "city";
     private static final String BRANCHES_URL = BASE_URL + "branches/{type}";
@@ -46,7 +53,13 @@ public class ApiHelper {
     private static final String LOCATIONS_URL = BASE_URL + "locations";
     private static final String BOOK_CAR_URL = BASE_URL + "cars/book";
     private static final String REQUEST_TEST_DRIVE_URL = BASE_URL + "testDrive/request";
-    private static final String REQUEST_SPARE_PART = BASE_URL + "spareParts/request";
+    private static final String REQUEST_SPARE_PART_URL = BASE_URL + "spareParts/request";
+    private static final String KILOMETERS_URL = BASE_URL + "kilometerServices";
+    public static final String FABRICA_BRANDS_URL = FABRICA_BASE_URL + "brands";
+    public static final String FABRICA_MODELS_URL = FABRICA_BASE_URL + "models";
+    public static final String FABRICA_BRANCHES_URL = FABRICA_BASE_URL + "branches";
+    private static final String FABRICA_REQUEST_TRADE_IN = FABRICA_BASE_URL + "trade";
+    private static final String MAZDA_CLUB_URL = BASE_URL + "mazdaClub";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String BRANCH_TYPE_PARAM = "type";
     private static final String CAR_ID_PATH_PARAM = "car_id";
@@ -78,6 +91,13 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAM, appLang)
                 .build()
                 .getObjectObservable(BranchesResponse.class);
+    }
+
+    public static Observable<KilometersResponse> getKilometers(String appLang) {
+        return Rx2AndroidNetworking.get(KILOMETERS_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .build()
+                .getObjectObservable(KilometersResponse.class);
     }
 
     public static Observable<SparePartsResponse> getSpareParts(String appLang, String trimId) {
@@ -144,6 +164,33 @@ public class ApiHelper {
                 .build()
                 .getObjectObservable(LocationsResponse.class);
     }
+
+    public static Observable<FabricaResponse> getFabricaData(String appLang, String url) {
+        return Rx2AndroidNetworking.get(url)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addHeaders("X-Client-Id", "Ohg4wutu")
+                .addHeaders("X-Client-Secret", "chaiheiMoopuo3moose7xaichaR4ph")
+                .addHeaders("Content-Type", "application/json")
+                .build()
+                .getObjectObservable(FabricaResponse.class);
+    }
+
+    public static Observable<MazdaClubResponse> getMazdaClubTiers(String appLang) {
+        return Rx2AndroidNetworking.get(MAZDA_CLUB_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .build()
+                .getObjectObservable(MazdaClubResponse.class);
+    }
+
+    public static Observable<LoginResponse> loginUser(String appLang, String email, String password) {
+        return Rx2AndroidNetworking.post(LOGIN_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addBodyParameter("email", email)
+                .addBodyParameter("password", password)
+                .build()
+                .getObjectObservable(LoginResponse.class);
+    }
+
 
     public static Observable<RegistrationResponse> registerUser(String appLang, String nameString, String emailString, String passwordString, String mobileNumberString,
                                                                 String birthDateString, String chassisString, String motorString, String nationalIdString,
@@ -237,7 +284,7 @@ public class ApiHelper {
 
     public static void requestSparePart(String appLang, String token, String sparePartTypeID, String sparePartID, String branchId, String description
             , ApiCallBack apiCallBack) {
-        Rx2AndroidNetworking.post(REQUEST_SPARE_PART)
+        Rx2AndroidNetworking.post(REQUEST_SPARE_PART_URL)
                 .addHeaders(AUTH_TOKEN, BEARER + " " + token)
                 .addPathParameter(LANG_PATH_PARAM, appLang)
                 .addBodyParameter("branch_id", branchId)
@@ -258,15 +305,26 @@ public class ApiHelper {
                 });
     }
 
-    public static Observable<LoginResponse> loginUser(String appLang, String email, String password) {
-        return Rx2AndroidNetworking.post(LOGIN_URL)
+    public static void requestTradeIn(String appLang, JSONObject jsonObject, ApiCallBack apiCallBack) {
+        Rx2AndroidNetworking.post(FABRICA_REQUEST_TRADE_IN)
+                .addHeaders("X-Client-Id", "Ohg4wutu")
+                .addHeaders("X-Client-Secret", "chaiheiMoopuo3moose7xaichaR4ph")
+                .addHeaders("Content-Type", "application/json")
                 .addPathParameter(LANG_PATH_PARAM, appLang)
-                .addBodyParameter("email", email)
-                .addBodyParameter("password", password)
+                .addJSONObjectBody(jsonObject)
                 .build()
-                .getObjectObservable(LoginResponse.class);
-    }
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        apiCallBack.onSuccess();
+                    }
 
+                    @Override
+                    public void onError(ANError anError) {
+                        apiCallBack.onFail(anError.getMessage());
+                    }
+                });
+    }
 
     public interface ApiCallBack {
         void onSuccess();

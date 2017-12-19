@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_fabrica" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:gravity="start"
+                android:text="@string/fabrica_description"
+                android:textSize="@dimen/material_text_subhead"
+                app:fontTypeFaceStyle="gotham-regular" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp8"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
+
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp8"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
+
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp8"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
+
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/mobile_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:theme="@style/EditTextTheme" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:alpha="0.7"
+                android:text="@string/your_car_brand" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/my_car_brand_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/white" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:alpha="0.7"
+                android:text="@string/your_car_model" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/my_car_model_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/white" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:alpha="0.7"
+                android:text="@string/requested_car_brand" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/requested_car_brand_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/white" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:alpha="0.7"
+                android:text="@string/requested_car_model" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/requested_car_model_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/white" />
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:alpha="0.7"
+                android:text="@string/branch" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/branches_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:popupBackground="@color/darkBlue"
+                app:backgroundTint="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/white" />
+
+            <com.spade.mazda.CustomViews.CustomButton
+                android:id="@+id/request_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/done"
+                android:textSize="@dimen/material_text_subhead" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</ScrollView>

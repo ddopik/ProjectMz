@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_rounded_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/mazda_club_large" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/tier_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:text="@string/golden_tier"
+        android:textSize="@dimen/material_text_title"
+        app:color="@color/white"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:id="@+id/tier_subscription_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:text="@string/golden_tier"
+        android:textSize="@dimen/material_text_title"
+        app:color="@color/black"
+        app:fontTypeFaceStyle="gotham-regular" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp2"
+        android:layout_marginEnd="@dimen/dp32"
+        android:layout_marginStart="@dimen/dp32"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/grey" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/labor_cost_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/labor_cost_value"
+            android:layout_toRightOf="@id/labor_cost_value"
+            android:gravity="center"
+            android:text="@string/labor_cost"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/spare_parts_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/spare_parts_value"
+            android:layout_toRightOf="@id/spare_parts_value"
+            android:gravity="center"
+            android:text="@string/spare_parts"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/fixology_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/fixology_value"
+            android:layout_toRightOf="@id/fixology_value"
+            android:gravity="center"
+            android:text="@string/fixology"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/fabrika_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/fabrika_value"
+            android:layout_toRightOf="@id/fabrika_value"
+            android:gravity="center"
+            android:text="@string/fabrika"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp32"
+        android:gravity="center"
+        android:text="@string/drive_finance"
+        app:color="@color/white"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/from_total_loan_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/from_total_loan_value"
+            android:layout_toRightOf="@id/from_total_loan_value"
+            android:gravity="center"
+            android:text="@string/from_total_loan"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp32"
+        android:gravity="center"
+        android:text="@string/services_360"
+        app:color="@color/white"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/labor_cost_value_360"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/labor_cost_value_360"
+            android:layout_toRightOf="@id/labor_cost_value_360"
+            android:gravity="center"
+            android:text="@string/labor_cost"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:id="@+id/products_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/golden_tier"
+            app:color="@color/black"
+            app:fontTypeFaceStyle="gotham-regular" />
+
+        <com.spade.mazda.CustomViews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/products_value"
+            android:layout_toRightOf="@id/products_value"
+            android:gravity="center"
+            android:text="@string/products"
+            app:color="@color/white"
+            app:fontTypeFaceStyle="gotham-regular" />
+    </RelativeLayout>
+</LinearLayout>
