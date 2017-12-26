@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.general.view;
+package com.spade.mazda.ui.general.view.dialog;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -25,11 +25,11 @@ public class ConfirmationDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_confirmed, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCancelable(true);
         getDialog().setCanceledOnTouchOutside(true);
+        View view = inflater.inflate(R.layout.dialog_confirmed, container, false);
         init(view);
         return view;
     }

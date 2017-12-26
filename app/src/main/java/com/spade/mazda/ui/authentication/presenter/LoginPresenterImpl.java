@@ -79,7 +79,7 @@ public class LoginPresenterImpl implements LoginPresenter {
         PrefUtils.setIsLoggedIn(mContext, true);
         PrefUtils.setUserID(mContext, response.getLoginData().getUser().getId());
         PrefUtils.setUserToken(mContext, response.getLoginData().getToken());
-        realmDbHelper.saveUser(response.getLoginData().getUser(),
+        realmDbHelper.saveUserOrUpdate(response.getLoginData().getUser(),
                 response.getLoginData().getToken());
     }
 

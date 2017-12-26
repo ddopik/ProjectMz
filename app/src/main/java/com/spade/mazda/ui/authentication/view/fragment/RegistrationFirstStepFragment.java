@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +16,7 @@ import com.spade.mazda.ui.authentication.presenter.RegistrationPresenter;
 import com.spade.mazda.ui.authentication.presenter.RegistrationPresenterImpl;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
 import com.spade.mazda.ui.authentication.view.dialogs.PickDateDialog;
-import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.utils.Validator;
-
-import java.util.List;
 
 /**
  * Created by Ayman Abouzeid on 11/13/17.

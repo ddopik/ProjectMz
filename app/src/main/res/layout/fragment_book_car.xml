@@ -56,89 +56,166 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <com.spade.mazda.CustomViews.CustomTextView
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp4"
-                android:alpha="0.7"
-                android:text="@string/choose_car_model" />
+                android:layout_marginBottom="@dimen/dp8"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/car_model_spinner"
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/car_model_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawableRight="@drawable/ic_arrow_drop_down"
+                    android:focusable="false"
+                    android:hint="@string/choose_car_model"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:popupBackground="@color/darkBlue"
-                app:backgroundTint="@color/white" />
+                android:layout_marginBottom="@dimen/dp8"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp2"
-                android:layout_marginBottom="@dimen/dp24"
-                android:background="@color/white" />
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/car_year_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawableRight="@drawable/ic_arrow_drop_down"
+                    android:focusable="false"
+                    android:hint="@string/choose_car_year"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
 
-            <com.spade.mazda.CustomViews.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp4"
-                android:alpha="0.7"
-                android:text="@string/choose_car_year" />
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/car_year_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:popupBackground="@color/darkBlue"
-                app:backgroundTint="@color/white" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp2"
-                android:layout_marginBottom="@dimen/dp24"
-                android:background="@color/white" />
-
-            <com.spade.mazda.CustomViews.CustomTextView
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp4"
-                android:alpha="0.7"
-                android:text="@string/choose_car_trim" />
+                android:layout_marginBottom="@dimen/dp8"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/car_trim_spinner"
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/car_trim_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawableRight="@drawable/ic_arrow_drop_down"
+                    android:focusable="false"
+                    android:hint="@string/choose_car_trim"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:popupBackground="@color/darkBlue"
-                app:backgroundTint="@color/white" />
+                android:layout_marginBottom="@dimen/dp8"
+                android:textColorHint="@color/opacity_white"
+                app:hintTextAppearance="@style/TextAppearance">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp2"
-                android:layout_marginBottom="@dimen/dp24"
-                android:background="@color/white" />
+                <com.spade.mazda.CustomViews.CustomEditText
+                    android:id="@+id/show_room_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawableRight="@drawable/ic_arrow_drop_down"
+                    android:focusable="false"
+                    android:hint="@string/nearest_showrom"
+                    android:theme="@style/EditTextTheme" />
+            </android.support.design.widget.TextInputLayout>
 
-            <com.spade.mazda.CustomViews.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp4"
-                android:alpha="0.7"
-                android:text="@string/nearest_showrom" />
+            <!--<com.spade.mazda.CustomViews.CustomTextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/dp4"-->
+            <!--android:alpha="0.7"-->
+            <!--android:text="@string/choose_car_model" />-->
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/showroom_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:popupBackground="@color/darkBlue"
-                app:backgroundTint="@color/white" />
+            <!--<android.support.v7.widget.AppCompatSpinner-->
+            <!--android:id="@+id/car_model_spinner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="start"-->
+            <!--android:popupBackground="@color/darkBlue"-->
+            <!--app:backgroundTint="@color/white" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp2"
-                android:layout_marginBottom="@dimen/dp24"
-                android:background="@color/white" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp2"-->
+            <!--android:layout_marginBottom="@dimen/dp24"-->
+            <!--android:background="@color/white" />-->
+
+            <!--<com.spade.mazda.CustomViews.CustomTextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/dp4"-->
+            <!--android:alpha="0.7"-->
+            <!--android:text="@string/choose_car_year" />-->
+
+            <!--<android.support.v7.widget.AppCompatSpinner-->
+            <!--android:id="@+id/car_year_spinner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="start"-->
+            <!--android:popupBackground="@color/darkBlue"-->
+            <!--app:backgroundTint="@color/white" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp2"-->
+            <!--android:layout_marginBottom="@dimen/dp24"-->
+            <!--android:background="@color/white" />-->
+
+            <!--<com.spade.mazda.CustomViews.CustomTextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/dp4"-->
+            <!--android:alpha="0.7"-->
+            <!--android:text="@string/choose_car_trim" />-->
+
+            <!--<android.support.v7.widget.AppCompatSpinner-->
+            <!--android:id="@+id/car_trim_spinner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="start"-->
+            <!--android:popupBackground="@color/darkBlue"-->
+            <!--app:backgroundTint="@color/white" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp2"-->
+            <!--android:layout_marginBottom="@dimen/dp24"-->
+            <!--android:background="@color/white" />-->
+
+            <!--<com.spade.mazda.CustomViews.CustomTextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/dp4"-->
+            <!--android:alpha="0.7"-->
+            <!--android:text="@string/nearest_showrom" />-->
+
+            <!--<android.support.v7.widget.AppCompatSpinner-->
+            <!--android:id="@+id/showroom_spinner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="start"-->
+            <!--android:popupBackground="@color/darkBlue"-->
+            <!--app:backgroundTint="@color/white" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp2"-->
+            <!--android:layout_marginBottom="@dimen/dp24"-->
+            <!--android:background="@color/white" />-->
 
             <com.spade.mazda.CustomViews.CustomButton
                 android:id="@+id/book_btn"

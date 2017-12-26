@@ -12,7 +12,7 @@ import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.fabrika.view.TradeInActivity;
-import com.spade.mazda.ui.general.view.LoginDialogFragment;
+import com.spade.mazda.ui.general.view.dialog.LoginDialogFragment;
 import com.spade.mazda.ui.services.view.activities.AfterSalesActivity;
 import com.spade.mazda.ui.services.view.activities.FinanceActivity;
 import com.spade.mazda.ui.services.view.activities.FixologyActivity;

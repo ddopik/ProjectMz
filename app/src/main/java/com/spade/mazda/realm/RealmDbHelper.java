@@ -15,11 +15,15 @@ import java.util.List;
 
 public interface RealmDbHelper {
 
-    void saveUser(UserModel userModel, String userToken);
+    void saveUserOrUpdate(UserModel userModel, String userToken);
 
     void saveCars(List<com.spade.mazda.ui.cars.model.CarModel> carModels);
 
-    void updateUserData(String firstName, String lastName, String phoneNumber, String emailAddress, String address, String userId);
+//    void updateUserData(String firstName, String lastName, String phoneNumber, String emailAddress, String address, String userId);
+
+//    void updateUserData(UserModel userModel, String userToken);
+
+//    void updateCarData(UserModel userModel, String userToken);
 
     void deleteUser(String userId);
 

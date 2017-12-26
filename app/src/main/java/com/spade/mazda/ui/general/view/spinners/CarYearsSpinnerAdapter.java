@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.general.view;
+package com.spade.mazda.ui.general.view.spinners;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

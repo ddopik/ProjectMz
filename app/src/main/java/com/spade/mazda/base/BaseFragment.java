@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import com.spade.mazda.ui.general.view.ConfirmationDialogFragment;
-import com.spade.mazda.ui.general.view.MazdaProgressDialog;
+import com.spade.mazda.ui.general.view.dialog.ConfirmationDialogFragment;
+import com.spade.mazda.ui.general.view.dialog.MazdaProgressDialog;
 
 /**
  * Created by Ayman Abouzeid on 10/30/17.

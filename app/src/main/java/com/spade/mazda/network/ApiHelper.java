@@ -44,6 +44,7 @@ public class ApiHelper {
     private static final String REGISTER_URL = BASE_URL + "register";
     private static final String LOGIN_URL = BASE_URL + "authenticate";
     private static final String ACTIVATE_URL = BASE_URL + "email/activate";
+    private static final String EDIT_PROFILE_URL = BASE_URL + "profile/edit";
     private static final String CAR_DETAILS_URL = BASE_URL + "cars/{car_id}/{trim_id}";
     private static final String OFFERS_URL = BASE_URL + "offers";
     private static final String INTRO_SLIDER_URL = BASE_URL + "slider";
@@ -214,6 +215,40 @@ public class ApiHelper {
                 .addMultipartFile("national_id_back_image", imageFiles[1])
                 .build()
                 .getObjectObservable(RegistrationResponse.class);
+    }
+
+    public static Observable<LoginResponse> editProfile(String appLang, String token,
+                                                        String nationalIdString, String name, String phoneNumber, String birthDate, File... imageFiles) {
+        Rx2ANRequest.MultiPartBuilder multiPartBuilder = Rx2AndroidNetworking.upload(EDIT_PROFILE_URL);
+        if (imageFiles != null && imageFiles.length > 0) {
+            multiPartBuilder.addMultipartFile("national_id_front_image", imageFiles[0])
+                    .addMultipartFile("national_id_back_image", imageFiles[1]);
+        }
+        return multiPartBuilder.addPathParameter(LANG_PATH_PARAM, appLang)
+                .addHeaders("Content-Type", "multipart/form-data")
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .addMultipartParameter("name", name)
+                .addMultipartParameter("mobile_number", phoneNumber)
+                .addMultipartParameter("birth_date", birthDate)
+                .addMultipartParameter("national_id", nationalIdString)
+                .build()
+                .getObjectObservable(LoginResponse.class);
+    }
+
+    public static Observable<LoginResponse> editCar(String appLang, String token, String chassisString, String motorString,
+                                                    int modelId, int yearId, int trimId, int colorId) {
+        return Rx2AndroidNetworking.upload(EDIT_PROFILE_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addHeaders("Content-Type", "multipart/form-data")
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .addMultipartParameter("car_model", String.valueOf(modelId))
+                .addMultipartParameter("car_year", String.valueOf(yearId))
+                .addMultipartParameter("chassis", chassisString)
+                .addMultipartParameter("motor", motorString)
+                .addMultipartParameter("car_trim", String.valueOf(trimId))
+                .addMultipartParameter("car_color", String.valueOf(colorId))
+                .build()
+                .getObjectObservable(LoginResponse.class);
     }
 
     public static void activateUser(String appLang, String email, String code, ApiCallBack apiCallBack) {

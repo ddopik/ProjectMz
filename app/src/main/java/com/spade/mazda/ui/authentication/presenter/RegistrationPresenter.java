@@ -1,8 +1,14 @@
 package com.spade.mazda.ui.authentication.presenter;
 
+import android.support.v4.app.FragmentManager;
+
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.base.BasePresenter;
 import com.spade.mazda.ui.authentication.view.interfaces.RegistrationView;
+import com.spade.mazda.ui.cars.model.CarModel;
+import com.spade.mazda.ui.cars.model.CarYear;
+import com.spade.mazda.ui.cars.model.ModelTrim;
+import com.spade.mazda.ui.cars.model.TrimColor;
 
 import java.io.File;
 import java.util.List;
@@ -12,34 +18,33 @@ import java.util.List;
  */
 
 public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
+
     void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate);
 
     void pickImageFromCamera(BaseFragment baseFragment);
 
     void pickImageFromGallery(BaseFragment baseFragment);
 
-    void register(String appLang, String chassisString, String motorString, String nationalIdString,
-                  int modelId, int yearId, int trimId, int colorId, File... imageFiles);
+//    void register(String appLang, String chassisString, String motorString, String nationalIdString,
+//                  int modelId, int yearId, int trimId, int colorId, File... imageFiles);
 
-    void getCars(String appLang);
+    void register(String appLang);
 
-    void getCarModels();
+    CarModel getCarModel();
 
-    int getModelPosition();
+    CarYear getCarYear();
 
-    void setModelPosition(int position);
+    ModelTrim getModelTrim();
 
-    int getYearPosition();
+    TrimColor getTrimColor();
 
-    void setYearPosition(int yearPosition);
+    void setCarModel(CarModel carModel);
 
-    int getTrimPosition();
+    void setCarYear(CarYear carYear);
 
-    void setTrimPosition(int trimPosition);
+    void setModelTrim(ModelTrim modelTrim);
 
-    int getColorPosition();
-
-    void setColorPosition(int colorPosition);
+    void setTrimColor(TrimColor trimColor);
 
     String getChassisString();
 
@@ -57,4 +62,13 @@ public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
 
     void setFiles(List<File> files);
 
+    void showCarModelsDialog(FragmentManager fragmentManager);
+
+    void showCarYearsDialog(FragmentManager fragmentManager);
+
+    void showCarColorsDialog(FragmentManager fragmentManager);
+
+    void showCarTrimsDialog(FragmentManager fragmentManager);
+
+    boolean dataIsValid();
 }

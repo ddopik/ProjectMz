@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.general.view;
+package com.spade.mazda.ui.general.view.spinners;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.spade.mazda.R;
-import com.spade.mazda.ui.find_us.model.Branch;
+import com.spade.mazda.ui.cars.model.CarModel;
 
 import java.util.List;
 
@@ -17,23 +17,23 @@ import java.util.List;
  * Created by Ayman Abouzeid on 10/29/17.
  */
 
-public class BranchesSpinnerAdapter extends BaseAdapter {
-    private List<Branch> branchesList;
+public class CarModelsSpinnerAdapter extends BaseAdapter {
+    private List<CarModel> carModelList;
     private Context mContext;
 
-    public BranchesSpinnerAdapter(List<Branch> branchesList, Context mContext) {
-        this.branchesList = branchesList;
+    public CarModelsSpinnerAdapter(List<CarModel> carModelList, Context mContext) {
+        this.carModelList = carModelList;
         this.mContext = mContext;
     }
 
     @Override
     public int getCount() {
-        return branchesList.size();
+        return carModelList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return branchesList.get(position);
+        return carModelList.get(position);
     }
 
     @Override
@@ -44,11 +44,11 @@ public class BranchesSpinnerAdapter extends BaseAdapter {
     @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Branch branch = branchesList.get(position);
+        CarModel carModel = carModelList.get(position);
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.spinner_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-        viewHolder.itemText.setText(branch.getName());
+        viewHolder.itemText.setText(carModel.getCarModelName());
 //        FontUtils.overrideFonts(mContext, row);
         return view;
     }

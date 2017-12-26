@@ -19,7 +19,7 @@ import com.spade.mazda.ui.cars.view.activity.TestDriveActivity;
 import com.spade.mazda.ui.cars.view.adapter.CarActionsAdapter;
 import com.spade.mazda.ui.cars.view.adapter.CarImagesAdapter;
 import com.spade.mazda.ui.fabrika.view.TradeInActivity;
-import com.spade.mazda.ui.general.view.LoginDialogFragment;
+import com.spade.mazda.ui.general.view.dialog.LoginDialogFragment;
 import com.spade.mazda.utils.PrefUtils;
 
 import java.util.ArrayList;
@@ -97,13 +97,6 @@ public class CarModelOverViewFragment extends BaseFragment implements CarActions
         this.carImagesAdapter.notifyDataSetChanged();
     }
 
-//    private void navigateToBook() {
-//        if (PrefUtils.isLoggedIn(getContext())) {
-//            startActivity(BookCarActivity.getLaunchIntent(getContext()));
-//        } else {
-//            showLoginDialog();
-//        }
-//    }
 
     private boolean validToRequest() {
         if (!PrefUtils.isLoggedIn(getContext())) {

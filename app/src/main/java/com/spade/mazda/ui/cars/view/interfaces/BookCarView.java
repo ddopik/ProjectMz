@@ -1,7 +1,6 @@
 package com.spade.mazda.ui.cars.view.interfaces;
 
 import com.spade.mazda.base.BaseView;
-import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.ui.find_us.model.Branch;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  */
 
 public interface BookCarView extends BaseView {
-    void showCarModels(List<CarModel> carModels);
+//    void showCarModels(List<CarModel> carModels);
 
     void showNearestShowRooms(List<Branch> branches);
 
@@ -23,9 +22,30 @@ public interface BookCarView extends BaseView {
 
     void hideProgressDialog();
 
-    void setSelectedCar(CarModel selectedCar);
+//    void setSelectedCar(CarModel selectedCar);
 
     void showConfirmationDialog();
 
     void finish();
+
+    void setCarModel(String carModel);
+
+    void setCarYear(String carYear);
+
+    void setCarTrim(String carTrim);
+
+    void setBranchName(String branchName);
+
+    void setCarModelError();
+
+    void setCarYearError();
+
+    void setCarTrimError();
+
+    void setNameError();
+
+    void setMobileNumberError();
+
+    void setBranchError();
 }
+

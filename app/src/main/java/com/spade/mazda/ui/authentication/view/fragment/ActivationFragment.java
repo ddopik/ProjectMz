@@ -15,7 +15,7 @@ import com.spade.mazda.base.DataSource;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
-import com.spade.mazda.ui.general.view.MazdaProgressDialog;
+import com.spade.mazda.ui.general.view.dialog.MazdaProgressDialog;
 import com.spade.mazda.ui.main.MainActivity;
 import com.spade.mazda.utils.PrefUtils;
 import com.spade.mazda.utils.Validator;

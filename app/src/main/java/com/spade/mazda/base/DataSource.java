@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.spade.mazda.R;
 import com.spade.mazda.ui.cars.model.CarModel;
+import com.spade.mazda.ui.cars.model.CarYear;
+import com.spade.mazda.ui.cars.model.ModelTrim;
+import com.spade.mazda.ui.cars.model.TrimColor;
 import com.spade.mazda.ui.find_us.model.Branch;
 import com.spade.mazda.ui.find_us.model.City;
 import com.spade.mazda.ui.services.model.ServicesLocation;
@@ -109,6 +112,80 @@ public class DataSource {
             for (CarModel carModel : getCarModelList()) {
                 if (carModel.getCarModelId() == carID) {
                     e.onNext(carModel);
+                    e.onComplete();
+                }
+            }
+        });
+    }
+
+    public int getCarPosition(CarModel carModel) {
+        return getCarModelList().indexOf(carModel);
+    }
+
+//    public Observable<Integer> getCarTrimPosition(CarYear carYear1, int trimID) {
+//        return Observable.create(e -> {
+//            CarYear carYear = new CarYear();
+//            for (CarYear carYearModel : carYear1.getCarYears()) {
+//                if (carYearModel.getYearID() == trimID) {
+//                    carYear = carYearModel;
+//                }
+//            }
+//            e.onNext(carYear1.getCarYears().indexOf(carYear));
+//            e.onComplete();
+//        });
+//    }
+//    public Observable<Integer> getCarYearPosition(CarModel carModel, int yearID) {
+//        return Observable.create(e -> {
+//            CarYear carYear = new CarYear();
+//            for (CarYear carYearModel : carModel.getCarYears()) {
+//                if (carYearModel.getYearID() == yearID) {
+//                    carYear = carYearModel;
+//                }
+//            }
+//            e.onNext(carModel.getCarYears().indexOf(carYear));
+//            e.onComplete();
+//        });
+//    }
+//    public Observable<Integer> getCarYearPosition(CarModel carModel, int yearID) {
+//        return Observable.create(e -> {
+//            CarYear carYear = new CarYear();
+//            for (CarYear carYearModel : carModel.getCarYears()) {
+//                if (carYearModel.getYearID() == yearID) {
+//                    carYear = carYearModel;
+//                }
+//            }
+//            e.onNext(carModel.getCarYears().indexOf(carYear));
+//            e.onComplete();
+//        });
+//    }
+
+    public Observable<CarYear> getCarYearByID(CarModel carModel, int yearID) {
+        return Observable.create(e -> {
+            for (CarYear carYear : carModel.getCarYears()) {
+                if (carYear.getYearID() == yearID) {
+                    e.onNext(carYear);
+                    e.onComplete();
+                }
+            }
+        });
+    }
+
+    public Observable<ModelTrim> getCarTrimByID(CarYear carYear, int trimID) {
+        return Observable.create(e -> {
+            for (ModelTrim modelTrim : carYear.getModelTrims()) {
+                if (modelTrim.getTrimId() == trimID) {
+                    e.onNext(modelTrim);
+                    e.onComplete();
+                }
+            }
+        });
+    }
+
+    public Observable<TrimColor> getCarColorByID(ModelTrim modelTrim, int colorID) {
+        return Observable.create(e -> {
+            for (TrimColor trimColor : modelTrim.getTrimColors()) {
+                if (trimColor.getColorID() == colorID) {
+                    e.onNext(trimColor);
                     e.onComplete();
                 }
             }

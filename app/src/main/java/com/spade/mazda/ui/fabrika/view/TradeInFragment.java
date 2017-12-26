@@ -16,7 +16,7 @@ import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.fabrika.model.FabricaData;
 import com.spade.mazda.ui.fabrika.presenter.TradeInPresenter;
 import com.spade.mazda.ui.fabrika.presenter.TradeInPresenterImpl;
-import com.spade.mazda.ui.general.view.MazdaProgressDialog;
+import com.spade.mazda.ui.general.view.dialog.MazdaProgressDialog;
 import com.spade.mazda.utils.Validator;
 
 import java.util.ArrayList;

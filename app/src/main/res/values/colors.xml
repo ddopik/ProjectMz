@@ -12,4 +12,13 @@
     <color name="grey">#b4b4b4</color>
     <color name="black_overlay">#66000000</color>
     <color name="light_green">#c3d62f</color>
+    <color name="red">#8f0f2f</color>
+    <color name="blue_tier_light">#0088ce</color>
+    <color name="blue_tier_dark">#025f93</color>
+    <color name="silver_tier_light">#b4b4b4</color>
+    <color name="silver_tier_dark">#4d4d4d</color>
+    <color name="golden_tier_light">#ffc649</color>
+    <color name="golden_tier_dark">#ce992e</color>
+    <color name="platinum_tier_light">#5a5a5a</color>
+    <color name="platinum_tier_dark">#333333</color>
 </resources>

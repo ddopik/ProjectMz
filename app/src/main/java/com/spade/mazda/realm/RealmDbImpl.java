@@ -21,7 +21,7 @@ public class RealmDbImpl implements RealmDbHelper {
 
 
     @Override
-    public void saveUser(UserModel userModel, String userToken) {
+    public void saveUserOrUpdate(UserModel userModel, String userToken) {
         Realm realmInstance = Realm.getDefaultInstance();
         realmInstance.beginTransaction();
 
@@ -62,22 +62,47 @@ public class RealmDbImpl implements RealmDbHelper {
         }
     }
 
-    @Override
-    public void updateUserData(String firstName, String lastName, String phoneNumber,
-                               String emailAddress, String address, String userId) {
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        User user = new User();
-        user.setUserEmail(emailAddress);
-        user.setUserName(firstName);
-//        user.setLastName(lastName);
-//        user.setUserAddress(address);
-        user.setUserPhone(phoneNumber);
-//        user.setUserId(userId);
-        realm.copyToRealmOrUpdate(user);
-        realm.commitTransaction();
-        realm.close();
-    }
+//    @Override
+//    public void updateUserData(UserModel userModel, String userToken) {
+//        Realm realmInstance = Realm.getDefaultInstance();
+//        realmInstance.beginTransaction();
+//
+//        User user = new User();
+//        user.setUserId(userModel.getId());
+//        user.setUserEmail(userModel.getEmail());
+//        user.setUserName(userModel.getName());
+//        user.setUserPhone(userModel.getMobileNumber());
+//        user.setBirthDate(userModel.getBirthDate());
+//        user.setNationalId(userModel.getNationalId());
+//        user.setNationalIdFrontImage(userModel.getNationalIdFrontImage());
+//        user.setNationalIdBackImage(userModel.getNationalIdBackImage());
+//        user.setUserToken(userToken);
+//
+//        realmInstance.copyToRealmOrUpdate(user);
+//        realmInstance.commitTransaction();
+//        realmInstance.close();
+//    }
+//
+//    @Override
+//    public void updateCarData(UserModel userModel, String userToken) {
+//        Realm realmInstance = Realm.getDefaultInstance();
+//        realmInstance.beginTransaction();
+//
+//        User user = new User();
+//        user.setUserId(userModel.getId());
+//        user.setUserToken(userToken);
+//        user.setCarModel(userModel.getCarModel());
+//        user.setCarYear(userModel.getCarYear());
+//        user.setCarColor(userModel.getCarColor());
+//        user.setCarTrim(userModel.getCarTrim());
+//        user.setChassis(userModel.getChassis());
+//        user.setMotor(userModel.getMotor());
+//
+//        realmInstance.copyToRealmOrUpdate(user);
+//        realmInstance.commitTransaction();
+//        realmInstance.close();
+//    }
+
 
     @Override
     public void deleteUser(String userId) {

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -22,8 +23,11 @@ import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
+import com.spade.mazda.ui.general.view.dialog.ModelsDialogFragment;
 import com.spade.mazda.ui.home.view.HomeFragment;
+import com.spade.mazda.ui.profile.view.activity.ProfileActivity;
 import com.spade.mazda.ui.services.view.fragments.ServicesFragment;
+import com.spade.mazda.utils.PrefUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         logoImage = toolbar.findViewById(R.id.mazda_logo);
-
         setSupportActionBar(toolbar);
 
         init();
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         TextView mazdaClubTextView = findViewById(R.id.mazda_club_text_view);
         TextView servicesTextView = findViewById(R.id.services_text_view);
         TextView findUsTextView = findViewById(R.id.find_us_text_view);
-
+        FrameLayout userImageLayout = findViewById(R.id.profile_image_layout);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -72,9 +75,10 @@ public class MainActivity extends AppCompatActivity {
         servicesTextView.setOnClickListener(view -> openServicesFragment());
         openMenuLayout.setOnClickListener(view -> showMenu());
         closeImage.setOnClickListener(view -> hideMenu());
-
+        userImageLayout.setOnClickListener(view -> startProfileActivity());
         setScreenHeight();
         openHomeFragment();
+        Log.d("UserToken", PrefUtils.getUserToken(this));
 
     }
 
@@ -174,6 +178,16 @@ public class MainActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
         height = size.y;
+    }
+
+    private void startProfileActivity() {
+        if (PrefUtils.isLoggedIn(this)) {
+            startActivity(ProfileActivity.getLaunchIntent(this));
+        }
+//        else{
+//            LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
+//
+//        }
     }
 
     public static Intent getLaunchIntent(Context context) {

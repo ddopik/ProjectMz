@@ -12,17 +12,27 @@ import java.util.List;
  */
 
 public interface TestDriveView extends BaseView {
-    void showCarModels(List<CarModel> carModels);
-
-    void showNearestShowRooms(List<Branch> branches);
-
-    void showCities(List<City> cityList);
-
     void showProgressDialog();
 
     void hideProgressDialog();
 
     void showConfirmationDialog();
+
+    void setCarModel(String carModel);
+
+    void setBranchName(String branchName);
+
+    void setDate(String date);
+
+    void setCity(String city);
+
+    void setCarModelError();
+
+    void setBranchError();
+
+    void setDateError();
+
+    void setCityError();
 
     void finish();
 }

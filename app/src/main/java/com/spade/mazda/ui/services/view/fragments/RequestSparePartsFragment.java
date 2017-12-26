@@ -17,7 +17,7 @@ import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.find_us.model.Branch;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
-import com.spade.mazda.ui.general.view.BranchesSpinnerAdapter;
+import com.spade.mazda.ui.general.view.spinners.BranchesSpinnerAdapter;
 import com.spade.mazda.ui.general.view.SparePartsCategoriesSpinnerAdapter;
 import com.spade.mazda.ui.general.view.SparePartsSpinnerAdapter;
 import com.spade.mazda.ui.services.model.SparePart;

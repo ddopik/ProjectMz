@@ -1,4 +1,4 @@
-package com.spade.mazda.ui.general.view;
+package com.spade.mazda.ui.general.view.dialog;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

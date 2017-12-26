@@ -10,9 +10,11 @@ import java.util.List;
  */
 
 public interface RegistrationView extends BaseView {
-    void showCarModels(List<CarModel> carModels);
+    void navigateToLogin();
 
     void navigateToNextStep();
+
+//    void showCarModels(List<CarModel> carModels);
 
     void showLoading();
 
@@ -20,5 +22,26 @@ public interface RegistrationView extends BaseView {
 
     void navigateToActivate(String email);
 
-    void navigateToLogin();
+    void setCarModel(String carModel);
+
+    void setCarYear(String carYear);
+
+    void setCarTrim(String carTrim);
+
+    void setCarColor(String carColor);
+
+    void setCarModelError();
+
+    void setCarYearError();
+
+    void setCarTrimError();
+
+    void setCarColorError();
+
+    void setNationalIdError(int resID);
+
+    void setChassisError();
+
+    void setMotorError();
 }
+

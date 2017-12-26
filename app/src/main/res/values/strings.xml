@@ -154,10 +154,24 @@
     <string name="fabrica_description">
         Egypt’s first Multi brand service to Buy, Sell, &amp; Trade-in Pre-owned Cars\n\nLooking to sell or trade-in your used car with a new Mazda?\n\nFill the following form and you will be contacted shortly by Fabrika’s team.</string>
     <string name="golden_tier">Golden Tier</string>
+    <string name="blue_tier">Blue Tier</string>
     <string name="labor_cost">Labor Cost</string>
     <string name="fabrika">Fabrika</string>
     <string name="from_total_loan">From total loan</string>
     <string name="services_360">360 Services</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="upgrade_now">Upgrade Now</string>
+    <string name="exp_date">Exp.Date</string>
+    <string name="model">Model: %s</string>
+    <string name="color">Color: %s</string>
+    <string name="chassis_number">Chassis: %s</string>
+    <string name="motor_number">Motor: %s</string>
+    <string name="my_car_details">My Car Details</string>
+    <string name="car_history">Car History</string>
+    <string name="profile">Profile</string>
+    <string name="edit_car_details">Edit Car Details</string>
+    <string name="my_car">My Car</string>
+    <string name="data_updated">Data updated successfully</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>

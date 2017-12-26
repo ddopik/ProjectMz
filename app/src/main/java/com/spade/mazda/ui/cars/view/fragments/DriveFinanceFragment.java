@@ -24,8 +24,8 @@ import com.spade.mazda.ui.cars.presenter.DriveFinancePresenterImpl;
 import com.spade.mazda.ui.cars.presenter.interfaces.DriveFinancePresenter;
 import com.spade.mazda.ui.cars.view.adapter.ProgramsSpinnerAdapter;
 import com.spade.mazda.ui.cars.view.interfaces.DriveFinanceView;
-import com.spade.mazda.ui.general.view.CarTrimSpinnerAdapter;
-import com.spade.mazda.ui.general.view.CarYearsSpinnerAdapter;
+import com.spade.mazda.ui.general.view.spinners.CarTrimSpinnerAdapter;
+import com.spade.mazda.ui.general.view.spinners.CarYearsSpinnerAdapter;
 import com.spade.mazda.ui.services.model.Program;
 
 import java.util.ArrayList;

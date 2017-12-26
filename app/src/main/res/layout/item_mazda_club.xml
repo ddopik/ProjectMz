@@ -4,7 +4,7 @@
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue_rounded_background"
+    android:background="@drawable/tier_blue_gradient_background"
     android:orientation="vertical">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/mazda_club_large" />
+        android:src="@drawable/tier_mazdaclub" />
 
     <com.spade.mazda.CustomViews.CustomTextView
         android:id="@+id/tier_title"

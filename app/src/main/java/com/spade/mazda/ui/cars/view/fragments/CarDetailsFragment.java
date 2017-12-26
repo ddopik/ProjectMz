@@ -24,8 +24,8 @@ import com.spade.mazda.ui.cars.presenter.interfaces.CarDetailsPresenter;
 import com.spade.mazda.ui.cars.view.activity.DriveFinanceActivity;
 import com.spade.mazda.ui.cars.view.adapter.PagingAdapter;
 import com.spade.mazda.ui.cars.view.interfaces.CarDetailsView;
-import com.spade.mazda.ui.general.view.CarTrimSpinnerAdapter;
-import com.spade.mazda.ui.general.view.CarYearsSpinnerAdapter;
+import com.spade.mazda.ui.general.view.spinners.CarTrimSpinnerAdapter;
+import com.spade.mazda.ui.general.view.spinners.CarYearsSpinnerAdapter;
 import com.spade.mazda.utils.GlideApp;
 import com.spade.mazda.utils.PrefUtils;
 

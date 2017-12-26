@@ -18,7 +18,7 @@ import com.spade.mazda.ui.authentication.presenter.LoginPresenter;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenterImpl;
 import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
 import com.spade.mazda.ui.authentication.view.interfaces.LoginView;
-import com.spade.mazda.ui.general.view.MazdaProgressDialog;
+import com.spade.mazda.ui.general.view.dialog.MazdaProgressDialog;
 import com.spade.mazda.ui.main.MainActivity;
 import com.spade.mazda.utils.PrefUtils;
 import com.spade.mazda.utils.Validator;
