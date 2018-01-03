@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -19,24 +18,30 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.realm.RealmDbHelper;
+import com.spade.mazda.realm.RealmDbImpl;
+import com.spade.mazda.ui.authentication.model.User;
 import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
-import com.spade.mazda.ui.general.view.dialog.ModelsDialogFragment;
 import com.spade.mazda.ui.home.view.HomeFragment;
+import com.spade.mazda.ui.mazda_club.view.MazdaClubFragment;
 import com.spade.mazda.ui.profile.view.activity.ProfileActivity;
 import com.spade.mazda.ui.services.view.fragments.ServicesFragment;
+import com.spade.mazda.utils.GlideApp;
 import com.spade.mazda.utils.PrefUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private int height;
     private FrameLayout menuLayout;
-    private ImageView closeImage, logoImage;
+    private ImageView closeImage, logoImage, userImage, tierImage;
     private LinearLayout openMenuLayout;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
+    private FrameLayout userImageLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         TextView mazdaClubTextView = findViewById(R.id.mazda_club_text_view);
         TextView servicesTextView = findViewById(R.id.services_text_view);
         TextView findUsTextView = findViewById(R.id.find_us_text_view);
-        FrameLayout userImageLayout = findViewById(R.id.profile_image_layout);
+        userImageLayout = findViewById(R.id.profile_image_layout);
+
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,18 +74,20 @@ public class MainActivity extends AppCompatActivity {
         openMenuLayout = findViewById(R.id.open_menu_layout);
         closeImage = findViewById(R.id.close_image_view);
         menuLayout = findViewById(R.id.menu_view);
+        userImage = findViewById(R.id.user_image);
+        tierImage = findViewById(R.id.tier_image);
 
         homeText.setOnClickListener(view -> openHomeFragment());
         productsText.setOnClickListener(view -> openProductsFragment());
-        findUsTextView.setOnClickListener(view -> openFindUsFragment());
+        findUsTextView.setOnClickListener(view -> openFindUsFragment(FindUsFragment.SHOWROOMS_TYPE));
         servicesTextView.setOnClickListener(view -> openServicesFragment());
+        mazdaClubTextView.setOnClickListener(view -> openMazdaClubFragment());
         openMenuLayout.setOnClickListener(view -> showMenu());
         closeImage.setOnClickListener(view -> hideMenu());
         userImageLayout.setOnClickListener(view -> startProfileActivity());
         setScreenHeight();
         openHomeFragment();
-        Log.d("UserToken", PrefUtils.getUserToken(this));
-
+        setUserData();
     }
 
 
@@ -151,12 +159,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void openHomeFragment() {
         HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setOnNearestServiceClicked(() -> {
+            openFindUsFragment(FindUsFragment.SERVICE_CENTER_TYPE);
+        });
         addFragment(homeFragment, "");
         logoImage.setVisibility(View.VISIBLE);
     }
 
-    private void openFindUsFragment() {
+    private void openFindUsFragment(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(FindUsFragment.EXTRA_POSITION, position);
+
         FindUsFragment findUsFragment = new FindUsFragment();
+        findUsFragment.setArguments(bundle);
         addFragment(findUsFragment, getString(R.string.find_us));
         logoImage.setVisibility(View.GONE);
     }
@@ -166,6 +181,13 @@ public class MainActivity extends AppCompatActivity {
         addFragment(productsFragment, getString(R.string.products));
         logoImage.setVisibility(View.GONE);
     }
+
+    private void openMazdaClubFragment() {
+        MazdaClubFragment mazdaClubFragment = new MazdaClubFragment();
+        addFragment(mazdaClubFragment, getString(R.string.mazda_club));
+        logoImage.setVisibility(View.GONE);
+    }
+
 
     private void openServicesFragment() {
         ServicesFragment servicesFragment = new ServicesFragment();
@@ -184,14 +206,23 @@ public class MainActivity extends AppCompatActivity {
         if (PrefUtils.isLoggedIn(this)) {
             startActivity(ProfileActivity.getLaunchIntent(this));
         }
-//        else{
-//            LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
-//
-//        }
     }
 
     public static Intent getLaunchIntent(Context context) {
         return new Intent(context, MainActivity.class);
+    }
+
+    private void setUserData() {
+        if (PrefUtils.isLoggedIn(this)) {
+            RealmDbHelper realmDbHelper = new RealmDbImpl();
+            User user = realmDbHelper.getUser(PrefUtils.getUserId(this));
+            GlideApp.with(this).load(user.getImage()).
+                    apply(RequestOptions.circleCropTransform()).placeholder(R.drawable.ic_profile_default).into(userImage);
+            tierImage.setImageResource(R.drawable.ic_tier_blue);
+        } else {
+            userImageLayout.setVisibility(View.GONE);
+        }
+
     }
 
 //    private void animate(View homeText) {

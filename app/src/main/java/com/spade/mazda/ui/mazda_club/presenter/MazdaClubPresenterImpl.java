@@ -2,8 +2,10 @@ package com.spade.mazda.ui.mazda_club.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.mazda_club.view.MazdaClubView;
+import com.spade.mazda.utils.ErrorUtils;
 import com.spade.mazda.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -35,6 +37,12 @@ public class MazdaClubPresenterImpl implements MazdaClubPresenter {
                 .subscribe(mazdaClubResponse -> {
                     mazdaClubView.hideLoading();
                     mazdaClubView.showMazdaClubsTiers(mazdaClubResponse.getMazdaClubData());
+                }, throwable -> {
+                    mazdaClubView.hideLoading();
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        mazdaClubView.showMessage(ErrorUtils.getErrors(anError));
+                    }
                 });
     }
 

@@ -1,10 +1,6 @@
 package com.spade.mazda.ui.cars.view.interfaces;
 
 import com.spade.mazda.base.BaseView;
-import com.spade.mazda.ui.cars.model.CarYear;
-import com.spade.mazda.ui.services.model.Program;
-
-import java.util.List;
 
 /**
  * Created by Ayman Abouzeid on 12/17/17.
@@ -12,11 +8,35 @@ import java.util.List;
 
 public interface DriveFinanceView extends BaseView {
 
-    void showCarYears(List<CarYear> carYears);
-
-    void showPrograms(List<Program> programs);
-
-    void showNumberOfYears();
-
     void showMonthlyInstallment(String value);
+
+    void setCarModel(String carModel);
+
+    void setCarYear(String carYear);
+
+    void setCarTrim(String carTrim);
+
+    void setSelectedProgram(String selectedProgram);
+
+    void setNumberOfYears(String numberOfYears);
+
+    void setCarModelError();
+
+    void setCarYearError();
+
+    void setCarTrimError();
+
+    void setProgramError();
+
+    void setNumberOfYearsError();
+
+    void setDownPaymentError(int resID);
+
+    void setOriginalPrice(String carPrice);
+
+    void showProgressDialog();
+
+    void hideProgressDialog();
+
+    void showSuccessDialog();
 }

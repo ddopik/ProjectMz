@@ -1,6 +1,5 @@
 package com.spade.mazda.ui.home.view;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +38,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
     private ProgressBar progressBar;
     private OffersPagerAdapter offersPagerAdapter;
     private List<Offer> offers = new ArrayList<>();
+    private OnNearestServiceClicked onNearestServiceClicked;
 
     @Nullable
     @Override
@@ -55,6 +56,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
 
     @Override
     protected void initViews() {
+        RelativeLayout nearestServiceLayout = homeView.findViewById(R.id.nearest_service_layout);
         ViewPager offersViewPager = homeView.findViewById(R.id.offers_pager);
         TabLayout tabLayout = homeView.findViewById(R.id.tab_layout);
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -64,6 +66,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
         offersViewPager.setAdapter(offersPagerAdapter);
         tabLayout.setupWithViewPager(offersViewPager, true);
         homePresenter.getOffers();
+        nearestServiceLayout.setOnClickListener(view -> onNearestServiceClicked.onNearestServiceClicked());
     }
 
     @Override
@@ -101,11 +104,16 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-        try {
-            googleMap.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle(
-                            getContext(), R.raw.map_style));
-        } catch (Resources.NotFoundException e) {
-        }
+        googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        getContext(), R.raw.map_style));
+    }
+
+    public void setOnNearestServiceClicked(OnNearestServiceClicked onNearestServiceClicked) {
+        this.onNearestServiceClicked = onNearestServiceClicked;
+    }
+
+    public interface OnNearestServiceClicked {
+        void onNearestServiceClicked();
     }
 }

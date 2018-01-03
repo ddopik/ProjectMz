@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mazda</string>
+    <string name="please_add_comment">ئسيبسي</string>
+    <string name="history_added_sucessfully">سيسيرس</string>
 </resources>

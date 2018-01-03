@@ -35,6 +35,8 @@ public interface EditProfilePresenter extends BasePresenter<EditProfileView> {
 
     void setFiles(List<File> files);
 
+    void setUserImage(File userImageFile);
+
     void editProfile();
 
     boolean isDataValid();

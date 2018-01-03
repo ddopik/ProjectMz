@@ -39,6 +39,7 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
     private DataSource dataSource;
     //    private User user;
     private List<File> files = new ArrayList<>();
+    private File userImage;
 
 
     private String nationalIDString, mobileNumberString,
@@ -152,6 +153,11 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
         this.files = files;
     }
 
+    @Override
+    public void setUserImage(File userImageFile) {
+        this.userImage = userImageFile;
+    }
+
 
     @Override
     public boolean isDataValid() {
@@ -190,7 +196,7 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
         editProfileView.showLoading();
         File[] imageFiles = files.toArray(new File[files.size()]);
         ApiHelper.editProfile(PrefUtils.getAppLang(context), PrefUtils.getUserToken(context), nationalIDString, nameString,
-                mobileNumberString, birthDateString, imageFiles)
+                mobileNumberString, birthDateString, userImage, imageFiles)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {

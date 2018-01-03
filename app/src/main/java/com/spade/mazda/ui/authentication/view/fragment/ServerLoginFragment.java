@@ -17,6 +17,7 @@ import com.spade.mazda.base.DataSource;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenter;
 import com.spade.mazda.ui.authentication.presenter.LoginPresenterImpl;
 import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
+import com.spade.mazda.ui.authentication.view.activity.RegistrationActivity;
 import com.spade.mazda.ui.authentication.view.interfaces.LoginView;
 import com.spade.mazda.ui.general.view.dialog.MazdaProgressDialog;
 import com.spade.mazda.ui.main.MainActivity;
@@ -61,6 +62,8 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
         TextView forgetPassword = fragmentView.findViewById(R.id.forget_password);
         TextView joinNow = fragmentView.findViewById(R.id.join_now);
         joinNow.setOnClickListener(view -> {
+            startActivity(RegistrationActivity.getLaunchIntent(getContext()));
+            finish();
         });
         proceedBtn.setOnClickListener(v -> {
             if (checkIfDataIsValid()) {

@@ -2,7 +2,9 @@ package com.spade.mazda.ui.profile.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mazda.base.DataSource;
+import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.realm.RealmDbHelper;
 import com.spade.mazda.realm.RealmDbImpl;
 import com.spade.mazda.ui.authentication.model.User;
@@ -10,6 +12,7 @@ import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.ui.cars.model.CarYear;
 import com.spade.mazda.ui.cars.model.ModelTrim;
 import com.spade.mazda.ui.profile.view.interfaces.ProfileView;
+import com.spade.mazda.utils.ErrorUtils;
 import com.spade.mazda.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -45,8 +48,21 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     }
 
     @Override
-    public void getUserCarHistory(int userID) {
-
+    public void getUserCarHistory() {
+        profileView.showLoading();
+        ApiHelper.getHistory(PrefUtils.getAppLang(context), PrefUtils.getUserToken(context))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(historyResponse -> {
+                    profileView.hideLoading();
+                    profileView.showHistory(historyResponse.getHistoryList());
+                }, throwable -> {
+                    profileView.hideLoading();
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        profileView.showMessage(ErrorUtils.getErrors(anError));
+                    }
+                });
     }
 
     @Override

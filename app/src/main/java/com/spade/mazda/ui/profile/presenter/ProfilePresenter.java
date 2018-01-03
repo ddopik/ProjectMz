@@ -11,7 +11,7 @@ public interface ProfilePresenter extends BasePresenter<ProfileView> {
 
     void getUserData();
 
-    void getUserCarHistory(int userID);
+    void getUserCarHistory();
 
     void getCarDetails(int carID);
 }

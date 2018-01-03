@@ -124,9 +124,10 @@
                 android:id="@+id/already_have_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:fontTypeFaceStyle="gotham-regular"
                 android:text="@string/already_have_account" />
 
-            <TextView
+            <com.spade.mazda.CustomViews.CustomTextView
                 android:id="@+id/sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,7 +136,7 @@
                 android:layout_toEndOf="@id/already_have_account"
                 android:layout_toRightOf="@id/already_have_account"
                 android:text="@string/sign_in"
-                android:textColor="@color/blue" />
+                app:color="@color/blue" />
 
             <com.spade.mazda.CustomViews.CustomTextView
                 android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package com.spade.mazda.ui.profile.view.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.spade.mazda.CustomViews.CustomButton;
 import com.spade.mazda.CustomViews.CustomEditText;
 import com.spade.mazda.CustomViews.CustomRecyclerView;
@@ -47,6 +49,9 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
 
     private static final int LIST_SIZE = 2;
     private static final int EDIT_CAR_REQUEST_CODE = 201;
+    private static final int USER_IMAGE = 3;
+    private static final int NATIONAL_ID_IMAGE = 4;
+    private int imageType;
     private View view;
     private RelativeLayout chooseImage;
     private CustomEditText nameEditText, emailEditText, mobileNumberEditText, birthDateEditText, nationalIDEditText;
@@ -84,6 +89,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
     protected void initViews() {
         CustomRecyclerView customRecyclerView = view.findViewById(R.id.photos_recycler_view);
         CustomTextView editCarDetails = view.findViewById(R.id.edit_car_details);
+        CustomTextView editProfilePicture = view.findViewById(R.id.edit_profile_picture);
         CustomButton editButton = view.findViewById(R.id.edit_btn);
         LinearLayout carInfoLayout = view.findViewById(R.id.car_info_layout);
 
@@ -99,9 +105,11 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
         carYear = view.findViewById(R.id.model_year);
         carColor = view.findViewById(R.id.model_color);
         carImage = view.findViewById(R.id.model_image);
+        userImage = view.findViewById(R.id.user_image);
 
         carInfoLayout.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.blue_rounded_background));
         editCarDetails.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        editProfilePicture.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         nationalIDEditText.setEnabled(false);
         emailEditText.setEnabled(false);
@@ -114,6 +122,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
 
         birthDateEditText.setOnClickListener(this);
         chooseImage.setOnClickListener(this);
+        editProfilePicture.setOnClickListener(this);
         editCarDetails.setOnClickListener(this);
         editButton.setOnClickListener(this);
 
@@ -277,10 +286,22 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
 
                 @Override
                 public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
-                    addUri(imageFile);
+                    if (imageType == USER_IMAGE) {
+                        setUserImage(imageFile);
+                    } else {
+                        addUri(imageFile);
+                    }
                 }
             });
         }
+    }
+
+    private void setUserImage(File userImage) {
+        Uri uri = Uri.fromFile(userImage);
+        GlideApp.with(this).load(uri).
+                apply(RequestOptions.circleCropTransform()).
+                placeholder(R.drawable.ic_profile_default).into(this.userImage);
+        editProfilePresenter.setUserImage(userImage);
     }
 
     private void addUri(File file) {
@@ -330,10 +351,15 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
                 showDatePicker();
                 break;
             case R.id.choose_image:
+                imageType = NATIONAL_ID_IMAGE;
                 showImagePickerDialog();
                 break;
             case R.id.edit_car_details:
                 startActivityForResult(EditCarActivity.getLaunchIntent(getContext()), EDIT_CAR_REQUEST_CODE);
+                break;
+            case R.id.edit_profile_picture:
+                imageType = USER_IMAGE;
+                showImagePickerDialog();
                 break;
         }
     }

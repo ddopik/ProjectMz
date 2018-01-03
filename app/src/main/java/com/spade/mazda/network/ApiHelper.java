@@ -13,6 +13,7 @@ import com.spade.mazda.ui.find_us.model.BranchesResponse;
 import com.spade.mazda.ui.find_us.model.CitiesResponse;
 import com.spade.mazda.ui.home.model.OffersResponse;
 import com.spade.mazda.ui.mazda_club.model.MazdaClubResponse;
+import com.spade.mazda.ui.profile.model.HistoryResponse;
 import com.spade.mazda.ui.services.model.KilometersResponse;
 import com.spade.mazda.ui.services.model.LocationsResponse;
 import com.spade.mazda.ui.services.model.ProgramsResponse;
@@ -61,6 +62,9 @@ public class ApiHelper {
     public static final String FABRICA_BRANCHES_URL = FABRICA_BASE_URL + "branches";
     private static final String FABRICA_REQUEST_TRADE_IN = FABRICA_BASE_URL + "trade";
     private static final String MAZDA_CLUB_URL = BASE_URL + "mazdaClub";
+    private static final String ADD_HSITORY_URL = BASE_URL + "history";
+    private static final String GET_HSITORY_URL = BASE_URL + "profile/history";
+    private static final String INTERESTED_URL = BASE_URL + "interested";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String BRANCH_TYPE_PARAM = "type";
     private static final String CAR_ID_PATH_PARAM = "car_id";
@@ -183,6 +187,14 @@ public class ApiHelper {
                 .getObjectObservable(MazdaClubResponse.class);
     }
 
+    public static Observable<HistoryResponse> getHistory(String appLang, String token) {
+        return Rx2AndroidNetworking.get(GET_HSITORY_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .build()
+                .getObjectObservable(HistoryResponse.class);
+    }
+
     public static Observable<LoginResponse> loginUser(String appLang, String email, String password) {
         return Rx2AndroidNetworking.post(LOGIN_URL)
                 .addPathParameter(LANG_PATH_PARAM, appLang)
@@ -218,7 +230,7 @@ public class ApiHelper {
     }
 
     public static Observable<LoginResponse> editProfile(String appLang, String token,
-                                                        String nationalIdString, String name, String phoneNumber, String birthDate, File... imageFiles) {
+                                                        String nationalIdString, String name, String phoneNumber, String birthDate, File userImage, File... imageFiles) {
         Rx2ANRequest.MultiPartBuilder multiPartBuilder = Rx2AndroidNetworking.upload(EDIT_PROFILE_URL);
         if (imageFiles != null && imageFiles.length > 0) {
             multiPartBuilder.addMultipartFile("national_id_front_image", imageFiles[0])
@@ -231,6 +243,7 @@ public class ApiHelper {
                 .addMultipartParameter("mobile_number", phoneNumber)
                 .addMultipartParameter("birth_date", birthDate)
                 .addMultipartParameter("national_id", nationalIdString)
+                .addMultipartFile("image", userImage)
                 .build()
                 .getObjectObservable(LoginResponse.class);
     }
@@ -326,6 +339,54 @@ public class ApiHelper {
                 .addBodyParameter("spare_part_category_id", sparePartTypeID)
                 .addBodyParameter("spare_part_id", sparePartID)
                 .addBodyParameter("description", description)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        apiCallBack.onSuccess();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        apiCallBack.onFail(ErrorUtils.getErrors(anError));
+                    }
+                });
+    }
+
+
+    public static void addHistory(String appLang, String token, String comment, String date, File imageFile
+            , ApiCallBack apiCallBack) {
+        Rx2AndroidNetworking.upload(ADD_HSITORY_URL)
+                .addHeaders("Content-Type", "multipart/form-data")
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addMultipartParameter("comment", comment)
+                .addMultipartFile("image", imageFile)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        apiCallBack.onSuccess();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        apiCallBack.onFail(ErrorUtils.getErrors(anError));
+                    }
+                });
+    }
+
+    public static void interested(String appLang, String name, String phone, String trimId,
+                                  String programId, String numberOfYears, String downPayment
+            , ApiCallBack apiCallBack) {
+        Rx2AndroidNetworking.post(INTERESTED_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .addBodyParameter("name", name)
+                .addBodyParameter("phone", phone)
+                .addBodyParameter("number_of_year", numberOfYears)
+                .addBodyParameter("program_id", programId)
+                .addBodyParameter("car_trim_id", trimId)
+                .addBodyParameter("down_payment", downPayment)
                 .build()
                 .getAsString(new StringRequestListener() {
                     @Override

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/date_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="@string/select_date"
+                android:theme="@style/EditTextTheme"
+                app:editTextTypeFace="gotham-regular" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/comments_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:hint="@string/add_comment"
+                android:theme="@style/EditTextTheme"
+                app:editTextTypeFace="gotham-regular" />
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="80dp">
+
+            <RelativeLayout
+                android:id="@+id/choose_image"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/camera_bordered_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_camera" />
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/image_layout"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_toEndOf="@id/choose_image"
+                android:layout_toRightOf="@id/choose_image"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/photo_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/delete_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/dp8"
+                    android:layout_marginRight="@dimen/dp8"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:alpha="0.7"
+                    android:background="@drawable/black_circle_background"
+                    android:padding="@dimen/dp4"
+                    android:src="@drawable/clear"
+                    android:text="X"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <com.spade.mazda.CustomViews.CustomButton
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp48"
+            android:text="@string/done" />
+    </LinearLayout>
+</ScrollView>

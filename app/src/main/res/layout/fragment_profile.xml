@@ -58,10 +58,23 @@
                 android:src="@drawable/add_history" />
         </RelativeLayout>
 
-        <com.spade.mazda.CustomViews.CustomRecyclerView
-            android:id="@+id/car_history_recycler"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:orientation="vertical" />
+            android:layout_height="wrap_content">
+
+            <com.spade.mazda.CustomViews.CustomRecyclerView
+                android:id="@+id/car_history_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:orientation="vertical" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:visibility="gone" />
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

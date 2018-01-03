@@ -4,6 +4,8 @@ package com.spade.mazda.ui.mazda_club.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class MazdaClubResponse {
 
     @SerializedName("success")
@@ -11,7 +13,7 @@ public class MazdaClubResponse {
     private Boolean success;
     @SerializedName("data")
     @Expose
-    private MazdaClubData mazdaClubData;
+    private List<MazdaClubData> mazdaClubData;
 
     public Boolean getSuccess() {
         return success;
@@ -21,12 +23,11 @@ public class MazdaClubResponse {
         this.success = success;
     }
 
-    public MazdaClubData getMazdaClubData() {
+    public List<MazdaClubData> getMazdaClubData() {
         return mazdaClubData;
     }
 
-    public void setMazdaClubData(MazdaClubData mazdaClubData) {
+    public void setMazdaClubData(List<MazdaClubData> mazdaClubData) {
         this.mazdaClubData = mazdaClubData;
     }
-
 }

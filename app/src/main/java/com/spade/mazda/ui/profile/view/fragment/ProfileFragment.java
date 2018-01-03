@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.spade.mazda.CustomViews.CustomRecyclerView;
 import com.spade.mazda.CustomViews.CustomTextView;
@@ -15,11 +16,17 @@ import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.ui.authentication.model.User;
 import com.spade.mazda.ui.cars.model.CarModel;
+import com.spade.mazda.ui.profile.model.History;
 import com.spade.mazda.ui.profile.presenter.ProfilePresenter;
 import com.spade.mazda.ui.profile.presenter.ProfilePresenterImpl;
+import com.spade.mazda.ui.profile.view.HistoryAdapter;
+import com.spade.mazda.ui.profile.view.activity.AddHistoryActivity;
 import com.spade.mazda.ui.profile.view.activity.EditProfileActivity;
 import com.spade.mazda.ui.profile.view.interfaces.ProfileView;
 import com.spade.mazda.utils.GlideApp;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ayman Abouzeid on 12/20/17.
@@ -28,10 +35,16 @@ import com.spade.mazda.utils.GlideApp;
 public class ProfileFragment extends BaseFragment implements ProfileView {
 
     private static final int EDIT_REQUEST_CODE = 200;
+    private static final int HISTORY_REQUEST_CODE = 300;
+
     private ProfilePresenter profilePresenter;
     private View profileView;
-    private CustomTextView userName, userCarModel, tierName, tierExpiration, carModelName, carChassis, carMotor, carYear, carColor;
+    private CustomTextView userName, userCarModel, tierName,
+            tierExpiration, carModelName, carChassis, carMotor, carYear, carColor;
     private ImageView userImage, carImage;
+    private ProgressBar progressBar;
+    private List<History> historyList = new ArrayList<>();
+    private HistoryAdapter historyAdapter;
 
     @Nullable
     @Override
@@ -52,6 +65,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
     protected void initViews() {
         CustomRecyclerView historyRecycler = profileView.findViewById(R.id.car_history_recycler);
         CustomTextView editProfileBtn = profileView.findViewById(R.id.edit_profile_btn);
+        ImageView addHistory = profileView.findViewById(R.id.add_history);
         userName = profileView.findViewById(R.id.user_name);
         userCarModel = profileView.findViewById(R.id.user_car_model);
         tierName = profileView.findViewById(R.id.tier_name);
@@ -63,8 +77,17 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
         carColor = profileView.findViewById(R.id.model_color);
         userImage = profileView.findViewById(R.id.user_image);
         carImage = profileView.findViewById(R.id.model_image);
-        profilePresenter.getUserData();
+        progressBar = profileView.findViewById(R.id.progress_bar);
 
+        historyRecycler.setNestedScrollingEnabled(false);
+        historyAdapter = new HistoryAdapter(getContext(), historyList);
+        historyRecycler.setAdapter(historyAdapter);
+
+        profilePresenter.getUserData();
+        profilePresenter.getUserCarHistory();
+
+
+        addHistory.setOnClickListener(view -> startActivityForResult(AddHistoryActivity.getLaunchIntent(getContext()), HISTORY_REQUEST_CODE));
         editProfileBtn.setOnClickListener(view -> startActivityForResult(EditProfileActivity.getLaunchIntent(getContext()), EDIT_REQUEST_CODE));
     }
 
@@ -80,12 +103,12 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -119,10 +142,23 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
     }
 
     @Override
+    public void showHistory(List<History> historyList) {
+        if (historyList != null) {
+            this.historyList.clear();
+            this.historyList.addAll(historyList);
+        }
+        historyAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == EDIT_REQUEST_CODE) {
             profilePresenter.getUserData();
+        }
+
+        if (requestCode == HISTORY_REQUEST_CODE) {
+            profilePresenter.getUserCarHistory();
         }
     }
 }

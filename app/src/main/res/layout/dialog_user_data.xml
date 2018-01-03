@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    android:background="@drawable/blue_rounded_background"
+    android:orientation="vertical"
+    android:padding="@dimen/dp24">
+
+    <com.spade.mazda.CustomViews.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:text="@string/fill_form"
+        android:textAllCaps="true"
+        android:textSize="@dimen/material_text_subhead"
+        app:color="@color/lightBlue"
+        app:fontTypeFaceStyle="gotham-semi-bold" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:textColorHint="@color/opacity_white"
+        app:hintTextAppearance="@style/TextAppearance">
+
+        <com.spade.mazda.CustomViews.CustomEditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:theme="@style/EditTextTheme" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:textColorHint="@color/opacity_white"
+        app:hintTextAppearance="@style/TextAppearance">
+
+        <com.spade.mazda.CustomViews.CustomEditText
+            android:id="@+id/mobile_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:theme="@style/EditTextTheme" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.spade.mazda.CustomViews.CustomButton
+        android:id="@+id/done_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/done"
+        android:textSize="@dimen/material_text_subhead" />
+</LinearLayout>

@@ -16,7 +16,6 @@ import com.spade.mazda.ui.cars.view.adapter.PagingAdapter;
 import com.spade.mazda.ui.find_us.presenter.FindUsPresenter;
 import com.spade.mazda.ui.find_us.presenter.FindUsPresenterImpl;
 import com.spade.mazda.ui.find_us.view.interfaces.FindUsView;
-import com.spade.mazda.utils.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +25,7 @@ import java.util.List;
  */
 
 public class FindUsFragment extends BaseFragment implements FindUsView {
+    public static final String EXTRA_POSITION = "EXTRA_POSITION";
     public static final int SHOWROOMS_TYPE = 1;
     public static final int DEALERS_TYPE = 2;
     public static final int SPARE_PARTS_TYPE = 3;
@@ -38,7 +38,7 @@ public class FindUsFragment extends BaseFragment implements FindUsView {
     private PagingAdapter pagingAdapter;
     private TabLayout tabLayout;
     private List<Fragment> branchesFragments = new ArrayList<>();
-
+    private int currentItemPosition = 0;
 
     @Nullable
     @Override
@@ -60,22 +60,11 @@ public class FindUsFragment extends BaseFragment implements FindUsView {
         tabLayout = findUsView.findViewById(R.id.tabs);
         pagingAdapter = new PagingAdapter(getChildFragmentManager());
         findUsPresenter.setUpViewPager();
-//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                BranchesFragment branchesFragment = (BranchesFragment) branchesFragments.get(position);
-//                branchesFragment.showCities();
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
+        if (getArguments().containsKey(EXTRA_POSITION)) {
+            currentItemPosition = getArguments().getInt(EXTRA_POSITION);
+            currentItemPosition -= 1;
+        }
+        viewPager.setCurrentItem(currentItemPosition);
     }
 
     @Override
@@ -105,13 +94,9 @@ public class FindUsFragment extends BaseFragment implements FindUsView {
 
     @Override
     public void addFragment(List<Fragment> fragmentList, List<String> fragmentTitles) {
-//        this.branchesFragments.addAll(fragmentList);
         pagingAdapter.addFragment(fragmentList, fragmentTitles);
         viewPager.setAdapter(pagingAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-//    public void setCities(){
-//        pagingAdapter.getItem(viewPager.getCurrentItem())
-//    }
 }

@@ -141,6 +141,8 @@
     <string name="program">Program</string>
     <string name="down_payment_message_1">Down payment cannot be less than 20% of original price</string>
     <string name="down_payment_message_2">Down payment cannot greater than original price</string>
+    <string name="choose_program">Please select the program</string>
+    <string name="choose_number_of_years">Please select number of years</string>
 
     <string name="enter_down_payment">Please Enter Down Payment Amount</string>
     <string name="enter_valid_amount">Enter A Valid Amount</string>
@@ -172,6 +174,13 @@
     <string name="edit_car_details">Edit Car Details</string>
     <string name="my_car">My Car</string>
     <string name="data_updated">Data updated successfully</string>
+    <string name="add_comment">Add your comments</string>
+    <string name="please_add_comment">Please add your comments</string>
+    <string name="history_added_sucessfully">History added successfully</string>
+    <string name="add_history">Add History</string>
+    <string name="fill_form">Please Fill the below form</string>
+    <string name="contact_soon">Thank you, We will be contacted soon</string>
+    <string name="edit_profile_picture">Edit Profile Picture</string>
     <string-array name="action_titles">
         <item>@string/drive_finance</item>
         <item>@string/test_drive</item>

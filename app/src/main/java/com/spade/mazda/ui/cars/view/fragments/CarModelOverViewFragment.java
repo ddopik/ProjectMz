@@ -19,6 +19,7 @@ import com.spade.mazda.ui.cars.view.activity.TestDriveActivity;
 import com.spade.mazda.ui.cars.view.adapter.CarActionsAdapter;
 import com.spade.mazda.ui.cars.view.adapter.CarImagesAdapter;
 import com.spade.mazda.ui.fabrika.view.TradeInActivity;
+import com.spade.mazda.ui.find_us.view.activity.FindUsActivity;
 import com.spade.mazda.ui.general.view.dialog.LoginDialogFragment;
 import com.spade.mazda.utils.PrefUtils;
 
@@ -76,7 +77,6 @@ public class CarModelOverViewFragment extends BaseFragment implements CarActions
         switch (position) {
             case 0:
                 onCalculatorClicked.onCalculatorClicked();
-//                startActivity(FinanceActivity.getLaunchIntent(getContext()));
                 break;
             case 1:
                 if (validToRequest()) {
@@ -87,6 +87,9 @@ public class CarModelOverViewFragment extends BaseFragment implements CarActions
                 if (validToRequest()) {
                     startActivity(TradeInActivity.getLaunchIntent(getContext()));
                 }
+                break;
+            case 3:
+                startActivity(FindUsActivity.getLaunchIntent(getContext()));
                 break;
         }
     }
