@@ -1,11 +1,13 @@
 package com.spade.mazda.network;
 
+import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.rx2androidnetworking.Rx2ANRequest;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.spade.mazda.ui.authentication.model.LoginResponse;
 import com.spade.mazda.ui.authentication.model.RegistrationResponse;
+import com.spade.mazda.ui.authentication.model.ValidateMazdaLoginResponse;
 import com.spade.mazda.ui.cars.model.CarDetailsResponse;
 import com.spade.mazda.ui.cars.model.ProductsResponse;
 import com.spade.mazda.ui.fabrika.model.FabricaResponse;
@@ -65,7 +67,11 @@ public class ApiHelper {
     private static final String ADD_HSITORY_URL = BASE_URL + "history";
     private static final String GET_HSITORY_URL = BASE_URL + "profile/history";
     private static final String INTERESTED_URL = BASE_URL + "interested";
+    private static final String VALIDATE_LOGIN = "https://gbmazdaapp.azurewebsites.net/rest/call/validateLogin";
     private static final String LANG_PATH_PARAM = "lang";
+    private static final String CHASSIS_PATH_PARAM = "chassis";
+    private static final String MOTOR_PATH_PARAM = "motor";
+    private static final String NATIONAL_ID_PATH_PARAM = "NationalID";
     private static final String BRANCH_TYPE_PARAM = "type";
     private static final String CAR_ID_PATH_PARAM = "car_id";
     private static final String TRIM_ID_PATH_PARAM = "trim_id";
@@ -421,6 +427,17 @@ public class ApiHelper {
                     }
                 });
     }
+
+
+    public static Observable<ValidateMazdaLoginResponse> validateLogin(String appLang, String chassisNum, String motorNum, String nationalID) {
+        return Rx2AndroidNetworking.get(VALIDATE_LOGIN)
+                .addQueryParameter(CHASSIS_PATH_PARAM, chassisNum)
+                .addQueryParameter(MOTOR_PATH_PARAM, motorNum)
+                .addQueryParameter(NATIONAL_ID_PATH_PARAM, nationalID)
+                .build()
+                .getObjectObservable(ValidateMazdaLoginResponse.class);
+    }
+
 
     public interface ApiCallBack {
         void onSuccess();

@@ -3,6 +3,7 @@ package com.spade.mazda.application;
 import android.app.Application;
 
 import com.androidnetworking.AndroidNetworking;
+import com.spade.mazda.network.BasicAuthInterceptor;
 import com.spade.mazda.realm.RealmConfig;
 import com.spade.mazda.realm.RealmDbMigration;
 import com.spade.mazda.realm.RealmModules;
@@ -10,6 +11,7 @@ import com.spade.mazda.utils.PrefUtils;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by spade on 6/7/17.
@@ -43,7 +45,14 @@ public class MazdaApplication extends Application {
 //    }
 
     private void initAndroidNetworking() {
-        AndroidNetworking.initialize(this);
+        String userName = "admin";
+        String password = "gb_mazda";
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .addNetworkInterceptor(new BasicAuthInterceptor(userName, password))
+                .build();
+        AndroidNetworking.initialize(this, okHttpClient);
+//        AndroidNetworking.initialize(this);
     }
 
     private void initRealm() {

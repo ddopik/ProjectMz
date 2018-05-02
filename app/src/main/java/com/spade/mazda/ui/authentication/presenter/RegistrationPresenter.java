@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.base.BasePresenter;
+import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
 import com.spade.mazda.ui.authentication.view.interfaces.RegistrationView;
 import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.ui.cars.model.CarYear;
@@ -19,7 +20,8 @@ import java.util.List;
 
 public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
 
-    void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate);
+    //    void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate);
+    void saveFirstStepData(String chassisID, String motorID, String nationalID, String carModel, String carYear, String carTrim, String carColor);
 
     void pickImageFromCamera(BaseFragment baseFragment);
 
@@ -28,7 +30,7 @@ public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
 //    void register(String appLang, String chassisString, String motorString, String nationalIdString,
 //                  int modelId, int yearId, int trimId, int colorId, File... imageFiles);
 
-    void register(String appLang);
+    void register(String appLang, String nameString, String emailString, String passwordString, String mobileNumberString, String birthDateString);
 
     CarModel getCarModel();
 
@@ -71,4 +73,6 @@ public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
     void showCarTrimsDialog(FragmentManager fragmentManager);
 
     boolean dataIsValid();
+
+    void validateMazdaUserLogin(String AppLang, RegistrationFirstStepFragment.OnNextClicked onNextClicked);
 }

@@ -8,8 +8,8 @@ import android.view.MenuItem;
 
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseActivity;
-import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
 import com.spade.mazda.ui.authentication.view.fragment.RegistrationSecondStepFragment;
+import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
 
 /**
  * Created by Ayman Abouzeid on 11/15/17.
@@ -46,14 +46,14 @@ public class RegistrationActivity extends BaseActivity implements RegistrationFi
     protected void addFragment() {
         RegistrationFirstStepFragment registrationFirstStepFragment = new RegistrationFirstStepFragment();
         registrationFirstStepFragment.setOnNextClicked(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, registrationFirstStepFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, registrationFirstStepFragment)
+                .addToBackStack(RegistrationFirstStepFragment.class.getSimpleName()).commit();
     }
 
     @Override
     public void onNextClicked() {
         RegistrationSecondStepFragment registrationSecondStepFragment = new RegistrationSecondStepFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, registrationSecondStepFragment)
-                .addToBackStack(RegistrationSecondStepFragment.class.getSimpleName()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, registrationSecondStepFragment).commit();
     }
 
     public static Intent getLaunchIntent(Context context) {

@@ -41,4 +41,5 @@ public class PeriodicAndMechanicalActivity extends ToolBarBaseActivity {
     public static Intent getLaunchIntent(Context context) {
         return new Intent(context, PeriodicAndMechanicalActivity.class);
     }
+
 }

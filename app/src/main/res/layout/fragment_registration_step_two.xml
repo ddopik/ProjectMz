@@ -5,191 +5,148 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_vertical_margin">
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
 
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
 
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/car_model_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_arrow_drop_down"
-                    android:drawableRight="@drawable/ic_arrow_drop_down"
-                    android:focusable="false"
-                    android:hint="@string/choose_car_model"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
 
-            <android.support.design.widget.TextInputLayout
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/confirm_password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
 
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/car_year_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_arrow_drop_down"
-                    android:drawableRight="@drawable/ic_arrow_drop_down"
-                    android:focusable="false"
-                    android:hint="@string/choose_car_year"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
 
-
-            <android.support.design.widget.TextInputLayout
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/mobile_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:theme="@style/EditTextTheme" />
 
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/car_trim_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_arrow_drop_down"
-                    android:drawableRight="@drawable/ic_arrow_drop_down"
-                    android:focusable="false"
-                    android:hint="@string/choose_car_trim"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/opacity_white"
+            app:hintTextAppearance="@style/TextAppearance">
+
+            <com.spade.mazda.CustomViews.CustomEditText
+                android:id="@+id/birth_date_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:hint="@string/birth_date"
+                android:theme="@style/EditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
 
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/car_color_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_arrow_drop_down"
-                    android:drawableRight="@drawable/ic_arrow_drop_down"
-                    android:focusable="false"
-                    android:hint="@string/choose_car_color"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
+        <com.spade.mazda.CustomViews.CustomButton
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center">
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/already_have_account"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
+                android:text="@string/already_have_account"
+                app:fontTypeFaceStyle="gotham-regular" />
 
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/chassis_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/chassis"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/sign_in"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
-
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/motor_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/motor"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:textColorHint="@color/opacity_white"
-                app:hintTextAppearance="@style/TextAppearance">
-
-                <com.spade.mazda.CustomViews.CustomEditText
-                    android:id="@+id/id_number_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/national_id_number"
-                    android:theme="@style/EditTextTheme" />
-            </android.support.design.widget.TextInputLayout>
+                android:layout_marginLeft="@dimen/dp4"
+                android:layout_marginStart="@dimen/dp4"
+                android:layout_toEndOf="@id/already_have_account"
+                android:layout_toRightOf="@id/already_have_account"
+                android:text="@string/sign_in"
+                app:color="@color/blue" />
 
             <com.spade.mazda.CustomViews.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp8"
-                android:text="@string/national_id_images"
-                android:textSize="@dimen/material_text_subhead"
-                app:fontTypeFaceStyle="gotham-regular" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/choose_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:background="@drawable/camera_bordered_background"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_camera" />
-
-                </RelativeLayout>
-
-                <com.spade.mazda.CustomViews.CustomRecyclerView
-                    android:id="@+id/photos_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_vertical_margin"
-                    android:layout_marginStart="@dimen/activity_vertical_margin"
-                    app:orientation="horizontal" />
-            </LinearLayout>
-
-            <com.spade.mazda.CustomViews.CustomButton
-                android:id="@+id/register_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sign_up" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:layout_marginLeft="@dimen/dp4"
+                android:layout_marginStart="@dimen/dp4"
+                android:layout_toEndOf="@id/sign_in"
+                android:layout_toRightOf="@id/sign_in"
+                android:text="@string/question_mark"
+                android:textColor="@color/blue" />
+        </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

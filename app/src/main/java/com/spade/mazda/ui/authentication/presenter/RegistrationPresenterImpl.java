@@ -1,12 +1,14 @@
 package com.spade.mazda.ui.authentication.presenter;
 
+import android.annotation.SuppressLint;
+import android.support.annotation.MainThread;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 
 import com.androidnetworking.error.ANError;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.network.ApiHelper;
+import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
 import com.spade.mazda.ui.authentication.view.interfaces.RegistrationView;
 import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.ui.cars.model.CarYear;
@@ -21,16 +23,18 @@ import com.spade.mazda.ui.general.view.interfaces.CarModelInterface;
 import com.spade.mazda.ui.general.view.interfaces.CarTrimInterface;
 import com.spade.mazda.ui.general.view.interfaces.CarYearInterface;
 import com.spade.mazda.utils.ErrorUtils;
+import com.spade.mazda.utils.PrefUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
-import static com.spade.mazda.ui.authentication.view.fragment.RegistrationSecondStepFragment.LIST_SIZE;
+import static com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment.LIST_SIZE;
 import static com.spade.mazda.ui.profile.presenter.EditCarDetailsPresenterImpl.FIRST_ITEM;
 
 /**
@@ -57,9 +61,9 @@ public class RegistrationPresenterImpl implements
     private ModelTrim modelTrim;
     private TrimColor trimColor;
 
-    private String chassisString, motorString, nationalIDString, mobileNumberString,
-            birthDateString, nameString, emailString, passwordString;
+    private String chassisString, motorString, nationalIDString;
 
+    private String chassisID, motorID, nationalID, carModelVal, carYearVal, carTrim, carColor;
     private int modelId = -1, yearId = -1, trimId = -1, colorId = -1;
 
 
@@ -76,13 +80,26 @@ public class RegistrationPresenterImpl implements
     }
 
 
+//    @Override
+//    public void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate) {
+//        this.nameString = name;
+//        this.emailString = email;
+//        this.passwordString = password;
+//        this.mobileNumberString = phoneNumber;
+//        this.birthDateString = birthDate;
+//
+////        registrationView.navigateToNextStep();
+//    }
+
     @Override
-    public void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate) {
-        this.nameString = name;
-        this.emailString = email;
-        this.passwordString = password;
-        this.mobileNumberString = phoneNumber;
-        this.birthDateString = birthDate;
+    public void saveFirstStepData(String chassisID, String motorID, String nationalID, String carModel, String carYear, String carTrim, String carColor) {
+        this.chassisID = chassisID;
+        this.motorID = motorID;
+        this.nationalID = nationalID;
+        this.carModelVal = carModel;
+        this.carYearVal = carYear;
+        this.carTrim = carTrim;
+        this.carColor = carColor;
 //        registrationView.navigateToNextStep();
     }
 
@@ -112,13 +129,14 @@ public class RegistrationPresenterImpl implements
 //                }, throwable -> registrationView.hideLoading());
 //    }
 
+
     @Override
-    public void register(String appLang) {
+    public void register(String appLang, String nameString, String emailString, String passwordString, String mobileNumberString, String birthDateString) {
         registrationView.showLoading();
         File[] imageFiles = files.toArray(new File[files.size()]);
         ApiHelper.registerUser(appLang, nameString, emailString, passwordString,
-                mobileNumberString, birthDateString, chassisString, motorString,
-                nationalIDString, modelId, yearId, trimId, colorId, imageFiles)
+                mobileNumberString, birthDateString, this.chassisID, this.motorID,
+                this.nationalIDString, modelId, this.yearId, this.trimId, this.colorId, imageFiles)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(registrationResponse -> {
@@ -287,16 +305,35 @@ public class RegistrationPresenterImpl implements
         if (nationalIDString == null || nationalIDString.isEmpty()) {
             registrationView.setNationalIdError(R.string.national_id_number);
             return false;
-        } else if (nationalIDString.length() != 14) {
-            registrationView.setNationalIdError(R.string.national_id_constraint);
-            return false;
         }
 
         if (files.size() < LIST_SIZE) {
             registrationView.showMessage(R.string.please_choose_national_id);
             return false;
         }
+
         return true;
+    }
+
+    @Override
+    @SuppressLint("CheckResult")
+    public void validateMazdaUserLogin(String appLang, RegistrationFirstStepFragment.OnNextClicked onNextClicked) {
+        registrationView.showLoading();
+        ApiHelper.validateLogin(appLang, chassisID, motorID, nationalID).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(validateMazdaLoginResponse -> {
+                    if (validateMazdaLoginResponse.getResult().equals("Success")) {
+                        registrationView.hideLoading();
+                        onNextClicked.onNextClicked();
+                    } else {
+                        registrationView.hideLoading();
+                        registrationView.showMessage("Sorry you are not enrolled");
+                    }
+                }, throwable -> {
+                    registrationView.hideLoading();
+                    registrationView.showMessage("Un Excepted Error");
+                });
+
+
     }
 
     public CarModel getCarModel() {
