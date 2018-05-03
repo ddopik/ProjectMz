@@ -10,17 +10,7 @@ import java.util.List;
  */
 
 public interface RegistrationView extends BaseView {
-    void navigateToLogin();
 
-    void navigateToNextStep();
-
-//    void showCarModels(List<CarModel> carModels);
-
-    void showLoading();
-
-    void hideLoading();
-
-    void navigateToActivate(String email);
 
     void setCarModel(String carModel);
 

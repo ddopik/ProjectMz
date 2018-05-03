@@ -30,7 +30,6 @@ public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
 //    void register(String appLang, String chassisString, String motorString, String nationalIdString,
 //                  int modelId, int yearId, int trimId, int colorId, File... imageFiles);
 
-    void register(String appLang, String nameString, String emailString, String passwordString, String mobileNumberString, String birthDateString);
 
     CarModel getCarModel();
 

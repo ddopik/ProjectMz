@@ -9,6 +9,7 @@ import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
+import com.spade.mazda.ui.authentication.view.interfaces.RegistrationSecondStepView;
 import com.spade.mazda.ui.authentication.view.interfaces.RegistrationView;
 import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.ui.cars.model.CarYear;
@@ -54,7 +55,7 @@ public class RegistrationPresenterImpl implements
     private List<CarYear> carYears = new ArrayList<>();
     private List<ModelTrim> modelTrims = new ArrayList<>();
     private List<TrimColor> trimColors = new ArrayList<>();
-    private List<File> files = new ArrayList<>();
+    public static List<File> files = new ArrayList<>();
 
     private CarModel carModel;
     private CarYear carYear;
@@ -63,8 +64,8 @@ public class RegistrationPresenterImpl implements
 
     private String chassisString, motorString, nationalIDString;
 
-    private String chassisID, motorID, nationalID, carModelVal, carYearVal, carTrim, carColor;
-    private int modelId = -1, yearId = -1, trimId = -1, colorId = -1;
+    public static String chassisID, motorID, nationalID, carModelVal, carYearVal, carTrim, carColor;
+    public static int modelId = -1, yearId = -1, trimId = -1, colorId = -1;
 
 
     public static RegistrationPresenterImpl getInstance() {
@@ -129,28 +130,6 @@ public class RegistrationPresenterImpl implements
 //                }, throwable -> registrationView.hideLoading());
 //    }
 
-
-    @Override
-    public void register(String appLang, String nameString, String emailString, String passwordString, String mobileNumberString, String birthDateString) {
-        registrationView.showLoading();
-        File[] imageFiles = files.toArray(new File[files.size()]);
-        ApiHelper.registerUser(appLang, nameString, emailString, passwordString,
-                mobileNumberString, birthDateString, this.chassisID, this.motorID,
-                this.nationalIDString, modelId, this.yearId, this.trimId, this.colorId, imageFiles)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(registrationResponse -> {
-                    registrationView.hideLoading();
-                    registrationView.showMessage(registrationResponse.getRegistrationData().getMessage());
-                    registrationView.navigateToActivate(emailString);
-                }, throwable -> {
-                    registrationView.hideLoading();
-                    if (throwable != null) {
-                        ANError anError = (ANError) throwable;
-                        registrationView.showMessage(ErrorUtils.getErrors(anError));
-                    }
-                });
-    }
 
     public String getChassisString() {
         return chassisString;
@@ -305,7 +284,11 @@ public class RegistrationPresenterImpl implements
         if (nationalIDString == null || nationalIDString.isEmpty()) {
             registrationView.setNationalIdError(R.string.national_id_number);
             return false;
+        } else if (nationalIDString.length() != 14) {
+            registrationView.setNationalIdError(R.string.national_id_constraint);
+            return false;
         }
+
 
         if (files.size() < LIST_SIZE) {
             registrationView.showMessage(R.string.please_choose_national_id);
@@ -326,11 +309,11 @@ public class RegistrationPresenterImpl implements
                         onNextClicked.onNextClicked();
                     } else {
                         registrationView.hideLoading();
-                        registrationView.showMessage("Sorry you are not enrolled");
+                        registrationView.showMessage(R.string.not_mazda_user_enrolled);
                     }
                 }, throwable -> {
                     registrationView.hideLoading();
-                    registrationView.showMessage("Un Excepted Error");
+                    registrationView.showMessage(R.string.un_exepected_error);
                 });
 
 

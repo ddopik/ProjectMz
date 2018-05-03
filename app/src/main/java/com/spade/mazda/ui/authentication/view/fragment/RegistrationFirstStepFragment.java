@@ -170,40 +170,7 @@ public class RegistrationFirstStepFragment extends BaseFragment
 
     }
 
-    @Override
-    public void navigateToNextStep() {
 
-    }
-
-    @Override
-    public void showLoading() {
-        if (progressDialog == null)
-            progressDialog = new MazdaProgressDialog();
-        progressDialog.setLoadingTextResID(R.string.loading);
-        progressDialog.setCancelable(false);
-        progressDialog.show(getChildFragmentManager(), MazdaProgressDialog.class.getSimpleName());
-    }
-
-    @Override
-    public void hideLoading() {
-        if (progressDialog != null)
-            progressDialog.dismiss();
-    }
-
-    @Override
-    public void navigateToActivate(String email) {
-        DataSource dataSource = DataSource.getInstance();
-        dataSource.setActivationSource(DataSource.REGISTER_ACTIVATION);
-        Intent intent = ActivationActivity.getLaunchIntent(getContext());
-        intent.putExtra(ActivationActivity.EXTRA_EMAIL, email);
-        startActivity(intent);
-        getActivity().finish();
-    }
-
-    @Override
-    public void navigateToLogin() {
-
-    }
 
     @Override
     public void setCarModel(String carModel) {
@@ -341,7 +308,6 @@ public class RegistrationFirstStepFragment extends BaseFragment
                 break;
             case R.id.next_btn:
                 if (registrationPresenter.dataIsValid()) {
-//                    registrationPresenter.saveFirstStepData(nameString, emailString, passwordString, mobileNumberString, birthDateString);
                     registrationPresenter.saveFirstStepData(chassisEditText.getText().toString(), motorEditText.getText().toString(), nationalIDEditText.getText().toString(), carModelEditText.getText().toString(), carYearsEditText.getText().toString(), carTrimsEditText.getText().toString(), carColorsEditText.getText().toString());
                     registrationPresenter.validateMazdaUserLogin(appLang, onNextClicked);
 //                    onNextClicked.onNextClicked();
@@ -363,6 +329,21 @@ public class RegistrationFirstStepFragment extends BaseFragment
 
     }
 
+    @Override
+    public void showLoading() {
+        if (progressDialog == null)
+            progressDialog = new MazdaProgressDialog();
+        progressDialog.setLoadingTextResID(R.string.loading);
+        progressDialog.setCancelable(false);
+        progressDialog.show(getChildFragmentManager(), MazdaProgressDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void hideLoading() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+
+    }
     public void setOnNextClicked(OnNextClicked onNextClicked) {
         this.onNextClicked = onNextClicked;
     }

@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.authentication.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,10 +13,16 @@ import com.spade.mazda.CustomViews.CustomButton;
 import com.spade.mazda.CustomViews.CustomEditText;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
+import com.spade.mazda.base.DataSource;
 import com.spade.mazda.ui.authentication.presenter.RegistrationPresenter;
 import com.spade.mazda.ui.authentication.presenter.RegistrationPresenterImpl;
+import com.spade.mazda.ui.authentication.presenter.RegistrationPresenterStepTwoPresenter;
+import com.spade.mazda.ui.authentication.presenter.RegistrationPresenterStepTwoPresenterImpl;
+import com.spade.mazda.ui.authentication.view.activity.ActivationActivity;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
 import com.spade.mazda.ui.authentication.view.dialogs.PickDateDialog;
+import com.spade.mazda.ui.authentication.view.interfaces.RegistrationSecondStepView;
+import com.spade.mazda.ui.general.view.dialog.MazdaProgressDialog;
 import com.spade.mazda.utils.PrefUtils;
 import com.spade.mazda.utils.Validator;
 
@@ -23,9 +30,11 @@ import com.spade.mazda.utils.Validator;
  * Created by Ayman Abouzeid on 11/13/17.
  */
 
-public class RegistrationSecondStepFragment extends BaseFragment implements PickDateDialog.OnDateSet {
+public class RegistrationSecondStepFragment extends BaseFragment implements RegistrationSecondStepView, PickDateDialog.OnDateSet {
     private CustomEditText nameEditText, emailEditText, passwordEditText,
             confirmPasswordEditText, mobileNumberEditText, birthDateEditText;
+
+
     private String nameString;
     private String emailString;
     private String passwordString;
@@ -33,8 +42,8 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Pick
     private String birthDateString;
     private String appLang;
     private View view;
-
-    private RegistrationPresenter registrationPresenter;
+    private MazdaProgressDialog progressDialog;
+    private RegistrationPresenterStepTwoPresenter registrationPresenterStepTwoPresenter;
 
     @Nullable
     @Override
@@ -46,8 +55,8 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Pick
 
     @Override
     protected void initPresenter() {
-        registrationPresenter = RegistrationPresenterImpl.getInstance();
-//        registrationPresenter.setView(this);
+        registrationPresenterStepTwoPresenter = new RegistrationPresenterStepTwoPresenterImpl();
+        registrationPresenterStepTwoPresenter.setView(this);
     }
 
     @Override
@@ -69,7 +78,7 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Pick
         signInText.setOnClickListener(view1 -> navigateToLogin());
         registerButton.setOnClickListener(btn -> {
             if (dataIsValid()) {
-                registrationPresenter.register(appLang,nameString,emailString,passwordString,mobileNumberString,birthDateString);
+                registrationPresenterStepTwoPresenter.register(appLang, nameString, emailString, passwordString, mobileNumberString, birthDateString);
             }
         });
 
@@ -131,10 +140,6 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Pick
         pickDateDialog.show(getChildFragmentManager(), PickDateDialog.class.getSimpleName());
     }
 
-    public void navigateToLogin() {
-        getActivity().finish();
-        startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
-    }
 
 
 
@@ -144,6 +149,47 @@ public class RegistrationSecondStepFragment extends BaseFragment implements Pick
         birthDateEditText.setText(birthDateString);
     }
 
+
+    @Override
+    public void navigateToActivate(String email) {
+        DataSource dataSource = DataSource.getInstance();
+        dataSource.setActivationSource(DataSource.REGISTER_ACTIVATION);
+        Intent intent = ActivationActivity.getLaunchIntent(getContext());
+        intent.putExtra(ActivationActivity.EXTRA_EMAIL, email);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    public void navigateToLogin() {
+        getActivity().finish();
+        startActivity(ServerLoginActivity.getLaunchIntent(getContext()));
+    }
+
+    @Override
+    public void showLoading() {
+        if (progressDialog == null)
+            progressDialog = new MazdaProgressDialog();
+
+        progressDialog.setLoadingTextResID(R.string.loading);
+        progressDialog.setCancelable(false);
+        progressDialog.show(getChildFragmentManager(), MazdaProgressDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void hideLoading() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+    }
+
+    @Override
+    public void navigateToNextStep() {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+    }
 
 
 
