@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.profile.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.androidnetworking.error.ANError;
@@ -47,15 +48,18 @@ public class ProfilePresenterImpl implements ProfilePresenter {
         profileView.updateUI(user);
     }
 
+    //todo call back scheme not specified yet
+    @SuppressLint("CheckResult")
     @Override
     public void getUserCarHistory() {
         profileView.showLoading();
-        ApiHelper.getHistory(PrefUtils.getAppLang(context), PrefUtils.getUserToken(context))
+//        ApiHelper.getHistory(realmDbHelper.getUser(PrefUtils.getUserId(context)).getMotor(),realmDbHelper.getUser(PrefUtils.getUserId(context)).getChassis())
+        ApiHelper.getHistory("211029","252419")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(historyResponse -> {
                     profileView.hideLoading();
-                    profileView.showHistory(historyResponse.getHistoryList());
+                    profileView.showHistory(historyResponse);
                 }, throwable -> {
                     profileView.hideLoading();
                     if (throwable != null) {
@@ -65,6 +69,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                 });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getCarDetails(int carID) {
         dataSource.getCarModel(carID)
@@ -99,4 +104,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(carColor -> profileView.setCarColor(carColor.getColorName()));
     }
+
+
+
 }

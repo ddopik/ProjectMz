@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.profile.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 
 public class HistoryResponse {
 
-    @SerializedName("data")
+
+
     private List<History> historyList;
 
     public List<History> getHistoryList() {
@@ -20,4 +22,5 @@ public class HistoryResponse {
     public void setHistoryList(List<History> historyList) {
         this.historyList = historyList;
     }
+
 }

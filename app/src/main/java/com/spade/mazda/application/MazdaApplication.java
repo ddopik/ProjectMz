@@ -1,6 +1,7 @@
 package com.spade.mazda.application;
 
 import android.app.Application;
+import android.content.res.Configuration;
 
 import com.androidnetworking.AndroidNetworking;
 import com.spade.mazda.network.BasicAuthInterceptor;
@@ -8,6 +9,8 @@ import com.spade.mazda.realm.RealmConfig;
 import com.spade.mazda.realm.RealmDbMigration;
 import com.spade.mazda.realm.RealmModules;
 import com.spade.mazda.utils.PrefUtils;
+
+import java.util.Locale;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -133,4 +136,6 @@ public class MazdaApplication extends Application {
 //        intent.setType(TYPE_NOTIFICATION);
 //        startActivity(intent);
 //    }
+
+
 }

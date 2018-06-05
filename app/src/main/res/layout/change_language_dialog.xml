@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:toosl="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    android:background="@drawable/blue_rounded_background"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingBottom="@dimen/dp24">
+<TextView
+    android:id="@+id/dialog_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/change_language"
+    android:textAllCaps="true"
+    android:gravity="center"
+    android:textColor="@color/lightBlue"
+    android:padding="@dimen/dp24"
+    android:textSize="@dimen/small_text"
+    android:textStyle="bold"
+    />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_title"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/english_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp24"
+            android:text="@string/english"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/white"
+            toosl:background="@color/blue"
+            />
+
+
+        <TextView
+            android:id="@+id/arabic_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp24"
+            android:text="@string/arabic"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

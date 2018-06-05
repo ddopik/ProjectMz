@@ -7,13 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.spade.mazda.CustomViews.CustomTextView;
 import com.spade.mazda.R;
 import com.spade.mazda.ui.profile.model.History;
-import com.spade.mazda.utils.GlideApp;
 
 import java.util.List;
 
@@ -41,17 +37,23 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(HistoryViewHolder holder, int position) {
         History history = histories.get(position);
-        holder.commentTextView.setText(history.getHistoryComment());
 
-        if (history.getHistoryImage() != null) {
-            holder.historyImage.setVisibility(View.VISIBLE);
-            RequestOptions requestOptions = new RequestOptions();
-            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
-            GlideApp.with(context).applyDefaultRequestOptions(requestOptions).load(history.getHistoryImage())
-                    .into(holder.historyImage);
-        } else {
-            holder.historyImage.setVisibility(View.GONE);
-        }
+//        if (history.getHistoryImage() != null) {
+//            holder.historyImage.setVisibility(View.VISIBLE);
+//            RequestOptions requestOptions = new RequestOptions();
+//            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
+//            GlideApp.with(context).applyDefaultRequestOptions(requestOptions).load(history.getHistoryImage())
+//                    .into(holder.historyImage);
+//        } else {
+//            holder.historyImage.setVisibility(View.GONE);
+//        }
+
+
+        holder.serviceAdvisor.setText(history.getServiceAdvisor().trim());
+        holder.taskStatus.setText(history.getTaskStatus());
+        holder.netAmount.setText(context.getResources().getString(R.string.net_amount)+history.getNetAmount());
+        holder.netKm.setText(context.getResources().getString(R.string.km)+history.getKm());
+
 
         if (position == 0) {
             holder.separator1.setVisibility(View.INVISIBLE);
@@ -69,15 +71,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     }
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
-        private CustomTextView dateTextView, commentTextView;
+        private CustomTextView serviceAdvisor, taskStatus,netKm,netAmount;
         private ImageView historyImage;
         private View separator1, separator2;
 
         public HistoryViewHolder(View itemView) {
             super(itemView);
-            dateTextView = itemView.findViewById(R.id.history_date_text_view);
-            commentTextView = itemView.findViewById(R.id.history_comment);
-            historyImage = itemView.findViewById(R.id.history_image);
+            serviceAdvisor = itemView.findViewById(R.id.service_adviser);
+            taskStatus = itemView.findViewById(R.id.task_status);
+            netKm = itemView.findViewById(R.id.km);
+            netAmount = itemView.findViewById(R.id.net_amount);
+
+//            historyImage = itemView.findViewById(R.id.history_image);
             separator1 = itemView.findViewById(R.id.separator_1);
             separator2 = itemView.findViewById(R.id.separator_2);
         }

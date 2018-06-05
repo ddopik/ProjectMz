@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="small_text">10sp</dimen>
+    <dimen name="normal_text">10sp</dimen>
     <dimen name="material_text_button">14sp</dimen>
     <dimen name="material_text_menu">14sp</dimen>
     <dimen name="material_text_caption">12sp</dimen>

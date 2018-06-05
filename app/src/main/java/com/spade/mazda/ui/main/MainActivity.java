@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.spade.mazda.CustomViews.CustomTextView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.realm.RealmDbHelper;
@@ -26,6 +28,7 @@ import com.spade.mazda.realm.RealmDbImpl;
 import com.spade.mazda.ui.authentication.model.User;
 import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
+import com.spade.mazda.ui.home.view.ChangeLanguageDialogFragment;
 import com.spade.mazda.ui.home.view.HomeFragment;
 import com.spade.mazda.ui.mazda_club.view.MazdaClubFragment;
 import com.spade.mazda.ui.profile.view.activity.ProfileActivity;
@@ -33,15 +36,19 @@ import com.spade.mazda.ui.services.view.fragments.ServicesFragment;
 import com.spade.mazda.utils.GlideApp;
 import com.spade.mazda.utils.PrefUtils;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private int height;
     private FrameLayout menuLayout;
     private ImageView closeImage, logoImage, userImage, tierImage;
+    private LinearLayout app_lang;
     private LinearLayout openMenuLayout;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
     private FrameLayout userImageLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         menuLayout = findViewById(R.id.menu_view);
         userImage = findViewById(R.id.user_image);
         tierImage = findViewById(R.id.tier_image);
-
+        app_lang = findViewById(R.id.app_lang);
         homeText.setOnClickListener(view -> openHomeFragment());
         productsText.setOnClickListener(view -> openProductsFragment());
         findUsTextView.setOnClickListener(view -> openFindUsFragment(FindUsFragment.SHOWROOMS_TYPE));
@@ -85,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         openMenuLayout.setOnClickListener(view -> showMenu());
         closeImage.setOnClickListener(view -> hideMenu());
         userImageLayout.setOnClickListener(view -> startProfileActivity());
+        app_lang.setOnClickListener(view -> chooseLanguage());
         setScreenHeight();
         openHomeFragment();
         setUserData();
@@ -189,6 +197,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void chooseLanguage() {
+        new ChangeLanguageDialogFragment().show(getFragmentManager(),ChangeLanguageDialogFragment.class.getSimpleName());
+    }
+
     private void openServicesFragment() {
         ServicesFragment servicesFragment = new ServicesFragment();
         addFragment(servicesFragment, getString(R.string.services));
@@ -225,6 +237,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void changeLanguage(String lang) {
+        Locale myLocale = new Locale(lang);
+        Configuration conf = new Configuration();
+        conf.locale = myLocale;
+
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+        if (lang.equals(PrefUtils.ARABIC_LANG))
+            PrefUtils.setAppLang(this, PrefUtils.ARABIC_LANG);
+        else
+            PrefUtils.setAppLang(this, PrefUtils.ENGLISH_LANG);
+
+        PrefUtils.setIsLanguageSelected(this, true);
+        restartActivity();
+    }
+
+    public void restartActivity() {
+        startActivity(getLaunchIntent(this));
+        finish();
+    }
 //    private void animate(View homeText) {
 //        ObjectAnimator translateXAnimation = ObjectAnimator.ofFloat(homeText, "translationX", centerX, 0);
 //        ObjectAnimator translateYAnimation = ObjectAnimator.ofFloat(homeText, "translationY", centerY, 0);

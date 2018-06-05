@@ -1,6 +1,5 @@
 package com.spade.mazda.network;
 
-import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.rx2androidnetworking.Rx2ANRequest;
@@ -15,7 +14,7 @@ import com.spade.mazda.ui.find_us.model.BranchesResponse;
 import com.spade.mazda.ui.find_us.model.CitiesResponse;
 import com.spade.mazda.ui.home.model.OffersResponse;
 import com.spade.mazda.ui.mazda_club.model.MazdaClubResponse;
-import com.spade.mazda.ui.profile.model.HistoryResponse;
+import com.spade.mazda.ui.profile.model.History;
 import com.spade.mazda.ui.services.model.KilometersResponse;
 import com.spade.mazda.ui.services.model.LocationsResponse;
 import com.spade.mazda.ui.services.model.ProgramsResponse;
@@ -28,6 +27,7 @@ import com.spade.mazda.utils.ErrorUtils;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -39,6 +39,8 @@ public class ApiHelper {
 
     private static final String BASE_URL = "http://dev.spade.studio/mazda-mobile/public/api/v1/{lang}/";
     private static final String FABRICA_BASE_URL = "http://fabrikaegypt.com/api/{lang}/v1/cars/";
+    private static final String VALIDATE_LOGIN = "https://gbmazdaapp.azurewebsites.net/rest/call/validateLogin";
+    private static final String GET_HISTORY_URL =   "https://gbmazdaapp.azurewebsites.net/rest/call/jobCar";
 
     private static final String PRODUCTS_LIST_URL = BASE_URL + "cars";
     private static final String CITIES_LIST_URL = BASE_URL + "city";
@@ -64,10 +66,9 @@ public class ApiHelper {
     public static final String FABRICA_BRANCHES_URL = FABRICA_BASE_URL + "branches";
     private static final String FABRICA_REQUEST_TRADE_IN = FABRICA_BASE_URL + "trade";
     private static final String MAZDA_CLUB_URL = BASE_URL + "mazdaClub";
-    private static final String ADD_HSITORY_URL = BASE_URL + "history";
-    private static final String GET_HSITORY_URL = BASE_URL + "profile/history";
+    private static final String ADD_HISTORY_URL = BASE_URL + "history";
+//    private static final String GET_HISTORY_URL = BASE_URL + "profile/history";
     private static final String INTERESTED_URL = BASE_URL + "interested";
-    private static final String VALIDATE_LOGIN = "https://gbmazdaapp.azurewebsites.net/rest/call/validateLogin";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String CHASSIS_PATH_PARAM = "chassis";
     private static final String MOTOR_PATH_PARAM = "motor";
@@ -75,6 +76,8 @@ public class ApiHelper {
     private static final String BRANCH_TYPE_PARAM = "type";
     private static final String CAR_ID_PATH_PARAM = "car_id";
     private static final String TRIM_ID_PATH_PARAM = "trim_id";
+    private static final String MOTOR_NO = "motorNo";
+    private static final String CHASSIS_NO = "chassisNo";
     private static final String AUTH_TOKEN = "Authorization";
     private static final String BEARER = "bearer";
     private static final String LOCATION_CATEGORY_PATH_PARAM = "category_id";
@@ -193,12 +196,19 @@ public class ApiHelper {
                 .getObjectObservable(MazdaClubResponse.class);
     }
 
-    public static Observable<HistoryResponse> getHistory(String appLang, String token) {
-        return Rx2AndroidNetworking.get(GET_HSITORY_URL)
-                .addPathParameter(LANG_PATH_PARAM, appLang)
-                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+//    public static Observable<HistoryResponse> getHistory(String appLang, String token) {
+//        return Rx2AndroidNetworking.get(GET_HISTORY_URL)
+//                .addPathParameter(LANG_PATH_PARAM, appLang)
+//                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
+//                .build()
+//                .getObjectObservable(HistoryResponse.class);
+//    }
+    public static Observable<List<History>> getHistory(String motorNo, String chassisNo) {
+        return Rx2AndroidNetworking.get(GET_HISTORY_URL)
+                .addQueryParameter(MOTOR_NO,motorNo)
+                .addQueryParameter(CHASSIS_NO,chassisNo)
                 .build()
-                .getObjectObservable(HistoryResponse.class);
+                .getObjectListObservable(History.class);
     }
 
     public static Observable<LoginResponse> loginUser(String appLang, String email, String password) {
@@ -362,7 +372,7 @@ public class ApiHelper {
 
     public static void addHistory(String appLang, String token, String comment, String date, File imageFile
             , ApiCallBack apiCallBack) {
-        Rx2AndroidNetworking.upload(ADD_HSITORY_URL)
+        Rx2AndroidNetworking.upload(ADD_HISTORY_URL)
                 .addHeaders("Content-Type", "multipart/form-data")
                 .addHeaders(AUTH_TOKEN, BEARER + " " + token)
                 .addPathParameter(LANG_PATH_PARAM, appLang)

@@ -55,42 +55,66 @@
             android:id="@+id/history_data_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp8"
-            android:layout_marginStart="@dimen/dp8"
-            android:layout_toLeftOf="@id/history_image"
-            android:layout_toStartOf="@id/history_image"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <com.spade.mazda.CustomViews.CustomTextView
-                android:id="@+id/history_date_text_view"
+                android:id="@+id/service_adviser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="28 March 2017"
-                android:textAllCaps="true"
-                app:color="@color/lightBlue"
-                app:fontTypeFaceStyle="gotham-semi-bold" />
+                android:textAlignment="textStart"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                app:fontTypeFaceStyle="gotham-semi-bold"
+                android:textDirection="ltr"
+                tools:text="سيد على حسن فواز" />
+
 
             <com.spade.mazda.CustomViews.CustomTextView
-                android:id="@+id/history_comment"
+                android:id="@+id/task_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                android:layout_weight="2"
+                app:color="@color/lightBlue"
+                app:fontTypeFaceStyle="gotham-semi-bold"
+                tools:text="Complete" />
+
+        </LinearLayout>
+<!--////////////////////////-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/history_data_layout"
+            android:orientation="vertical">
+
+
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/km"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp8"
                 android:gravity="start"
+                android:layout_weight="1"
                 android:textColor="@color/white"
                 app:fontTypeFaceStyle="gotham-regular"
-                tools:text="Mazda 2" />
+                tools:text="km" />
 
+            <com.spade.mazda.CustomViews.CustomTextView
+                android:id="@+id/net_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:gravity="start"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                app:fontTypeFaceStyle="gotham-regular"
+                tools:text="netAmount" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/history_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true" />
+
     </RelativeLayout>
 
 </LinearLayout>
