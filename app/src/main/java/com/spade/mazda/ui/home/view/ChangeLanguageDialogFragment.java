@@ -51,20 +51,5 @@ public class ChangeLanguageDialogFragment extends DialogFragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-//
-//        // safety check
-//        if (getDialog() == null) {
-//            return;
-//        }
-//
-//        int dialogWidth = 500; // specify a value here
-//        int dialogHeight = 500;
-//
-//        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
-//
-//        // ... other stuff you want to do in your onStart() method
-    }
+
 }

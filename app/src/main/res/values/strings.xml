@@ -133,6 +133,7 @@
     <string name="periodic">Periodic &amp; Mechanical</string>
     <string name="maintenance">Maintenance &amp; Body</string>
     <string name="about_fixology">About Fixology</string>
+    <string name="about_check_social">CHECK OUT OUR SOCIAL MEDIA</string>
     <string name="calculator">Calculator</string>
     <string name="original_price">Original price</string>
     <string name="monthly_installment">Monthly installment</string>
@@ -222,4 +223,11 @@
     <string name="change_language">Change Language</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
+    <string name="call_now">Call now </string>
+    <string name="services_center_txt">Services Center</string>
+    <string name="mazda_number">16661</string>
+    <string name="no_dial_support">Sorry Dial not Supported</string>
+    <string name="facebook_link">https://www.facebook.com/MazdaEgypt</string>
+    <string name="youtube_link">https://www.youtube.com/channel/UC07DjLbZklpq_TAvdkKx9SQ</string>
+
 </resources>

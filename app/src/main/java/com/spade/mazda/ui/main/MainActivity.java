@@ -20,11 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.spade.mazda.CustomViews.CustomTextView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.realm.RealmDbHelper;
 import com.spade.mazda.realm.RealmDbImpl;
+import com.spade.mazda.ui.about_us.view.AboutUsFragment;
 import com.spade.mazda.ui.authentication.model.User;
 import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private int height;
     private FrameLayout menuLayout;
     private ImageView closeImage, logoImage, userImage, tierImage;
-    private LinearLayout app_lang;
+    private LinearLayout aboutUs, appLang;
     private LinearLayout openMenuLayout;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         menuLayout = findViewById(R.id.menu_view);
         userImage = findViewById(R.id.user_image);
         tierImage = findViewById(R.id.tier_image);
-        app_lang = findViewById(R.id.app_lang);
+        appLang = findViewById(R.id.app_lang);
+        aboutUs = findViewById(R.id.about_us);
         homeText.setOnClickListener(view -> openHomeFragment());
         productsText.setOnClickListener(view -> openProductsFragment());
         findUsTextView.setOnClickListener(view -> openFindUsFragment(FindUsFragment.SHOWROOMS_TYPE));
@@ -92,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
         openMenuLayout.setOnClickListener(view -> showMenu());
         closeImage.setOnClickListener(view -> hideMenu());
         userImageLayout.setOnClickListener(view -> startProfileActivity());
-        app_lang.setOnClickListener(view -> chooseLanguage());
+        appLang.setOnClickListener(view -> chooseLanguage());
+        aboutUs.setOnClickListener(view -> {
+            openAboutUsFragment();
+        });
         setScreenHeight();
         openHomeFragment();
         setUserData();
@@ -184,6 +188,13 @@ public class MainActivity extends AppCompatActivity {
         logoImage.setVisibility(View.GONE);
     }
 
+    private void openAboutUsFragment() {
+        AboutUsFragment aboutUsFragment = new AboutUsFragment();
+        addFragment(aboutUsFragment, getString(R.string.about_us));
+        logoImage.setVisibility(View.GONE);
+        mDrawerLayout.closeDrawers();
+    }
+
     private void openProductsFragment() {
         ProductsFragment productsFragment = new ProductsFragment();
         addFragment(productsFragment, getString(R.string.products));
@@ -198,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void chooseLanguage() {
-        new ChangeLanguageDialogFragment().show(getFragmentManager(),ChangeLanguageDialogFragment.class.getSimpleName());
+        new ChangeLanguageDialogFragment().show(getFragmentManager(), ChangeLanguageDialogFragment.class.getSimpleName());
     }
 
     private void openServicesFragment() {
