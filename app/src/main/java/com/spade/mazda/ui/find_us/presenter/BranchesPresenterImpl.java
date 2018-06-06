@@ -1,6 +1,8 @@
 package com.spade.mazda.ui.find_us.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.spade.mazda.base.DataSource;
@@ -54,6 +56,7 @@ public class BranchesPresenterImpl implements BranchesPresenter {
                     branchesView.hideLoading();
                     branchesView.showPins(latLngList);
                 }, throwable -> {
+                    Log.e(BranchesPresenter.class.getSimpleName(), "Error---->" + throwable.getMessage());
                 });
     }
 
@@ -69,6 +72,7 @@ public class BranchesPresenterImpl implements BranchesPresenter {
         });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getCities(List<Branch> branches) {
         DataSource.getCitiesList(branches, context, true)

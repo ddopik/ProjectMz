@@ -40,11 +40,16 @@ public class ChangeLanguageDialogFragment extends DialogFragment {
         englishBtn = mainVew.findViewById(R.id.english_btn);
         arabicBtn = mainVew.findViewById(R.id.arabic_btn);
 
+        String s = PrefUtils.getAppLang(getActivity());
+        String e = PrefUtils.ENGLISH_LANG;
 
-        if (PrefUtils.getAppLang(getActivity()).equals(PrefUtils.ENGLISH_LANG))
+
+        if (PrefUtils.getAppLang(getActivity()).equals(PrefUtils.ENGLISH_LANG)) {
             englishBtn.setBackgroundColor(getResources().getColor(R.color.blue));
-        else if (PrefUtils.getAppLang(getActivity()).equals(PrefUtils.ARABIC_LANG))
-            englishBtn.setBackgroundColor(getResources().getColor(R.color.blue));
+        } else if (PrefUtils.getAppLang(getActivity()).equals(PrefUtils.ARABIC_LANG)) {
+            arabicBtn.setBackgroundColor(getResources().getColor(R.color.blue));
+        }
+
 
         englishBtn.setOnClickListener(view -> ((MainActivity) getActivity()).changeLanguage(PrefUtils.ENGLISH_LANG));
         arabicBtn.setOnClickListener(view -> ((MainActivity) getActivity()).changeLanguage(PrefUtils.ARABIC_LANG));

@@ -1,8 +1,16 @@
 package com.spade.mazda.ui.find_us.view.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +27,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -90,6 +99,12 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
         filteredBranchesList = new ArrayList<>();
 
         branchesAdapter = new BranchesAdapter(getContext(), filteredBranchesList);
+        branchesAdapter.setGetDirectionAction((lat, lng) -> {
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?daddr=" + lat + "," + lng));
+//                    Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
+            startActivity(intent);
+        });
         citySpinnerAdapter = new CitySpinnerAdapter(cityList, getContext());
 
         citiesSpinner.setAdapter(citySpinnerAdapter);
@@ -179,7 +194,7 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
     public void showPins(List<LatLng> latLngList) {
         googleMap.clear();
         for (LatLng latLng : latLngList) {
-            googleMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+            googleMap.addMarker(new MarkerOptions().position(latLng).icon(bitmapDescriptorFromVector(getActivity(), R.drawable.pin)));
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(latLng)
                     .zoom(13)
@@ -188,6 +203,17 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
         }
     }
 
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
+        Drawable background = ContextCompat.getDrawable(context, R.drawable.pin);
+        background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId);
+        vectorDrawable.setBounds(40, 20, vectorDrawable.getIntrinsicWidth() + 40, vectorDrawable.getIntrinsicHeight() + 20);
+        Bitmap bitmap = Bitmap.createBitmap(background.getIntrinsicWidth(), background.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        background.draw(canvas);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
@@ -217,6 +243,7 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
         }
     }
 
+    @SuppressLint("CheckResult")
     private void getBranchesByCity(int cityId) {
         dataSource.getBranchByCityId(allBranchList, cityId)
                 .subscribeOn(Schedulers.io())

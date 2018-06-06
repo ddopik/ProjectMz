@@ -20,6 +20,7 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.Branch
 
     private Context mContext;
     private List<Branch> branchList;
+    private GetDirectionAction getDirectionAction;
 
     public BranchesAdapter(Context mContext, List<Branch> branchList) {
         this.mContext = mContext;
@@ -38,6 +39,9 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.Branch
         Branch branch = branchList.get(position);
         holder.placeNameTextView.setText(branch.getName());
         holder.placeDescriptionTextView.setText(branch.getBranchAddress());
+        holder.getDirectionsTextView.setOnClickListener(view -> {
+            getDirectionAction.OnGetDirectionLister(branch.getBranchLat(), branch.getBranchLng());
+        });
     }
 
     @Override
@@ -54,5 +58,13 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.Branch
             placeDescriptionTextView = itemView.findViewById(R.id.place_address);
             getDirectionsTextView = itemView.findViewById(R.id.get_direction);
         }
+    }
+
+    public void setGetDirectionAction(GetDirectionAction getDirectionAction) {
+        this.getDirectionAction = getDirectionAction;
+    }
+
+    public interface GetDirectionAction {
+        void OnGetDirectionLister(String lat, String lng);
     }
 }

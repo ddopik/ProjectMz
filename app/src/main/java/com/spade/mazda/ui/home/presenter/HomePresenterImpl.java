@@ -1,6 +1,8 @@
 package com.spade.mazda.ui.home.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.home.view.HomeView;
@@ -27,6 +29,7 @@ public class HomePresenterImpl implements HomePresenter {
         this.homeView = view;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getOffers() {
         homeView.showLoading();
@@ -37,6 +40,7 @@ public class HomePresenterImpl implements HomePresenter {
                     homeView.hideLoading();
                     homeView.showOffers(offersResponse.getData());
                 }, throwable -> {
+                    Log.e(HomePresenterImpl.class.getSimpleName(), "Error ---->" + throwable.getMessage());
                 });
     }
 }
