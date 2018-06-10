@@ -40,7 +40,7 @@ public class ApiHelper {
     private static final String BASE_URL = "http://dev.spade.studio/mazda-mobile/public/api/v1/{lang}/";
     private static final String FABRICA_BASE_URL = "http://fabrikaegypt.com/api/{lang}/v1/cars/";
     private static final String VALIDATE_LOGIN = "https://gbmazdaapp.azurewebsites.net/rest/call/validateLogin";
-    private static final String GET_HISTORY_URL =   "https://gbmazdaapp.azurewebsites.net/rest/call/jobCar";
+    private static final String GET_HISTORY_URL = "https://gbmazdaapp.azurewebsites.net/rest/call/jobCar";
 
     private static final String PRODUCTS_LIST_URL = BASE_URL + "cars";
     private static final String CITIES_LIST_URL = BASE_URL + "city";
@@ -67,7 +67,7 @@ public class ApiHelper {
     private static final String FABRICA_REQUEST_TRADE_IN = FABRICA_BASE_URL + "trade";
     private static final String MAZDA_CLUB_URL = BASE_URL + "mazdaClub";
     private static final String ADD_HISTORY_URL = BASE_URL + "history";
-//    private static final String GET_HISTORY_URL = BASE_URL + "profile/history";
+    //    private static final String GET_HISTORY_URL = BASE_URL + "profile/history";
     private static final String INTERESTED_URL = BASE_URL + "interested";
     private static final String LANG_PATH_PARAM = "lang";
     private static final String CHASSIS_PATH_PARAM = "chassis";
@@ -196,7 +196,7 @@ public class ApiHelper {
                 .getObjectObservable(MazdaClubResponse.class);
     }
 
-//    public static Observable<HistoryResponse> getHistory(String appLang, String token) {
+    //    public static Observable<HistoryResponse> getHistory(String appLang, String token) {
 //        return Rx2AndroidNetworking.get(GET_HISTORY_URL)
 //                .addPathParameter(LANG_PATH_PARAM, appLang)
 //                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
@@ -205,8 +205,8 @@ public class ApiHelper {
 //    }
     public static Observable<List<History>> getHistory(String motorNo, String chassisNo) {
         return Rx2AndroidNetworking.get(GET_HISTORY_URL)
-                .addQueryParameter(MOTOR_NO,motorNo)
-                .addQueryParameter(CHASSIS_NO,chassisNo)
+                .addQueryParameter(MOTOR_NO, motorNo)
+                .addQueryParameter(CHASSIS_NO, chassisNo)
                 .build()
                 .getObjectListObservable(History.class);
     }
@@ -346,6 +346,7 @@ public class ApiHelper {
                 });
     }
 
+
     public static void requestSparePart(String appLang, String token, String sparePartTypeID, String sparePartID, String branchId, String description
             , ApiCallBack apiCallBack) {
         Rx2AndroidNetworking.post(REQUEST_SPARE_PART_URL)
@@ -446,6 +447,24 @@ public class ApiHelper {
                 .addQueryParameter(NATIONAL_ID_PATH_PARAM, nationalID)
                 .build()
                 .getObjectObservable(ValidateMazdaLoginResponse.class);
+    }
+
+
+    public static Observable<JSONObject> getNearByPlaces(String googleApiKey, int PROXIMITY_RADIUS, double latitude, double longitude) {
+        String type = "atm_or_gas_station";
+        StringBuilder googlePlacesUrl =
+                new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlacesUrl.append("location=").append(latitude).append(",").append(longitude);
+        googlePlacesUrl.append("&radius=").append(PROXIMITY_RADIUS);
+        googlePlacesUrl.append("&types=").append(type);
+        googlePlacesUrl.append("&sensor=true");
+        googlePlacesUrl.append("&key=" + googleApiKey);
+
+
+        return Rx2AndroidNetworking.get(googlePlacesUrl.toString())
+                .build()
+                .getJSONObjectObservable();
+
     }
 
 

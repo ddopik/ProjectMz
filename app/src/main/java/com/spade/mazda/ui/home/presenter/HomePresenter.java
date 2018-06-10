@@ -1,5 +1,7 @@
 package com.spade.mazda.ui.home.presenter;
 
+import android.location.LocationManager;
+
 import com.spade.mazda.base.BasePresenter;
 import com.spade.mazda.ui.home.view.HomeView;
 
@@ -10,4 +12,11 @@ import com.spade.mazda.ui.home.view.HomeView;
 public interface HomePresenter extends BasePresenter<HomeView> {
 
     void getOffers();
+
+
+    void loadNearByPlaces(double latitude, double longitude);
+
+    void checkPermutation(LocationManager locationManager);
+
+
 }

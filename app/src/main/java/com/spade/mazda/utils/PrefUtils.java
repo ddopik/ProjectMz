@@ -20,6 +20,7 @@ public class PrefUtils {
     public static final String ARABIC_LANG = "ar";
     public static final String ENGLISH_LANG = "en";
     public static final int GUEST_USER_ID = -1;
+    public static final String IS_FINE_LOCATION = "ACCESS_FINE_LOCATION";
 
     private static SharedPreferences getSharedPref(Context context) {
         return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
@@ -87,5 +88,13 @@ public class PrefUtils {
 
     public static void setIsTokenSaved(Context context, boolean isSaved) {
         getSharedPref(context).edit().putBoolean(IS_TOKEN_SAVED, isSaved).apply();
+    }
+
+    public static boolean isFirstTimeAskingLocationPermission(Context context) {
+        return getSharedPref(context).getBoolean(IS_FINE_LOCATION, true);
+    }
+
+    public static void firstTimeAskingLocationPermission(Context context, boolean permationState) {
+        getSharedPref(context).edit().putBoolean(IS_FINE_LOCATION, permationState).apply();
     }
 }
