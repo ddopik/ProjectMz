@@ -4,17 +4,16 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
-import android.provider.Settings;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -83,9 +82,6 @@ public class HomePresenterImpl implements HomePresenter {
     public void checkPermutation(LocationManager locationManager) {
 
         this.locationManager = locationManager;
-        PermationController permationController = new PermationController();
-
-
         PermationController.checkPermission(context, ACCESS_FINE_LOCATION, new PermationController.PermissionAskListener() {
             @Override
             public void onPermissionAsk() {
@@ -94,14 +90,14 @@ public class HomePresenterImpl implements HomePresenter {
 
             @Override
             public void onPermissionPreviouslyDenied() {
-                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
             }
 
             @Override
             public void onPermissionDisabled() {
-                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-
+                Toast.makeText(context, context.getResources().getString(R.string.enable_gps_permation), Toast.LENGTH_LONG).show();
+//                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
 
             @Override
@@ -119,6 +115,7 @@ public class HomePresenterImpl implements HomePresenter {
         });
     }
 
+    @SuppressLint("MissingPermission")
     private Location getLastKnownLocation() {
 
         List<String> providers = locationManager.getProviders(true);

@@ -1,6 +1,8 @@
 package com.spade.mazda.ui.services.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.spade.mazda.base.DataSource;
 import com.spade.mazda.network.ApiHelper;
@@ -33,6 +35,7 @@ public class SparePartsPresenterImpl implements SparePartsPresenter {
         sparePartsView.showCarModels(dataSource.getCarModelList());
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getSpareParts(String trimId) {
         sparePartsView.showLoading();
@@ -43,6 +46,7 @@ public class SparePartsPresenterImpl implements SparePartsPresenter {
                     sparePartsView.hideLoading();
                     sparePartsView.showSparParts(sparePartsResponse.getSparePartCategories());
                 }, throwable -> {
+                    Log.e(SparePartsPresenterImpl.class.getSimpleName(), "Error--->" + throwable.getMessage());
                 });
     }
 }

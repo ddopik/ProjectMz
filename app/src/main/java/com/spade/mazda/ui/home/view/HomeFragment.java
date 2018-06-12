@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.home.view;
 
+import android.annotation.SuppressLint;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -52,7 +53,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
     private List<Offer> offers = new ArrayList<>();
     private OnNearestServiceClicked onNearestServiceClicked;
     // The minimum time between updates in milliseconds
-    public static final long MIN_TIME_BW_UPDATES = 1000 * 30 * 1; // 1 minute
+    public static final long MIN_TIME_BW_UPDATES = 1000 * 30; // 1 minute
     LocationManager locationManager;
     ////////////////////////
     private GoogleMap googleMap;
@@ -168,7 +169,10 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
 
     /////////Find near by Location Block[]
 
-
+    /*
+     * method invoked through premution call back
+     * */
+    @SuppressLint("MissingPermission")
     @Override
     public void ShowNearByPlaces() {
         Criteria criteria = new Criteria();

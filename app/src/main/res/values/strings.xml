@@ -230,5 +230,6 @@
     <string name="facebook_link">https://www.facebook.com/MazdaEgypt</string>
     <string name="youtube_link">https://www.youtube.com/channel/UC07DjLbZklpq_TAvdkKx9SQ</string>
     <string name="enable_gps">Location Error: GPS Disabled!</string>
+    <string name="enable_gps_permation">Please allow accese to deviec location to Show Near by Locations</string>
 
 </resources>

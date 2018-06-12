@@ -84,6 +84,12 @@ public class ApiHelper {
     public static final String AFTER_SALES_LOCATIONS_PARAM = "1";
     public static final String FIXOLOGY_LOCATIONS_PARAM = "2";
     public static final int NOT_ACTIVATED = 402;
+    /*
+     * Basic Authrization of login validation
+     * */
+    public static final String VALIDATE_LOGIN_USER_NAME = "admin";
+    public static final String VALIDATE_LOGIN_PASSWORD = "gb_mazda";
+
 
     public static Observable<ProductsResponse> getCarModels(String appLang) {
         return Rx2AndroidNetworking.get(PRODUCTS_LIST_URL)
@@ -349,13 +355,16 @@ public class ApiHelper {
 
     public static void requestSparePart(String appLang, String token, String sparePartTypeID, String sparePartID, String branchId, String description
             , ApiCallBack apiCallBack) {
+
         Rx2AndroidNetworking.post(REQUEST_SPARE_PART_URL)
+//                .addHeaders("Authorization","bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2LnNwYWRlLnN0dWRpby9tYXpkYS1tb2JpbGUvcHVibGljL2FwaS92MS9lbi9hdXRoZW50aWNhdGUiLCJpYXQiOjE1Mjg3OTg5ODIsImV4cCI6MTUyODgwMjU4MiwibmJmIjoxNTI4Nzk4OTgyLCJqdGkiOiJvYzZTR2xjZHNza1VPRmFQIiwic3ViIjo0LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.h6qj9gMYbfP0Gq934QrFKSfSxFxAFss0F5tzljlpCFg")
                 .addHeaders(AUTH_TOKEN, BEARER + " " + token)
                 .addPathParameter(LANG_PATH_PARAM, appLang)
                 .addBodyParameter("branch_id", branchId)
                 .addBodyParameter("spare_part_category_id", sparePartTypeID)
                 .addBodyParameter("spare_part_id", sparePartID)
                 .addBodyParameter("description", description)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + token)
                 .build()
                 .getAsString(new StringRequestListener() {
                     @Override
@@ -368,6 +377,8 @@ public class ApiHelper {
                         apiCallBack.onFail(ErrorUtils.getErrors(anError));
                     }
                 });
+
+
     }
 
 

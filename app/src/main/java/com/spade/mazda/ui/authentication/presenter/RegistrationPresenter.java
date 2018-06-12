@@ -20,7 +20,7 @@ import java.util.List;
 
 public interface RegistrationPresenter extends BasePresenter<RegistrationView> {
 
-    //    void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate);
+    //    void saveFirstStepData(String name, String email, String VALIDATE_LOGIN_PASSWORD, String phoneNumber, String birthDate);
     void saveFirstStepData(String chassisID, String motorID, String nationalID, String carModel, String carYear, String carTrim, String carColor);
 
     void pickImageFromCamera(BaseFragment baseFragment);

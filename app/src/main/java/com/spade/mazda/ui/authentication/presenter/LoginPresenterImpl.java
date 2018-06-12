@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.authentication.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.androidnetworking.error.ANError;
@@ -37,6 +38,7 @@ public class LoginPresenterImpl implements LoginPresenter {
         mLoginView.navigateToMainScreen();
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void serverLogin(String appLang, String email, String password) {
         mLoginView.showLoading();

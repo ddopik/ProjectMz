@@ -1,15 +1,12 @@
 package com.spade.mazda.ui.authentication.presenter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.MainThread;
 import android.support.v4.app.FragmentManager;
 
-import com.androidnetworking.error.ANError;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.network.ApiHelper;
 import com.spade.mazda.ui.authentication.view.fragment.RegistrationFirstStepFragment;
-import com.spade.mazda.ui.authentication.view.interfaces.RegistrationSecondStepView;
 import com.spade.mazda.ui.authentication.view.interfaces.RegistrationView;
 import com.spade.mazda.ui.cars.model.CarModel;
 import com.spade.mazda.ui.cars.model.CarYear;
@@ -23,14 +20,11 @@ import com.spade.mazda.ui.general.view.interfaces.CarColorInterface;
 import com.spade.mazda.ui.general.view.interfaces.CarModelInterface;
 import com.spade.mazda.ui.general.view.interfaces.CarTrimInterface;
 import com.spade.mazda.ui.general.view.interfaces.CarYearInterface;
-import com.spade.mazda.utils.ErrorUtils;
-import com.spade.mazda.utils.PrefUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import pl.aprilapps.easyphotopicker.EasyImage;
@@ -82,10 +76,10 @@ public class RegistrationPresenterImpl implements
 
 
 //    @Override
-//    public void saveFirstStepData(String name, String email, String password, String phoneNumber, String birthDate) {
+//    public void saveFirstStepData(String name, String email, String VALIDATE_LOGIN_PASSWORD, String phoneNumber, String birthDate) {
 //        this.nameString = name;
 //        this.emailString = email;
-//        this.passwordString = password;
+//        this.passwordString = VALIDATE_LOGIN_PASSWORD;
 //        this.mobileNumberString = phoneNumber;
 //        this.birthDateString = birthDate;
 //
@@ -94,13 +88,13 @@ public class RegistrationPresenterImpl implements
 
     @Override
     public void saveFirstStepData(String chassisID, String motorID, String nationalID, String carModel, String carYear, String carTrim, String carColor) {
-        this.chassisID = chassisID;
-        this.motorID = motorID;
-        this.nationalID = nationalID;
-        this.carModelVal = carModel;
-        this.carYearVal = carYear;
-        this.carTrim = carTrim;
-        this.carColor = carColor;
+        RegistrationPresenterImpl.chassisID = chassisID;
+        RegistrationPresenterImpl.motorID = motorID;
+        RegistrationPresenterImpl.nationalID = nationalID;
+        carModelVal = carModel;
+        carYearVal = carYear;
+        RegistrationPresenterImpl.carTrim = carTrim;
+        RegistrationPresenterImpl.carColor = carColor;
 //        registrationView.navigateToNextStep();
     }
 
@@ -160,7 +154,7 @@ public class RegistrationPresenterImpl implements
     }
 
     public void setFiles(List<File> files) {
-        this.files = files;
+        RegistrationPresenterImpl.files = files;
     }
 
     @Override
