@@ -90,13 +90,12 @@ public class HomePresenterImpl implements HomePresenter {
 
             @Override
             public void onPermissionPreviouslyDenied() {
-
                 ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
             }
 
             @Override
             public void onPermissionDisabled() {
-                Toast.makeText(context, context.getResources().getString(R.string.enable_gps_permation), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.enable_gps_permation), Toast.LENGTH_SHORT).show();
 //                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
 

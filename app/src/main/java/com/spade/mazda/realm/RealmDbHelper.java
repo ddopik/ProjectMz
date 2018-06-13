@@ -25,7 +25,7 @@ public interface RealmDbHelper {
 
 //    void updateCarData(UserModel userModel, String userToken);
 
-    void deleteUser(String userId);
+    void deleteUser(int userId);
 
     List<CarModel> getCarModels();
 

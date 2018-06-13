@@ -100,14 +100,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp14"
-            android:src="@drawable/twitter" />
+            android:src="@drawable/twitter"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/insta_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp14"
-            android:src="@drawable/instagram" />
+            android:src="@drawable/instagram"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/youtube_link"

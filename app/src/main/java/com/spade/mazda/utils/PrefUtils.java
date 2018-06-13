@@ -97,4 +97,9 @@ public class PrefUtils {
     public static void firstTimeAskingLocationPermission(Context context, boolean permationState) {
         getSharedPref(context).edit().putBoolean(IS_FINE_LOCATION, permationState).apply();
     }
+
+    public static void clearPrefUtils(Context context) {
+        getSharedPref(context).edit().clear().apply();
+    }
+
 }

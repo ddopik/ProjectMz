@@ -105,7 +105,7 @@ public class RealmDbImpl implements RealmDbHelper {
 
 
     @Override
-    public void deleteUser(String userId) {
+    public void deleteUser(int userId) {
         Realm realm = Realm.getDefaultInstance();
         User user = realm.where(User.class).equalTo("userId", userId).findFirst();
         realm.beginTransaction();

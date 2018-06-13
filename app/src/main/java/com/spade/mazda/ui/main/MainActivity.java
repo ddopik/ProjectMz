@@ -20,12 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.spade.mazda.CustomViews.CustomTextView;
 import com.spade.mazda.R;
 import com.spade.mazda.base.BaseFragment;
 import com.spade.mazda.realm.RealmDbHelper;
 import com.spade.mazda.realm.RealmDbImpl;
 import com.spade.mazda.ui.about_us.view.AboutUsFragment;
 import com.spade.mazda.ui.authentication.model.User;
+import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
 import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
 import com.spade.mazda.ui.home.view.ChangeLanguageDialogFragment;
@@ -43,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
     private int height;
     private FrameLayout menuLayout;
     private ImageView closeImage, logoImage, userImage, tierImage;
-    private LinearLayout aboutUs, appLang;
+    private LinearLayout aboutUs, appLang, logStatus;
     private LinearLayout openMenuLayout;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
     private FrameLayout userImageLayout;
+    private CustomTextView logStatusVal;
 
 
     @Override
@@ -85,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
         tierImage = findViewById(R.id.tier_image);
         appLang = findViewById(R.id.app_lang);
         aboutUs = findViewById(R.id.about_us);
+        logStatus = findViewById(R.id.log_status);
+        logStatusVal = findViewById(R.id.log_status_val);
+
+        if (PrefUtils.isLoggedIn(this)) {
+            logStatusVal.setText(getResources().getString(R.string.log_out));
+        } else {
+            logStatusVal.setText(getResources().getString(R.string.login));
+        }
+
         homeText.setOnClickListener(view -> openHomeFragment());
         productsText.setOnClickListener(view -> openProductsFragment());
         findUsTextView.setOnClickListener(view -> openFindUsFragment(FindUsFragment.SHOWROOMS_TYPE));
@@ -94,9 +106,8 @@ public class MainActivity extends AppCompatActivity {
         closeImage.setOnClickListener(view -> hideMenu());
         userImageLayout.setOnClickListener(view -> startProfileActivity());
         appLang.setOnClickListener(view -> chooseLanguage());
-        aboutUs.setOnClickListener(view -> {
-            openAboutUsFragment();
-        });
+        aboutUs.setOnClickListener(view -> openAboutUsFragment());
+        logStatus.setOnClickListener(view -> logUser());
         setScreenHeight();
         openHomeFragment();
         setUserData();
@@ -246,6 +257,15 @@ public class MainActivity extends AppCompatActivity {
             userImageLayout.setVisibility(View.GONE);
         }
 
+    }
+
+    public void logUser() {
+        if (PrefUtils.getUserId(this) > 0) {
+            new RealmDbImpl().deleteUser(PrefUtils.getUserId(this));
+            PrefUtils.clearPrefUtils(this);
+        }
+        finish();
+        startActivity(ServerLoginActivity.getLaunchIntent(this));
     }
 
     public void changeLanguage(String lang) {

@@ -2,6 +2,7 @@ package com.spade.mazda.ui.profile.presenter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.androidnetworking.error.ANError;
 import com.spade.mazda.base.DataSource;
@@ -54,7 +55,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     public void getUserCarHistory() {
         profileView.showLoading();
 //        ApiHelper.getHistory(realmDbHelper.getUser(PrefUtils.getUserId(context)).getMotor(),realmDbHelper.getUser(PrefUtils.getUserId(context)).getChassis())
-        ApiHelper.getHistory("211029","252419")
+        ApiHelper.getHistory("211029", "252419")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(historyResponse -> {
@@ -81,6 +82,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                 });
     }
 
+    @SuppressLint("CheckResult")
     private void getCarYear(CarModel carModel, int yearID) {
         dataSource.getCarYearByID(carModel, yearID)
                 .subscribeOn(Schedulers.io())
@@ -91,20 +93,26 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                 });
     }
 
+
+    @SuppressLint("CheckResult")
     private void getCarTrim(CarYear carYear, int trimID) {
         dataSource.getCarTrimByID(carYear, trimID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(carTrim -> getCarColor(carTrim, user.getCarColor()));
+                .subscribe(carTrim -> {
+                    getCarColor(carTrim, user.getCarColor());
+                }, (Throwable throwable) -> {
+                    Log.e(ProfilePresenterImpl.class.getSimpleName(), "Error--->" + throwable.getMessage());
+                });
     }
 
+    @SuppressLint("CheckResult")
     private void getCarColor(ModelTrim modelTrim, int colorID) {
         dataSource.getCarColorByID(modelTrim, colorID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(carColor -> profileView.setCarColor(carColor.getColorName()));
     }
-
 
 
 }

@@ -84,6 +84,7 @@
                 android:background="@color/blue" />
 
             <LinearLayout
+                android:id="@+id/log_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -96,6 +97,7 @@
                     android:src="@drawable/logout" />
 
                 <com.spade.mazda.CustomViews.CustomTextView
+                    android:id="@+id/log_status_val"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp8"
