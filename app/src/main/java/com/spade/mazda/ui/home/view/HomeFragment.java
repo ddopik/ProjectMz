@@ -1,6 +1,7 @@
 package com.spade.mazda.ui.home.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -145,6 +146,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
                         getContext(), R.raw.map_style));
 
 
+
         String provider = Settings.Secure.getString(getActivity().getContentResolver(),
                 Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
         if (!provider.equals("")) {
@@ -152,9 +154,10 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
             homePresenter.checkPermutation(locationManager);
         } else {
             Toast.makeText(getActivity(), getResources().getString(R.string.enable_gps), Toast.LENGTH_LONG).show();
-//            Intent intent = n ew Intent(Settings.ACTION_LOCALE_SETTINGS);
-//            startActivity(intent);
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
         }
+
     }
 
 

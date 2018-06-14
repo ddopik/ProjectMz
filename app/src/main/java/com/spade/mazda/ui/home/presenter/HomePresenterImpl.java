@@ -85,6 +85,7 @@ public class HomePresenterImpl implements HomePresenter {
         PermationController.checkPermission(context, ACCESS_FINE_LOCATION, new PermationController.PermissionAskListener() {
             @Override
             public void onPermissionAsk() {
+                PrefUtils.firstTimeAskingLocationPermission(context, false);
                 ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
             }
 
@@ -96,6 +97,7 @@ public class HomePresenterImpl implements HomePresenter {
             @Override
             public void onPermissionDisabled() {
                 Toast.makeText(context, context.getResources().getString(R.string.enable_gps_permation), Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
 //                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
 
@@ -108,7 +110,6 @@ public class HomePresenterImpl implements HomePresenter {
                     homeView.onLocationChanged(location);
                     homeView.ShowNearByPlaces();
                 }
-
 
             }
         });
@@ -155,7 +156,6 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    Log.e(HomeFragment.class.getSimpleName(), "onResponse: Result= " + response.toString());
                     if (!isGooglePlayServicesAvailable()) {
                         return;
                     }

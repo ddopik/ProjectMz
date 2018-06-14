@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spade.mazda.R;
@@ -42,6 +43,10 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.Branch
         holder.getDirectionsTextView.setOnClickListener(view -> {
             getDirectionAction.OnGetDirectionLister(branch.getBranchLat(), branch.getBranchLng());
         });
+        holder.placesItem.setOnClickListener(view -> {
+                    getDirectionAction.onItemClickedListner(branch.getBranchLat(), branch.getBranchLng());
+                }
+        );
     }
 
     @Override
@@ -49,22 +54,26 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.Branch
         return branchList.size();
     }
 
-    class BranchesViewHolder extends RecyclerView.ViewHolder {
-        private TextView placeNameTextView, placeDescriptionTextView, getDirectionsTextView;
+    public interface GetDirectionAction {
+        void OnGetDirectionLister(String lat, String lng);
 
-        public BranchesViewHolder(View itemView) {
-            super(itemView);
-            placeNameTextView = itemView.findViewById(R.id.place_title);
-            placeDescriptionTextView = itemView.findViewById(R.id.place_address);
-            getDirectionsTextView = itemView.findViewById(R.id.get_direction);
-        }
+        void onItemClickedListner(String lat, String lng);
     }
 
     public void setGetDirectionAction(GetDirectionAction getDirectionAction) {
         this.getDirectionAction = getDirectionAction;
     }
 
-    public interface GetDirectionAction {
-        void OnGetDirectionLister(String lat, String lng);
+    class BranchesViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout placesItem;
+        private TextView placeNameTextView, placeDescriptionTextView, getDirectionsTextView;
+
+        public BranchesViewHolder(View itemView) {
+            super(itemView);
+            placesItem = itemView.findViewById(R.id.places_item);
+            placeNameTextView = itemView.findViewById(R.id.place_title);
+            placeDescriptionTextView = itemView.findViewById(R.id.place_address);
+            getDirectionsTextView = itemView.findViewById(R.id.get_direction);
+        }
     }
 }

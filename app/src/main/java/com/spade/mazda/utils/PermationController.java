@@ -36,7 +36,6 @@ public class PermationController {
                  * Permission denied or first time requested
                  * */
                 if (PrefUtils.isFirstTimeAskingLocationPermission(context)) {
-                    PrefUtils.firstTimeAskingLocationPermission(context, false);
                     listener.onPermissionAsk();
                 } else {
                     /*

@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,7 +56,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Ayman Abouzeid on 11/6/17.
  */
 
-public class BranchesFragment extends BaseFragment implements BranchesView, OnMapReadyCallback {
+public class BranchesFragment extends BaseFragment implements BranchesView, OnMapReadyCallback, BranchesAdapter.GetDirectionAction {
     private int tabType;
     private BranchesPresenter branchesPresenter;
     private View branchesView;
@@ -99,12 +100,7 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
         filteredBranchesList = new ArrayList<>();
 
         branchesAdapter = new BranchesAdapter(getContext(), filteredBranchesList);
-        branchesAdapter.setGetDirectionAction((lat, lng) -> {
-            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                    Uri.parse("http://maps.google.com/maps?daddr=" + lat + "," + lng));
-//                    Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
-            startActivity(intent);
-        });
+        branchesAdapter.setGetDirectionAction(this);
         citySpinnerAdapter = new CitySpinnerAdapter(cityList, getContext());
 
         citiesSpinner.setAdapter(citySpinnerAdapter);
@@ -214,6 +210,7 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
@@ -249,5 +246,24 @@ public class BranchesFragment extends BaseFragment implements BranchesView, OnMa
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::showFilteredBranches);
+    }
+
+    @Override
+    public void OnGetDirectionLister(String lat, String lng) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=" + lat + "," + lng));
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onItemClickedListner(String lat, String lng) {
+        LatLng initialLoc = googleMap.getCameraPosition().target;
+
+        CameraUpdate update = CameraUpdateFactory.newLatLng(initialLoc);
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(7);
+
+        googleMap.moveCamera(update);
+        googleMap.animateCamera(zoom);
     }
 }
