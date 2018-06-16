@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.spade.mazda.CustomViews.CustomTextView;
@@ -30,6 +32,7 @@ import com.spade.mazda.ui.authentication.model.User;
 import com.spade.mazda.ui.authentication.view.activity.ServerLoginActivity;
 import com.spade.mazda.ui.cars.view.fragments.ProductsFragment;
 import com.spade.mazda.ui.find_us.view.fragments.FindUsFragment;
+import com.spade.mazda.ui.home.presenter.HomePresenterImpl;
 import com.spade.mazda.ui.home.view.ChangeLanguageDialogFragment;
 import com.spade.mazda.ui.home.view.HomeFragment;
 import com.spade.mazda.ui.mazda_club.view.MazdaClubFragment;
@@ -287,7 +290,30 @@ public class MainActivity extends AppCompatActivity {
         startActivity(getLaunchIntent(this));
         finish();
     }
-//    private void animate(View homeText) {
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+
+        switch (requestCode) {
+
+            case HomePresenterImpl.LOCATION_PERMEATION_REQUEST_CODE: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    restartActivity();
+                } else {
+                    Toast.makeText(this, getResources().getString(R.string.enable_gps_permation), Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    //    private void animate(View homeText) {
 //        ObjectAnimator translateXAnimation = ObjectAnimator.ofFloat(homeText, "translationX", centerX, 0);
 //        ObjectAnimator translateYAnimation = ObjectAnimator.ofFloat(homeText, "translationY", centerY, 0);
 //        AnimatorSet animatorSet = new AnimatorSet();

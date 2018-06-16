@@ -23,5 +23,7 @@ public interface HomeView extends BaseView {
 
     void onLocationChanged(Location location);
 
-    void ShowNearByPlaces();
+    void setMyLocation();
+
+    void showNearByLocations(double latitude, double longitude);
 }

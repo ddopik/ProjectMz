@@ -4,11 +4,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -51,6 +54,7 @@ public class HomePresenterImpl implements HomePresenter {
     public static final String STATUS = "status";
     public static final String OK = "OK";
     public static final String ZERO_RESULTS = "ZERO_RESULTS";
+    public static final int LOCATION_PERMEATION_REQUEST_CODE = 123;
     public static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     public static final int PROXIMITY_RADIUS = 5000;
     public static final String GEOMETRY = "geometry";
@@ -86,33 +90,36 @@ public class HomePresenterImpl implements HomePresenter {
             @Override
             public void onPermissionAsk() {
                 PrefUtils.firstTimeAskingLocationPermission(context, false);
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMEATION_REQUEST_CODE);
             }
 
             @Override
             public void onPermissionPreviouslyDenied() {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMEATION_REQUEST_CODE);
             }
 
             @Override
             public void onPermissionDisabled() {
-                Toast.makeText(context, context.getResources().getString(R.string.enable_gps_permation), Toast.LENGTH_SHORT).show();
+
+//                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+//                        Uri.fromParts("package", context.getPackageName(), null));
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(intent);
+                //todo  line test should be remover in app ralease
                 ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
 //                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
 
             @Override
             public void onPermissionGranted() {
-
-
-                Location location = getLastKnownLocation();
-                if (location != null) {
-                    homeView.onLocationChanged(location);
-                    homeView.ShowNearByPlaces();
-                }
-
+                return;
             }
         });
+    }
+
+    @Override
+    public boolean isPermissionGranted(String permission) {
+        return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     @SuppressLint("MissingPermission")
@@ -168,6 +175,29 @@ public class HomePresenterImpl implements HomePresenter {
 
     }
 
+
+    @Override
+    public void viewNearByPlaces(LocationManager locationManager) {
+
+        String provider = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (!provider.equals("")) {     //GPS Enabled
+
+            if (isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Location location = getLastKnownLocation();
+                if (location != null) {
+                    homeView.setMyLocation();
+                    homeView.showNearByLocations(location.getLatitude(), location.getLongitude());
+                }
+            }
+        } else {
+            Toast.makeText(context, context.getResources().getString(R.string.enable_gps), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            context.startActivity(intent);
+        }
+
+
+    }
 
     private void parseLocationResult(JSONObject result) {
 

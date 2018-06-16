@@ -1,13 +1,11 @@
 package com.spade.mazda.ui.home.view;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -17,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -78,7 +75,10 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
     protected void initPresenter() {
         homePresenter = new HomePresenterImpl(getActivity());
         homePresenter.setView(this);
+        locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+        homePresenter.checkPermutation(locationManager);
     }
+
 
     @Override
     protected void initViews() {
@@ -99,8 +99,6 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
-
-        locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
 
 
     }
@@ -144,19 +142,20 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
         googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                         getContext(), R.raw.map_style));
+        locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+
+        homePresenter.viewNearByPlaces(locationManager);
 
 
-
-        String provider = Settings.Secure.getString(getActivity().getContentResolver(),
-                Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-        if (!provider.equals("")) {
-            //GPS Enabled
-            homePresenter.checkPermutation(locationManager);
-        } else {
-            Toast.makeText(getActivity(), getResources().getString(R.string.enable_gps), Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivity(intent);
-        }
+//        if (!provider.equals("")) {
+//            //GPS Enabled
+//            locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+////            homePresenter.checkPermutatio
+//            Toast.makeText(getActivity(), n(locationManager);
+////        } else {getResources().getString(R.string.enable_gps), Toast.LENGTH_LONG).show();
+//            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//            startActivity(intent);
+//        }
 
     }
 
@@ -173,24 +172,33 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
     /////////Find near by Location Block[]
 
     /*
-     * method invoked through premution call back
+     * Presenter Update  are reflects  here
      * */
     @SuppressLint("MissingPermission")
     @Override
-    public void ShowNearByPlaces() {
+    public void setMyLocation() {
         Criteria criteria = new Criteria();
+        //todo investigate this line
         String bestProvider = locationManager.getBestProvider(criteria, true);
+        /////
         googleMap.setMyLocationEnabled(true);
         locationManager.requestLocationUpdates(bestProvider, MIN_TIME_BW_UPDATES,
                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
+
+
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
+
+        showNearByLocations(latitude, longitude);
+    }
+
+    @Override
+    public void showNearByLocations(double latitude, double longitude) {
 
         LatLng latLng = new LatLng(latitude, longitude);
         googleMap.addMarker(new MarkerOptions().position(latLng).title("My Location"));
