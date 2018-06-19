@@ -231,5 +231,20 @@
     <string name="youtube_link">https://www.youtube.com/channel/UC07DjLbZklpq_TAvdkKx9SQ</string>
     <string name="enable_gps">Location Error: GPS Disabled!</string>
     <string name="enable_gps_permation">Please allow accese to deviec location to Show Near by Locations</string>
-
+<string name="about_us_text">
+    Mazda Motor Corporation is a Japanese automotive manufacturer that was founded by Jujiro
+    Matsudain in 1920 in Hiroshima, in western Japan. The company started as a cork plant but later
+    branched out into the production of a full-line of passenger cars, trucks, and buses, rapidly
+    gaining considerable success and receiving recognition at world level. In 1930, the company
+    produced its first vehicle the Mazda-Go, a three-wheeled open vehicle that resembled a
+    motorcycle with a cargo-carrier at the back. Mazda’s popularity started to grow in the 1960s
+    when the company was able to introduce its first real car: the Mazda R360. This was also the
+    very same year in which Mazda has started developing the rotary engines. The 1980s witnessed the
+    rebirth of Mazda and an upswing in sales sparked by successful new products. The 1990 model year
+    saw the launch of a car that proved a huge hit. In the new millennium, Mazda has regained its
+    stride as it has invested in new development. The Hiroshima-based automaker ranks as one of
+    Japan’s leading car manufacturer and is currently focusing its attention on strengthening its
+    branding and vehicle designs to take on the challenges that exist in the global automobile
+    market.
+</string>
 </resources>

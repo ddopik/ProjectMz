@@ -70,7 +70,6 @@ public class HomePresenterImpl implements HomePresenter {
     public static final String PLACE_NAME = "place_name";
     private LocationManager locationManager;
 
-    // The minimum distance to change Updates in meters
 
 
     public HomePresenterImpl(Context context) {
@@ -132,8 +131,10 @@ public class HomePresenterImpl implements HomePresenter {
             if (l == null) {
                 continue;
             }
-            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+
+            if (bestLocation == null || l.getAccuracy() > bestLocation.getAccuracy()) {
                 // Found best last known location: %s", l);
+
                 bestLocation = l;
             }
         }

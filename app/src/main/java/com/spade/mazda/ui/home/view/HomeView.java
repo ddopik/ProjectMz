@@ -21,7 +21,7 @@ public interface HomeView extends BaseView {
 
     GoogleMap getMapView();
 
-    void onLocationChanged(Location location);
+
 
     void setMyLocation();
 

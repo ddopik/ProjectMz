@@ -226,27 +226,14 @@
     <string name="change_language">Change Language</string>
     <string name="english">الانجليزيه</string>
     <string name="arabic">العربيه</string>
-    <!--<string name="about_us">شركة مازدا للسيارات هي شركة يابانية أسسها جوجيرو ماتسودا عام 1920 في مدينة هيروشيما غربي اليابان. تخصصت الشركة في بدايتها في مجال صناعة المعدات الصناعية، ثم تحولت إلى صناعة المركبات من سيارات وشاحنات وحافلات، لتحقق بعد ذلك نجاحًا سريعًا وبشكل ملحوظ مما جعلها شركة معترف بها عالميًا. في عام 1930، أنتجت الشركة أولى مركباتها باسم Mazda-Go، وهي سيارة مكشوفة بثلاث عجلات تشبه دراجة نارية مع صندوق لنقل البضائع في الخلف. بدأت شعبية مازدا تزداد في الستينات عندما أنتجت الشركة أول سيارة حقيقية لها باسم: مازدا R360. وفي ذلك العام نفسه، بدأت الشركة في تطوير المحركات الدوَّارة.-->
-    <!--وقد شهدت فترة الثمانينات ولادة شركة مازدا من جديد، كما شهدت أيضًا طفرة في المبيعات بسبب نجاح منتجاتها الجديدة. فقد شهد العام 1990 إطلاق سيارة حققت نجاحًا كبيرًا. في الألفية الجديدة، استعادت مازدا همتها وعزيمتها باستثمارها في تطوير جديد.-->
-    <!--تعد شركة مازدا واحدة من الشركات اليابانية الرائدة في صناعة السيارات والتي تركز اهتمامها حاليًا على تعزيز علامتها التجارية وتصاميم مركباتها لتواجه التحديات القائمة في السوق العالمية للسيارات. للوفاء بالاحتياجات المتزايدة لعملائها، أعلنت جي بي غبور أوتو عن عودة الجيل الجديد من سيارات مازدا 3 إلى المنافسة القوية في السوق المصري بعد غياب تسع سنوات. لا يتمتع سائقوا مازدا في مصر بأحدث تكنولوجيا يابانية وبمظهرها الأنيق فقط، ولكنهم أيضًا يتمتعون بخدمات ما بعد البيع غير محدودة. تضمن جي بي غبور أوتو توافر قطع غيار يابانية 100% إلى جانب توافر فنيين مدربين مهنيًا ومهندسين ذوي خبرة للقيام بأعمال الصيانة والإصلاحات.-->
-    <!--</string>-->
+    <string name="about_us_text">شركة مازدا للسيارات هي شركة يابانية أسسها جوجيرو ماتسودا عام 1920 في مدينة هيروشيما غربي اليابان. تخصصت الشركة في بدايتها في مجال صناعة المعدات الصناعية، ثم تحولت إلى صناعة المركبات من سيارات وشاحنات وحافلات، لتحقق بعد ذلك نجاحًا سريعًا وبشكل ملحوظ مما جعلها شركة معترف بها عالميًا. في عام 1930، أنتجت الشركة أولى مركباتها باسم Mazda-Go، وهي سيارة مكشوفة بثلاث عجلات تشبه دراجة نارية مع صندوق لنقل البضائع في الخلف. بدأت شعبية مازدا تزداد في الستينات عندما أنتجت الشركة أول سيارة حقيقية لها باسم: مازدا R360. وفي ذلك العام نفسه، بدأت الشركة في تطوير المحركات الدوَّارة.
+    وقد شهدت فترة الثمانينات ولادة شركة مازدا من جديد، كما شهدت أيضًا طفرة في المبيعات بسبب نجاح منتجاتها الجديدة. فقد شهد العام 1990 إطلاق سيارة حققت نجاحًا كبيرًا. في الألفية الجديدة، استعادت مازدا همتها وعزيمتها باستثمارها في تطوير جديد.
+    تعد شركة مازدا واحدة من الشركات اليابانية الرائدة في صناعة السيارات والتي تركز اهتمامها حاليًا على تعزيز علامتها التجارية وتصاميم مركباتها لتواجه التحديات القائمة في السوق العالمية للسيارات. للوفاء بالاحتياجات المتزايدة لعملائها، أعلنت جي بي غبور أوتو عن عودة الجيل الجديد من سيارات مازدا 3 إلى المنافسة القوية في السوق المصري بعد غياب تسع سنوات. لا يتمتع سائقوا مازدا في مصر بأحدث تكنولوجيا يابانية وبمظهرها الأنيق فقط، ولكنهم أيضًا يتمتعون بخدمات ما بعد البيع غير محدودة. تضمن جي بي غبور أوتو توافر قطع غيار يابانية 100% إلى جانب توافر فنيين مدربين مهنيًا ومهندسين ذوي خبرة للقيام بأعمال الصيانة والإصلاحات.
+    </string>
 
 
     <string name="call_now">Call now</string>
     <string name="enable_gps_permation">Please allow accese to deviec location to Show Near by Locations</string>
 
-    <!--Mazda Motor Corporation is a Japanese automotive manufacturer that was founded by Jujiro-->
-    <!--Matsudain in 1920 in Hiroshima, in western Japan. The company started as a cork plant but later-->
-    <!--branched out into the production of a full-line of passenger cars, trucks, and buses, rapidly-->
-    <!--gaining considerable success and receiving recognition at world level. In 1930, the company-->
-    <!--produced its first vehicle the Mazda-Go, a three-wheeled open vehicle that resembled a-->
-    <!--motorcycle with a cargo-carrier at the back. Mazda’s popularity started to grow in the 1960s-->
-    <!--when the company was able to introduce its first real car: the Mazda R360. This was also the-->
-    <!--very same year in which Mazda has started developing the rotary engines. The 1980s witnessed the-->
-    <!--rebirth of Mazda and an upswing in sales sparked by successful new products. The 1990 model year-->
-    <!--saw the launch of a car that proved a huge hit. In the new millennium, Mazda has regained its-->
-    <!--stride as it has invested in new development. The Hiroshima-based automaker ranks as one of-->
-    <!--Japan’s leading car manufacturer and is currently focusing its attention on strengthening its-->
-    <!--branding and vehicle designs to take on the challenges that exist in the global automobile-->
-    <!--market.-->
+
 </resources>

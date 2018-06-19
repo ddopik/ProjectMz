@@ -1,10 +1,12 @@
 package com.spade.mazda.ui.home.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -13,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,6 +47,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
 
     private HomePresenter homePresenter;
     private View homeView;
+    private ImageView callImageView;
 
     // The minimum distance to change Updates in meters
     public static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 5; // 10 meters
@@ -88,11 +93,13 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         supportMapFragment.getMapAsync(this);
         progressBar = homeView.findViewById(R.id.progress_bar);
+        callImageView=homeView.findViewById(R.id.call_image_view);
         offersPagerAdapter = new OffersPagerAdapter(getContext(), offers);
         offersViewPager.setAdapter(offersPagerAdapter);
         tabLayout.setupWithViewPager(offersViewPager, true);
         homePresenter.getOffers();
         nearestServiceLayout.setOnClickListener(view -> onNearestServiceClicked.onNearestServiceClicked());
+        callImageView.setOnClickListener(view -> callMazdaCenter());
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
@@ -142,21 +149,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
         googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                         getContext(), R.raw.map_style));
-        locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
-
         homePresenter.viewNearByPlaces(locationManager);
-
-
-//        if (!provider.equals("")) {
-//            //GPS Enabled
-//            locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
-////            homePresenter.checkPermutatio
-//            Toast.makeText(getActivity(), n(locationManager);
-////        } else {getResources().getString(R.string.enable_gps), Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//            startActivity(intent);
-//        }
-
     }
 
 
@@ -220,6 +213,17 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
     }
 
 
+    private void callMazdaCenter() {
+
+        final Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + getResources().getString(R.string.mazda_number)));
+        if (dialIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(dialIntent);
+        } else {
+            Toast.makeText(getActivity(), getResources().getString(R.string.no_dial_support), Toast.LENGTH_LONG).show();
+        }
+
+
+    }
 }
 
 /////////////////

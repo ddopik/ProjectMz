@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content">
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/black">
 
 
@@ -20,7 +26,7 @@
         android:layout_below="@+id/about_main_image"
         android:padding="@dimen/material_text_subhead"
         android:textColor="@color/white"
-        tools:text="@string/fabrica_description" />
+        android:text="@string/about_us_text" />
 
     <LinearLayout
         android:id="@+id/call_block"
@@ -120,3 +126,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</ScrollView>
