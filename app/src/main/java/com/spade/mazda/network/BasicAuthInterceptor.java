@@ -28,7 +28,7 @@ public class BasicAuthInterceptor implements Interceptor {
 String s=PrefUtils.getUserToken(context);
         Request authenticatedRequest = request.newBuilder()
                 .header("Authorization", credentials)
-                .addHeader("Authorization", "bearer " + PrefUtils.getUserToken(context))
+//                .addHeader("Authorization", "bearer " + PrefUtils.getUserToken(context))
                 .build();
         return chain.proceed(authenticatedRequest);
     }

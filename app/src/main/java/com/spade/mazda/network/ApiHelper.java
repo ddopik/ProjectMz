@@ -39,8 +39,10 @@ public class ApiHelper {
 
     private static final String BASE_URL = "http://dev.spade.studio/mazda-mobile/public/api/v1/{lang}/";
     private static final String FABRICA_BASE_URL = "http://fabrikaegypt.com/api/{lang}/v1/cars/";
+//    private static final String VALIDATE_LOGIN = "https://gbmazdaapp.azurewebsites.net/rest/call/validateLogin"; //old validate loginUrl
     private static final String VALIDATE_LOGIN = "https://gbmazdaapp.azurewebsites.net/rest/call/validateLogin";
-    private static final String GET_HISTORY_URL = "https://gbmazdaapp.azurewebsites.net/rest/call/jobCar";
+//    private static final String GET_HISTORY_URL = "https://gbmazdaapp.azurewebsites.net/rest/call/jobCar"; //old get history url
+    private static final String GET_HISTORY_URL = "https://gbmazdaapp.azurewebsites.net/rest/call/jobCar/";
 
     private static final String PRODUCTS_LIST_URL = BASE_URL + "cars";
     private static final String CITIES_LIST_URL = BASE_URL + "city";

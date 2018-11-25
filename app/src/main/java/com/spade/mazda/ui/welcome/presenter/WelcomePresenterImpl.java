@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.welcome.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.spade.mazda.base.DataSource;
@@ -32,6 +33,7 @@ public class WelcomePresenterImpl implements WelcomePresenter {
         this.welcomeView = view;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getIntroSlides() {
         welcomeView.showLoading();

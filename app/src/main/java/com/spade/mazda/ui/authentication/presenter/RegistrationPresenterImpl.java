@@ -296,7 +296,8 @@ public class RegistrationPresenterImpl implements
     @SuppressLint("CheckResult")
     public void validateMazdaUserLogin(String appLang, RegistrationFirstStepFragment.OnNextClicked onNextClicked) {
         registrationView.showLoading();
-        ApiHelper.validateLogin(appLang, chassisID, motorID, nationalID).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        ApiHelper.validateLogin(appLang, chassisID, motorID, nationalID)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(validateMazdaLoginResponse -> {
                     if (validateMazdaLoginResponse.getResult().equals("Success")) {
                         registrationView.hideLoading();
