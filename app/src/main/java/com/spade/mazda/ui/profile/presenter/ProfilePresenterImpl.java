@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.spade.mazda.base.DataSource;
 import com.spade.mazda.network.ApiHelper;
+import com.spade.mazda.network.BasicAuthInterceptor;
 import com.spade.mazda.realm.RealmDbHelper;
 import com.spade.mazda.realm.RealmDbImpl;
 import com.spade.mazda.ui.authentication.model.User;
@@ -19,6 +21,7 @@ import com.spade.mazda.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by Ayman Abouzeid on 12/20/17.
@@ -26,6 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ProfilePresenterImpl implements ProfilePresenter {
 
+    private String TAG=ProfilePresenterImpl.class.getSimpleName();
     private Context context;
     private ProfileView profileView;
     private RealmDbHelper realmDbHelper;
@@ -53,9 +57,15 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     @SuppressLint("CheckResult")
     @Override
     public void getUserCarHistory() {
+
+
+
+
+        AndroidNetworking.initialize(context);
+
         profileView.showLoading();
-//        ApiHelper.getHistory(realmDbHelper.getUser(PrefUtils.getUserId(context)).getMotor(),realmDbHelper.getUser(PrefUtils.getUserId(context)).getChassis())
-        ApiHelper.getHistory("211029", "252419")
+        ApiHelper.getHistory(realmDbHelper.getUser(PrefUtils.getUserId(context)).getMotor(),realmDbHelper.getUser(PrefUtils.getUserId(context)).getChassis())
+//        ApiHelper.getHistory("211029", "252419")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(historyResponse -> {
@@ -68,6 +78,19 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                         profileView.showMessage(ErrorUtils.getErrors(anError));
                     }
                 });
+
+
+
+        //////////////////
+        BasicAuthInterceptor basicAuthInterceptor = new BasicAuthInterceptor(context);
+
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .addNetworkInterceptor(basicAuthInterceptor)
+                .build();
+        AndroidNetworking.initialize(context, okHttpClient);
+        ///////////////////////
+
     }
 
     @SuppressLint("CheckResult")
@@ -79,6 +102,9 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                 .subscribe(carModel -> {
                     profileView.setCarModel(carModel);
                     getCarYear(carModel, user.getCarYear());
+
+                },throwable -> {
+                    Log.e(TAG,"getCarDetails()---> Error  --->"+throwable.getMessage());
                 });
     }
 
@@ -90,6 +116,8 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                 .subscribe(carYear -> {
                     profileView.setCarYear(carYear.getYearName());
                     getCarTrim(carYear, user.getCarTrim());
+                },throwable -> {
+                    Log.e(TAG,"getCarYear() --->Error  "+throwable.getMessage());
                 });
     }
 

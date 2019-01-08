@@ -44,7 +44,7 @@ public class MazdaApplication extends Application {
 //        FacebookLoginManager.initFacebookEvents(this);
 //    }
 
-    private void initAndroidNetworking() {
+    public void initAndroidNetworking() {
 
 
         BasicAuthInterceptor basicAuthInterceptor = new BasicAuthInterceptor(getApplicationContext());

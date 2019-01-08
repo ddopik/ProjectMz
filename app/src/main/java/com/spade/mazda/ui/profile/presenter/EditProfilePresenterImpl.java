@@ -1,6 +1,8 @@
 package com.spade.mazda.ui.profile.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.androidnetworking.error.ANError;
 import com.spade.mazda.R;
@@ -32,6 +34,7 @@ import pl.aprilapps.easyphotopicker.EasyImage;
 
 public class EditProfilePresenterImpl implements EditProfilePresenter {
 
+    private String TAG=EditProfilePresenterImpl.class.getSimpleName();
     private EditProfilePresenterImpl editProfilePresenter;
     private EditProfileView editProfileView;
     private Context context;
@@ -91,15 +94,23 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
     @Override
     public void getCarData() {
         User user = realmDbHelper.getUser(PrefUtils.getUserId(context));
+        if (user.getChassis() !=null)
         editProfileView.setChassis(user.getChassis());
+        if (user.getMotor() !=null)
         editProfileView.setMotor(user.getMotor());
+        if (user.getCarModel() !=null)
         carModel = user.getCarModel();
+        if (user.getCarYear() !=null)
         carYear = user.getCarYear();
+        if (user.getCarTrim() !=null)
         carTrim = user.getCarTrim();
+        if (user.getCarColor() !=null)
         carColor = user.getCarColor();
+
         getCarDetails(carModel);
     }
 
+    @SuppressLint("CheckResult")
     public void getCarDetails(int carID) {
         dataSource.getCarModel(carID)
                 .subscribeOn(Schedulers.io())
@@ -111,6 +122,7 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
                 });
     }
 
+    @SuppressLint("CheckResult")
     private void getCarYear(CarModel carModel, int yearID) {
         dataSource.getCarYearByID(carModel, yearID)
                 .subscribeOn(Schedulers.io())
@@ -118,9 +130,12 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
                 .subscribe(carYear -> {
                     editProfileView.setCarYear(carYear.getYearName());
                     getCarTrim(carYear, carTrim);
+                },throwable -> {
+                    Log.e(TAG,"getCarYear() ---> Error"+throwable.getMessage());
                 });
     }
 
+    @SuppressLint("CheckResult")
     private void getCarTrim(CarYear carYear, int trimID) {
         dataSource.getCarTrimByID(carYear, trimID)
                 .subscribeOn(Schedulers.io())
@@ -128,9 +143,12 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
                 .subscribe(carTrim -> {
                     editProfileView.setCarTrim(carTrim.getTrimName());
                     getCarColor(carTrim, carColor);
+                },throwable -> {
+                    Log.e(TAG,"getCarTrim() ---> Error"+throwable.getMessage());
                 });
     }
 
+    @SuppressLint("CheckResult")
     private void getCarColor(ModelTrim modelTrim, int colorID) {
         dataSource.getCarColorByID(modelTrim, colorID)
                 .subscribeOn(Schedulers.io())
@@ -191,6 +209,7 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
         return true;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void editProfile() {
         editProfileView.showLoading();

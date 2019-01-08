@@ -76,22 +76,22 @@ public class FixologyFragment extends BaseFragment implements ServicesLocationsV
         servicesLocationsPresenter.getServicesLocation(ApiHelper.FIXOLOGY_LOCATIONS_PARAM);
         servicesLocationsPresenter.getLocations();
 
-        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Location location = locationList.get(i);
-                if (location.getId() == -1) {
-                    servicesLocationsPresenter.getAllServiceLocation();
-                } else {
-                    servicesLocationsPresenter.getServiceLocationsByLocationId(location.getId());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                Location location = locationList.get(i);
+//                if (location.getId() == -1) {
+//                    servicesLocationsPresenter.getAllServiceLocation();
+//                } else {
+//                    servicesLocationsPresenter.getServiceLocationsByLocationId(location.getId());
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
     }
 
     @Override

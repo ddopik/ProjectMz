@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void addFragment(BaseFragment baseFragment, String title) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, baseFragment).addToBackStack(title).commit();
         setTitle(title);
         hideMenu();
     }
@@ -312,6 +312,20 @@ public class MainActivity extends AppCompatActivity {
             // permissions this app might request
         }
     }
+
+//    @Override
+//    public void onBackPressed() {
+////        super.onBackPressed();
+//        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+//            return ;
+//        }
+//        String fragmentTag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+//
+//        Toast.makeText(this, getSupportFragmentManager().findFragmentByTag(fragmentTag).getTag(), Toast.LENGTH_SHORT).show();
+//    }
+
+
+
 
     //    private void animate(View homeText) {
 //        ObjectAnimator translateXAnimation = ObjectAnimator.ofFloat(homeText, "translationX", centerX, 0);

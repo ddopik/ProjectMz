@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.splash;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -72,6 +73,7 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(MainActivity.getLaunchIntent(this));
     }
 
+    @SuppressLint("CheckResult")
     private void getCarModels() {
         String appLang = PrefUtils.getAppLang(this);
         DataSource dataSource = DataSource.getInstance();

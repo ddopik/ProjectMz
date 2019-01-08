@@ -54,20 +54,20 @@ public class FinanceFragment extends BaseFragment implements FinanceView {
 
     @Override
     protected void initViews() {
-        ViewPager offersViewPager = driveFinanceView.findViewById(R.id.offers_pager);
-        TabLayout tabLayout = driveFinanceView.findViewById(R.id.tab_layout);
+//        ViewPager offersViewPager = driveFinanceView.findViewById(R.id.offers_pager);
+//        TabLayout tabLayout = driveFinanceView.findViewById(R.id.tab_layout);
         CustomRecyclerView programsRecyclerView = driveFinanceView.findViewById(R.id.programs_recycler_view);
         programsProgressBar = driveFinanceView.findViewById(R.id.programs_progress_bar);
         offersProgressBar = driveFinanceView.findViewById(R.id.offers_progress_bar);
-        offersPagerAdapter = new OffersPagerAdapter(getContext(), offers);
+//        offersPagerAdapter = new OffersPagerAdapter(getContext(), offers);
         programsAdapter = new ProgramsAdapter(getContext(), programs);
 
-        offersViewPager.setAdapter(offersPagerAdapter);
-        tabLayout.setupWithViewPager(offersViewPager, true);
+//        offersViewPager.setAdapter(offersPagerAdapter);
+//        tabLayout.setupWithViewPager(offersViewPager, true);
 
         programsRecyclerView.setAdapter(programsAdapter);
 
-        financePresenter.getOffers();
+//        financePresenter.getOffers();
         financePresenter.getPrograms();
     }
 
@@ -108,9 +108,9 @@ public class FinanceFragment extends BaseFragment implements FinanceView {
 
     @Override
     public void showOffers(List<Offer> offers) {
-        this.offers.clear();
-        this.offers.addAll(offers);
-        offersPagerAdapter.notifyDataSetChanged();
+//        this.offers.clear();
+//        this.offers.addAll(offers);
+//        offersPagerAdapter.notifyDataSetChanged();
     }
 
     @Override

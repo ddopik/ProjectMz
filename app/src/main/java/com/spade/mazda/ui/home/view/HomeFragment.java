@@ -47,7 +47,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
 
     private HomePresenter homePresenter;
     private View homeView;
-    private ImageView callImageView;
+    private RelativeLayout callImageView;
 
     // The minimum distance to change Updates in meters
     public static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 5; // 10 meters
@@ -93,7 +93,7 @@ public class HomeFragment extends BaseFragment implements HomeView, OnMapReadyCa
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         supportMapFragment.getMapAsync(this);
         progressBar = homeView.findViewById(R.id.progress_bar);
-        callImageView=homeView.findViewById(R.id.call_image_view);
+        callImageView=homeView.findViewById(R.id.call_btn_container);
         offersPagerAdapter = new OffersPagerAdapter(getContext(), offers);
         offersViewPager.setAdapter(offersPagerAdapter);
         tabLayout.setupWithViewPager(offersViewPager, true);

@@ -140,7 +140,8 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
 
     @Override
     public void onDateSet(int year, int month, int day) {
-        String birthDateString = day + "-" + (month + 1) + "-" + year;
+//        String birthDateString = day + "-" + (month + 1) + "-" + year;
+        String birthDateString = year + "-" + (month + 1) + "-" + day;
         birthDateEditText.setText(birthDateString);
     }
 

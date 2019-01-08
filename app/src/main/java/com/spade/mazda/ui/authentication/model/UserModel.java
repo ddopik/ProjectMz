@@ -75,6 +75,12 @@ public class UserModel implements Parcelable {
     @SerializedName("is_blocked")
     @Expose
     private Integer isBlocked;
+
+    @SerializedName("tier")
+    @Expose
+    private String tier;
+
+
     public final static Parcelable.Creator<UserModel> CREATOR = new Creator<UserModel>() {
         @SuppressWarnings({"unchecked"})
         public UserModel createFromParcel(Parcel in) {
@@ -110,6 +116,7 @@ public class UserModel implements Parcelable {
         this.updatedAt = ((String) in.readValue((String.class.getClassLoader())));
         this.isVerified = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.isBlocked = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.tier = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public UserModel() {
@@ -314,6 +321,7 @@ public class UserModel implements Parcelable {
         dest.writeValue(updatedAt);
         dest.writeValue(isVerified);
         dest.writeValue(isBlocked);
+        dest.writeValue(tier);
     }
 
     public int describeContents() {

@@ -228,6 +228,7 @@
     <string name="mazda_number">16661</string>
     <string name="no_dial_support">Sorry Dial not Supported</string>
     <string name="facebook_link">https://www.facebook.com/MazdaEgypt</string>
+    <string name="instagram_link">https://www.instagram.com/mazda_misr/?utm_source=ig_profile_share&amp;igshid=1h4ugra0szmpr</string>
     <string name="youtube_link">https://www.youtube.com/channel/UC07DjLbZklpq_TAvdkKx9SQ</string>
     <string name="enable_gps">Location Error: GPS Disabled!</string>
     <string name="enable_gps_permation">Please allow accese to deviec location to Show Near by Locations</string>

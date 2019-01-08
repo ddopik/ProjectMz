@@ -45,7 +45,7 @@ public class AboutUsFragment extends BaseFragment {
         callBlock = mainView.findViewById(R.id.call_block);
 
         faceBookIcon.setOnClickListener(view -> openLink(getResources().getString(R.string.facebook_link)));
-//        InstaIcon.setOnClickListener(view -> openLink());
+        InstaIcon.setOnClickListener(view -> openLink(getResources().getString(R.string.instagram_link)));
 //        twitterIcon.setOnClickListener(view -> openLink());
         youtubeIcon.setOnClickListener(view -> openLink(getResources().getString(R.string.youtube_link)));
         callBlock.setOnClickListener(view -> callMazdaCenter());

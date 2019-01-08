@@ -110,6 +110,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/call_btn_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp8"

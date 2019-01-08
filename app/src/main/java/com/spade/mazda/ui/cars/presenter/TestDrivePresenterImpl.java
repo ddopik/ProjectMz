@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.cars.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
@@ -80,6 +81,7 @@ public class TestDrivePresenterImpl implements
                 });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getShowRooms() {
         testDriveView.showLoading();

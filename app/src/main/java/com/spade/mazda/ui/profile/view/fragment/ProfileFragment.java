@@ -46,6 +46,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
     private List<History> historyList = new ArrayList<>();
     private HistoryAdapter historyAdapter;
 
+
     @Nullable
     @Override
 
@@ -121,6 +122,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
         userName.setText(user.getUserName());
         carChassis.setText(String.format(getString(R.string.chassis_number), user.getChassis()));
         carMotor.setText(String.format(getString(R.string.motor_number), user.getMotor()));
+        if(user.getCarModel() !=null)
         profilePresenter.getCarDetails(user.getCarModel());
     }
 

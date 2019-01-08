@@ -212,11 +212,15 @@ public class ApiHelper {
 //                .getObjectObservable(HistoryResponse.class);
 //    }
     public static Observable<List<History>> getHistory(String motorNo, String chassisNo) {
+
+
         return Rx2AndroidNetworking.get(GET_HISTORY_URL)
                 .addQueryParameter(MOTOR_NO, motorNo)
                 .addQueryParameter(CHASSIS_NO, chassisNo)
                 .build()
                 .getObjectListObservable(History.class);
+
+
     }
 
     public static Observable<LoginResponse> loginUser(String appLang, String email, String password) {
@@ -255,6 +259,8 @@ public class ApiHelper {
 
     public static Observable<LoginResponse> editProfile(String appLang, String token,
                                                         String nationalIdString, String name, String phoneNumber, String birthDate, File userImage, File... imageFiles) {
+
+
         Rx2ANRequest.MultiPartBuilder multiPartBuilder = Rx2AndroidNetworking.upload(EDIT_PROFILE_URL);
         if (imageFiles != null && imageFiles.length > 0) {
             multiPartBuilder.addMultipartFile("national_id_front_image", imageFiles[0])
@@ -344,6 +350,7 @@ public class ApiHelper {
                 .getAsString(new StringRequestListener() {
                     @Override
                     public void onResponse(String response) {
+
                         apiCallBack.onSuccess();
                     }
 

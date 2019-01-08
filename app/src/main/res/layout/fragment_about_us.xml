@@ -16,7 +16,9 @@
         android:id="@+id/about_main_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:src="@drawable/about_logos" />
 
     <TextView
@@ -115,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp14"
             android:src="@drawable/instagram"
-            android:visibility="gone" />
+             />
 
         <ImageView
             android:id="@+id/youtube_link"
