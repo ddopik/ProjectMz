@@ -143,6 +143,8 @@ public class TradeInFragment extends BaseFragment implements TradeInView {
 
             }
         });
+
+
         requestBtn.setOnClickListener(view -> {
             if (dataIsValid()) {
                 proceed();

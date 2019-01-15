@@ -15,6 +15,8 @@ import com.spade.mazda.ui.find_us.model.CitiesResponse;
 import com.spade.mazda.ui.home.model.OffersResponse;
 import com.spade.mazda.ui.mazda_club.model.MazdaClubResponse;
 import com.spade.mazda.ui.profile.model.History;
+import com.spade.mazda.ui.services.model.AvailableTimeResponse;
+import com.spade.mazda.ui.services.model.BookPeriodicakServiveResponse;
 import com.spade.mazda.ui.services.model.KilometersResponse;
 import com.spade.mazda.ui.services.model.LocationsResponse;
 import com.spade.mazda.ui.services.model.ProgramsResponse;
@@ -63,6 +65,8 @@ public class ApiHelper {
     private static final String REQUEST_TEST_DRIVE_URL = BASE_URL + "testDrive/request";
     private static final String REQUEST_SPARE_PART_URL = BASE_URL + "spareParts/request";
     private static final String KILOMETERS_URL = BASE_URL + "kilometerServices";
+    private static final String AVAILABLE_TIME_URL = BASE_URL + "times";
+    private static final String BOOK_PERIODICAL_SERVICE = BASE_URL + "times";
     public static final String FABRICA_BRANDS_URL = FABRICA_BASE_URL + "brands";
     public static final String FABRICA_MODELS_URL = FABRICA_BASE_URL + "models";
     public static final String FABRICA_BRANCHES_URL = FABRICA_BASE_URL + "branches";
@@ -121,6 +125,21 @@ public class ApiHelper {
                 .build()
                 .getObjectObservable(KilometersResponse.class);
     }
+
+    public static Observable<AvailableTimeResponse> getAvailabilTime(String appLang) {
+        return Rx2AndroidNetworking.get(AVAILABLE_TIME_URL)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .build()
+                .getObjectObservable(AvailableTimeResponse.class);
+    }
+
+    public static Observable<BookPeriodicakServiveResponse> bookPeriodicalService(int branchId, int kiloMeterId, int reserveDataId, String appLang) {
+        return Rx2AndroidNetworking.get(BOOK_PERIODICAL_SERVICE)
+                .addPathParameter(LANG_PATH_PARAM, appLang)
+                .build()
+                .getObjectObservable(BookPeriodicakServiveResponse.class);
+    }
+
 
     public static Observable<SparePartsResponse> getSpareParts(String appLang, String trimId) {
         Rx2ANRequest.GetRequestBuilder getRequestBuilder = Rx2AndroidNetworking.get(SPARE_PARTS_URL);
@@ -462,6 +481,7 @@ public class ApiHelper {
 
     public static Observable<ValidateMazdaLoginResponse> validateLogin(String appLang, String chassisNum, String motorNum, String nationalID) {
         return Rx2AndroidNetworking.get(VALIDATE_LOGIN)
+
                 .addQueryParameter(CHASSIS_PATH_PARAM, chassisNum)
                 .addQueryParameter(MOTOR_PATH_PARAM, motorNum)
                 .addQueryParameter(NATIONAL_ID_PATH_PARAM, nationalID)

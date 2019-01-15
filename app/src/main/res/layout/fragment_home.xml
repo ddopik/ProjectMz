@@ -168,7 +168,8 @@
             android:id="@+id/map"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="220dp"
+
             android:layout_marginBottom="@dimen/activity_vertical_margin" />
     </LinearLayout>
 </ScrollView>

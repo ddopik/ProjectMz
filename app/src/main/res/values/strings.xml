@@ -19,7 +19,7 @@
     <string name="spare_parts">Spare Parts</string>
     <string name="fixology">Fixology</string>
     <string name="service_360">360</string>
-    <string name="finance">Finance</string>
+    <string name="finance">Drive Finance</string>
     <string name="name">Name</string>
     <string name="email">Email Address</string>
     <string name="password">Password</string>
@@ -248,4 +248,14 @@
     branding and vehicle designs to take on the challenges that exist in the global automobile
     market.
 </string>
+    <string name="no_time_availaible">No time available</string>
+    <string name="choose_from_available_times">Choose from available times</string>
+    <string name="please_select_service_location">Please select serves center</string>
+    <string name="please_select_service_type">Please select serves type</string>
+    <string name="please_select_availaible_time">Please select availaible time</string>
+    <string name="plase_select_service_date">Please select service date</string>
+    <string name="location">Location</string>
+    <string name="map_fragment_open_gps">Please open Gps</string>
+    <string name="map_fragment_yes">Enable Gps</string>
+    <string name="map_fragment_no">No Gps</string>
 </resources>

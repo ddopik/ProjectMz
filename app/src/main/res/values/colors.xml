@@ -21,4 +21,7 @@
     <color name="golden_tier_dark">#ce992e</color>
     <color name="platinum_tier_light">#5a5a5a</color>
     <color name="platinum_tier_dark">#333333</color>
+    <color name="gray96A0AA">#96A0AA</color>
+    <color name="transparent">#00000000</color>
+
 </resources>

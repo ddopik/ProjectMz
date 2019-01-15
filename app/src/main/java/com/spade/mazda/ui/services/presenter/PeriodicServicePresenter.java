@@ -14,5 +14,11 @@ public interface PeriodicServicePresenter extends BasePresenter<PeriodicView> {
 
     void getKiloMetersServices();
 
+    void getAvailableTimes();
+
     void openDatePicker(FragmentManager fragmentManager);
-}
+
+    void submitPeriodicalData(int branchID,int kilometers,int availableTimeData);
+    void BookService();
+
+ }

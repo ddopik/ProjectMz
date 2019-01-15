@@ -13,12 +13,5 @@ public interface HomePresenter extends BasePresenter<HomeView> {
 
     void getOffers();
 
-
     void loadNearByPlaces(double latitude, double longitude);
-
-    void checkPermutation(LocationManager locationManager);
-
-    boolean isPermissionGranted(String permission);
-
-    void viewNearByPlaces(LocationManager locationManager);
 }

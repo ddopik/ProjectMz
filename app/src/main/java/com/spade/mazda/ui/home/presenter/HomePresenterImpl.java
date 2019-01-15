@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -38,6 +40,8 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -72,6 +76,8 @@ public class HomePresenterImpl implements HomePresenter {
 
 
 
+
+
     public HomePresenterImpl(Context context) {
         this.context = context;
     }
@@ -81,65 +87,9 @@ public class HomePresenterImpl implements HomePresenter {
         this.homeView = view;
     }
 
-    @Override
-    public void checkPermutation(LocationManager locationManager) {
 
-        this.locationManager = locationManager;
-        PermationController.checkPermission(context, ACCESS_FINE_LOCATION, new PermationController.PermissionAskListener() {
-            @Override
-            public void onPermissionAsk() {
-                PrefUtils.firstTimeAskingLocationPermission(context, false);
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMEATION_REQUEST_CODE);
-            }
 
-            @Override
-            public void onPermissionPreviouslyDenied() {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMEATION_REQUEST_CODE);
-            }
 
-            @Override
-            public void onPermissionDisabled() {
-
-//                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-//                        Uri.fromParts("package", context.getPackageName(), null));
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(intent);
-                //todo  line test should be remover in app ralease
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
-//                context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-            }
-
-            @Override
-            public void onPermissionGranted() {
-                return;
-            }
-        });
-    }
-
-    @Override
-    public boolean isPermissionGranted(String permission) {
-        return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    @SuppressLint("MissingPermission")
-    private Location getLastKnownLocation() {
-
-        List<String> providers = locationManager.getProviders(true);
-        Location bestLocation = null;
-        for (String provider : providers) {
-            Location l = locationManager.getLastKnownLocation(provider);
-            if (l == null) {
-                continue;
-            }
-
-            if (bestLocation == null || l.getAccuracy() > bestLocation.getAccuracy()) {
-                // Found best last known location: %s", l);
-
-                bestLocation = l;
-            }
-        }
-        return bestLocation;
-    }
 
     @SuppressLint("CheckResult")
     @Override
@@ -163,12 +113,7 @@ public class HomePresenterImpl implements HomePresenter {
         ApiHelper.getNearByPlaces(context.getString(R.string.GOOGLE_MAPS_API_KEY), PROXIMITY_RADIUS, latitude, longitude)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    if (!isGooglePlayServicesAvailable()) {
-                        return;
-                    }
-                    parseLocationResult(response);
-                }, throwable -> {
+                .subscribe(response -> parseLocationResult(response), throwable -> {
                     Log.e(HomeFragment.class.getSimpleName(), "onErrorResponse: Error= " + throwable);
                     Log.e(HomeFragment.class.getSimpleName(), "onErrorResponse: Error= " + throwable.getMessage());
                 });
@@ -177,28 +122,6 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
 
-    @Override
-    public void viewNearByPlaces(LocationManager locationManager) {
-
-        String provider = Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-        if (!provider.equals("")) {     //GPS Enabled
-
-            if (isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Location location = getLastKnownLocation();
-                if (location != null) {
-                    homeView.setMyLocation();
-                    homeView.showNearByLocations(location.getLatitude(), location.getLongitude());
-                }
-            }
-        } else {
-            Toast.makeText(context, context.getResources().getString(R.string.enable_gps), Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            context.startActivity(intent);
-        }
-
-
-    }
 
     private void parseLocationResult(JSONObject result) {
 
@@ -253,19 +176,7 @@ public class HomePresenterImpl implements HomePresenter {
     }
 
 
-    private boolean isGooglePlayServicesAvailable() {
-        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (apiAvailability.isUserResolvableError(resultCode)) {
-                apiAvailability.getErrorDialog((Activity) context, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST).show();
-            } else {
-                Log.e(HomeFragment.class.getSimpleName(), "This device is not supported.");
-            }
-            return false;
-        }
-        return true;
-    }
+
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
         Drawable background = ContextCompat.getDrawable(context, R.drawable.pin);
@@ -278,5 +189,6 @@ public class HomePresenterImpl implements HomePresenter {
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
 
 }

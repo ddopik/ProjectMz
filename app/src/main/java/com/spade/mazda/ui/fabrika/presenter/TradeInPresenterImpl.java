@@ -1,5 +1,6 @@
 package com.spade.mazda.ui.fabrika.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.spade.mazda.network.ApiHelper;
@@ -30,6 +31,7 @@ public class TradeInPresenterImpl implements TradeInPresenter {
         tradeInView = view;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getBrands() {
         tradeInView.showLoading();

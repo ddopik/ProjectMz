@@ -2,6 +2,7 @@ package com.spade.mazda.ui.services.view.interfaces;
 
 import com.spade.mazda.base.BaseView;
 import com.spade.mazda.ui.find_us.model.Branch;
+import com.spade.mazda.ui.services.model.AvailableTimeData;
 import com.spade.mazda.ui.services.model.Kilometer;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public interface PeriodicView extends BaseView {
     void showServiceCenters(List<Branch> branches);
 
     void setDate(String date);
+
+    void showAvailableTimes(List<AvailableTimeData> availableTimeDataList);
+
+    void viewMessage(String msg);
 
     void showProgressDialog();
 

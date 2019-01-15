@@ -21,9 +21,5 @@ public interface HomeView extends BaseView {
 
     GoogleMap getMapView();
 
-
-
-    void setMyLocation();
-
     void showNearByLocations(double latitude, double longitude);
 }
